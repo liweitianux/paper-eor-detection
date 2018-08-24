@@ -1,0 +1,27 @@
+# Generic
+*~
+*.swp
+*.orig
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fff
+*.fls
+*.lof
+*.log
+*.out
+*-converted-to.*
+*.synctex.gz
+*.fdb_latexmk
+
+# Emacs
+.#*
+auto/
+*Notes.bib
+
+#
+dist/
+docs/
+reports/
