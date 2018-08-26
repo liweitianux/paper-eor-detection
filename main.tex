@@ -1,0 +1,257 @@
+%%
+%% Copyright (c) 2018 The Authors.  All Rights Reserved.
+%%
+%% Weitian LI, et al.
+%% School of Physics and Astronomy, Shanghai Jiao Tong University,
+%% Shanghai, China.
+%%
+%% 2018-08-23
+%%
+
+\documentclass[letters,a4paper,fleqn,usenatbib]{mnras}
+% Available options:
+% - letters : for papers in the journal's Letters section (<=5 pages)
+% - onecolumn : single column
+% - doublespacing : double line spacing (do NOT submit in this format)
+% - usenatbib : (always use this) use `natbib' package for citations
+% - usegraphicx : includes the `graphicx' package
+% - useAMS : support 3 upright Greek characters
+% - usedcolumn : use `dcolumn' package for table column alignment
+
+\usepackage{newtxtext,newtxmath}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%
+% Custom packages
+%
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}  % typeset units; from `texlive-science'
+
+\graphicspath{{./}{figures/}}  % NOTE: the trailing '/' matters
+
+\sisetup{
+  range-phrase=\text{--},
+  range-units=single,
+  product-units=power,
+  list-separator={, },
+  list-final-separator={, and },
+}
+\DeclareSIUnit\MHz{\mega\hertz}
+
+%
+% Custom commands
+%
+%\newcommand{\pcm}{\,cm$^{-2}$}
+
+
+%%======================================================================
+%% Title page
+%%
+
+%      ............................................. (<=45 chars)
+\title[EoR Separation with CDAE]{%
+  EoR Signal Separation Using Convolutional Denoising Autoencoder
+}
+
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author[Li~et~al.]{%
+Weitian Li,$^{1}$\thanks{%
+  E-mail: liweitianux@sjtu.edu.cn (WL); hgxu@sjtu.edu.cn (HX)}
+Haiguang Xu,$^{1,2,3}$\footnotemark[1]
+Zhixian Ma,$^{4}$
+Ruimin Zhu,$^{5}$
+Dan Hu,$^{1}$
+Zhenghao Zhu,$^{1}$
+\newauthor
+Chenxi Shan,$^{1}$
+Jie Zhu$^{4}$
+and
+Xiang-Ping Wu$^{6}$
+\\
+% List of institutions
+$^{1}${School of Physics and Astronomy,
+  Shanghai Jiao Tong University,
+  800 Dongchuan Road, Shanghai 200240, China} \\
+$^{2}${Tsung-Dao Lee Institute,
+  Shanghai Jiao Tong University,
+  800 Dongchuan Road, Shanghai 200240, China} \\
+$^{3}${IFSA Collaborative Innovation Center,
+  Shanghai Jiao Tong University,
+  800 Dongchuan Road, Shanghai 200240, China} \\
+$^{4}${Department of Electronic Engineering,
+  Shanghai Jiao Tong University,
+  800 Dongchuan Road, Shanghai 200240, China} \\
+$^{5}${Department of Statistics,
+  Northwestern University,
+  2006 Sheridan Road, Evanston, IL 60208, US} \\
+$^{6}${National Astronomical Observatories,
+  Chinese Academy of Sciences,
+  20A Datun Road, Beijing 100012, China}
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{2018}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+%
+% Abstract
+% (<=200 words for Letters)
+%
+\begin{abstract}
+The \SI{21}{\cm} emission from the neutral hydrogen (\ion{H}{i})
+is regarded as the decisive probe to explore the epoch of reionization.
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+% https://academic.oup.com/DocumentLibrary/mnras/keywords.pdf
+\begin{keywords}
+methods: data analysis --
+techniques: interferometric --
+dark ages, reionization, first stars --
+radio continuum: general
+\end{keywords}
+
+
+%%======================================================================
+%% Paper body
+%%
+
+\section{Introduction}
+\label{sec:intro}
+
+In this paper, we propose a CDAE to...
+
+This paper is organised as follows.
+
+
+%%======================================================================
+\section{Methodology}
+\label{sec:method}
+
+We first introduce the CDAE, and then describe the network architecture
+that we propose...
+
+
+%%----------------------------------------------------------------------
+\subsection{Convolutional Denoising Autoencoder}
+\label{sec:cdae}
+
+The autoencoder (AE) is ...
+
+The convolutional AE (CAE) is ...
+
+The convolutional denoising AE (CDAE) is ...
+
+
+%%----------------------------------------------------------------------
+\subsection{Proposed Network Architecture}
+\label{sec:architecture}
+
+The network that we propose is a one-dimensional (1D) CDAE ...
+
+
+%%----------------------------------------------------------------------
+\subsection{Data Preprocessing and Training}
+\label{sec:data}
+
+To better train the CDAE, the input data should be appropriately
+preprocessed.
+
+
+%%----------------------------------------------------------------------
+\subsection{Evaluation Index}
+\label{sec:index}
+
+To evaluate the EoR signal separation performance, an index must be defined...
+
+
+%%======================================================================
+\section{Experiments}
+\label{sec:expriments}
+
+We simulate a data set to train the CDAE and evaluate the performance.
+We also carry out comparison of performance between our proposed method
+and the traditional polynomial fitting method.
+
+
+%%----------------------------------------------------------------------
+\subsection{Data Simulation}
+\label{sec:simulation}
+
+We take the \SIrange{154}{162}{\MHz} frequency band as an example.
+We simulate the sky images of the EoR signal, Galactic diffuse emission,
+extragalactic point sources, and radio haloes.
+The SKA1-Low layout configuration is employed to simulate the SKA1
+`observed' images.
+In this way, we take into account the complicated instrumental effects
+of radio interferometers.
+See \citealt{li2018} for more details.
+
+
+%%----------------------------------------------------------------------
+\subsection{Results}
+\label{sec:results}
+
+The training results ...
+The EoR separation performance ...
+
+
+%%----------------------------------------------------------------------
+\subsection{Comparison}
+\label{sec:comparison}
+
+Compare to the traditional polynomial fitting method ...
+
+
+%%======================================================================
+\section{Conclusions}
+\label{sec:conclusions}
+
+We have proposed a CDAE to separate the faint EoR signal along the
+frequency dimension and achieved excellent results...
+
+
+%%======================================================================
+\section*{Acknowledgements}
+
+This work is supported by
+the Ministry of Science and Technology of China
+(grant No. 2018YFA0404601),
+the National Natural Science Foundation of China
+(grant Nos. 11433002, 11621303, 61371147),
+and the National Key Research and Discovery Plan
+(grant No. 2017YFF0210903).
+
+
+%%======================================================================
+%% References
+
+\bibliographystyle{mnras}
+\bibliography{references}
+
+
+%%======================================================================
+%% Appendix
+
+% \appendix
+
+
+%%======================================================================
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+%% EOF
