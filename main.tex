@@ -41,10 +41,15 @@
 }
 \DeclareSIUnit\MHz{\mega\hertz}
 
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Section}
+\def\figureautorefname{Figure}
+\def\tableautorefname{Table}
+
 %
 % Custom commands
 %
-%\newcommand{\pcm}{\,cm$^{-2}$}
+\newcommand{\Hi}{\ion{H}{i}}
 
 
 %%======================================================================
@@ -58,8 +63,9 @@
 
 % If you need two or more lines of authors, add an extra line using \newauthor
 \author[Li~et~al.]{%
-Weitian Li,$^{1}$\thanks{%
-  E-mail: liweitianux@sjtu.edu.cn (WL); hgxu@sjtu.edu.cn (HX)}
+Weitian Li,$^{1}$\thanks{E-mail:
+  \href{mailto:liweitianux@sjtu.edu.cn}{liweitianux@sjtu.edu.cn} (WL);
+  \href{mailto:hgxu@sjtu.edu.cn}{hgxu@sjtu.edu.cn} (HX)}
 Haiguang Xu,$^{1,2,3}$\footnotemark[1]
 Zhixian Ma,$^{4}$
 Ruimin Zhu,$^{5}$
