@@ -43,7 +43,7 @@
 
 \def\sectionautorefname{Section}
 \def\subsectionautorefname{Section}
-\def\figureautorefname{Figure}
+\def\figureautorefname{Fig.}
 \def\tableautorefname{Table}
 
 %
@@ -242,10 +242,34 @@ of the EoR signal from the overwhelming foreground contamination.
 
 
 %%----------------------------------------------------------------------
-\subsection{Proposed Network Architecture}
+\subsection{Network architecture}
 \label{sec:architecture}
 
-The network that we propose is a one-dimensional (1D) CDAE ...
+We propose a simple deep CDAE for separating the EoR signal, as shown
+in \autoref{fig:network}.
+The CDAE consists of a 7-layer encoder, a 7-layer decoder,
+and one output layer.
+The encoder and decoder parts are symmetric and use the rectified
+linear unit (ReLU) as the activation function, while the output layer
+uses the `tanh' activation function (see also \autoref{sec:data}).
+All the convolutional layers have filters of size 3 and the filters
+are one-dimensional (1D) because of the 1D input data, i.e., along the
+observing frequency dimension.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{network-crop}
+  \caption{\label{fig:network}%
+    The network architecture of the proposed CDAE that
+    predicts the clean EoR signal from the noisy signal corrupted by
+    the foreground.
+    The CDAE consists of a 7-layer encoder (the orange boxes),
+    a 7-layer decoder (the blue boxes), and one output layer
+    (the green box).
+    All the convolutional layers use 1D filters of size 3, and
+    the number of filters in each layer is marked in the boxes
+    with bold font.}
+\end{figure}
 
 
 %%----------------------------------------------------------------------
