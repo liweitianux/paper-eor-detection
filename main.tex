@@ -206,19 +206,39 @@ Finally, we conclude our work in \autoref{sec:conclusions}.
 \section{Methodology}
 \label{sec:method}
 
-We first introduce the CDAE, and then describe the network architecture
-that we propose...
-
-
 %%----------------------------------------------------------------------
-\subsection{Convolutional Denoising Autoencoder}
+\subsection{Convolutional denoising autoencoder}
 \label{sec:cdae}
 
-The autoencoder (AE) is ...
+The autoencoder is an unsupervised learning algorithm and consists of
+two parts: the encoder and the decoder.
+The former learns codes that can effectively represent the input data,
+while the latter reconstructs the input from the learned codes.
+By constraining the dimensionality or sparsity of the codes, the
+autoencoder is forced to learn robust features from the training data
+\citep[chapter 14]{goodfellow2016}.
 
-The convolutional AE (CAE) is ...
+The convolutional autoencoder (CAE) is a variant of autoencoders that
+makes use of convolutional layers instead of fully connected layers
+\citep{masci2011}.
+Each convolutional layer consists of a series of filters and learns
+a set of localised features.
+More sophisticated features can thus be hierarchically built by stacking
+multiple convolutional layers.
+The weights (i.e., parameters) of filters are shared across all
+locations in the input data, which greatly reduces the number of
+parameters and eases the training.
+This makes it possible to implement very deep and expressive CAEs that
+can extract intricate features from the data.
+In order to learn more robust features, the CAE can be trained to
+predict the original data from the noisy or corrupted data, hence the
+so-called convolutional denoising autoencoder (CDAE).
 
-The convolutional denoising AE (CDAE) is ...
+In the task of separating the EoR signal, the foreground contamination
+can be regarded as the noise that corrupts the target signal.
+A CDAE can therefore be trained to learn noise-robust features of the
+faint EoR signal and reconstruct it, achieving the effective separation
+of the EoR signal from the overwhelming foreground contamination.
 
 
 %%----------------------------------------------------------------------
