@@ -16,7 +16,7 @@ PDF_FIG:=	$(EPS_FIG:.eps=.pdf)
 
 # Files to pack for submission
 SRCS:=		main.tex references.bib
-FIGURES:=	$(wildcard figures/*.pdf)
+FIGURES:=	figures/network-crop.pdf
 TEMPLATE:=	mnras/mnras.cls mnras/mnras.bst
 
 default: main.pdf
@@ -49,6 +49,9 @@ submission: $(SRCS) $(TEMPLATE) $(FIGURES)
 
 %.pdf: %.eps
 	epstopdf $^ $@
+
+%-crop.pdf: %.pdf
+	pdfcrop $^
 
 clean:
 	latexmk -c main.tex
