@@ -374,18 +374,6 @@ In this way, we take into account the complicated instrumental effects
 of radio interferometers.
 See \citet{li2018} for the details.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\columnwidth]{simudata}
-  \caption{\label{fig:simudata}%
-    The spectra of two example pixels in the simulated image cubes
-    of the EoR signal (the top panel) and the foreground emission
-    (the bottom panel).
-    The absolute differences between two adjacent frequencies are
-    also plotted for the foreground emission in thin lines.
-  }
-\end{figure}
-
 To generate the best-quality images for performing the EoR signal
 separation, we make the following minor adjustments to the simulation
 pipeline presented in \citet{li2018}.
@@ -414,6 +402,18 @@ i.e., both the EoR signal and the foreground contamination,
 and the labelled data are the image cube of the EoR signal.
 The total number of data points in this data set, i.e., the number of
 pixels of the image cubes, is 129,600.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{simudata}
+  \caption{\label{fig:simudata}%
+    The spectra of two example pixels in the simulated image cubes
+    of the EoR signal (the top panel) and the foreground emission
+    (the bottom panel).
+    The absolute differences between two adjacent frequencies are
+    also plotted for the foreground emission in thin lines.
+  }
+\end{figure}
 
 
 %%----------------------------------------------------------------------
@@ -466,13 +466,13 @@ set during the CDAE training are shown in \autoref{fig:train}.
 The steadily decreasing losses and increasing correlation coefficient
 suggest that the CDAE is well trained.
 After training for 100 epochs, the CDAE achieves excellent performance
-with a correlation coefficient of \num{0.985 +- 0.009} on the validation
-set.
+with a correlation coefficient of $\rho_{\R{val}} = \num{0.985 +- 0.009}$
+on the validation set.
 An example of the EoR signal separated by the trained CDAE is presented
 in \autoref{fig:result}.
-This separation example has a correlation coefficient of 0.985 and well
-demonstrates that the faint EoR signal can be separated with high
-accuracy by the CDAE.
+This separation example has a correlation coefficient of $\rho = 0.985$
+and well demonstrates that the faint EoR signal can be separated with
+high accuracy by the CDAE.
 Consequently, our deep-learning-based method by using the CDAE is able
 to accurately separate the faint EoR signal in the presence of severe
 foreground contamination and complicated instrumental effects.
@@ -516,7 +516,7 @@ and find that the quartic polynomial (order of 4) can give the
 relatively best result.
 However, the correlation coefficient evaluated for the separated EoR
 signal in such case is only $\rho_{\R{pfit}} = \num{0.241 +- 0.103}$,
-which is small and indicates that the polynomial fitting method
+which is rather small and indicates that the polynomial fitting method
 performs very bad in separating the EoR signal.
 As illustrated in \autoref{fig:simudata}, the complicated instrumental
 effects seriously damage the spectral smoothness of the foreground
@@ -551,11 +551,9 @@ experiments.
 
 This work is supported by
 the Ministry of Science and Technology of China
-(grant No. 2018YFA0404601),
-the National Natural Science Foundation of China
-(grant Nos. 11433002, 11621303, 11835009, 61371147),
-and the National Key Research and Discovery Plan
-(grant No. 2017YFF0210903).
+(grant Nos. 2018YFA0404601, 2017YFF0210903),
+and the National Natural Science Foundation of China
+(grant Nos. 11433002, 11621303, 11835009, 61371147).
 
 
 %%======================================================================
