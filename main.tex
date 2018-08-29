@@ -40,6 +40,9 @@
   list-final-separator={, and },
 }
 \DeclareSIUnit\MHz{\mega\hertz}
+\DeclareSIUnit\kHz{\kilo\hertz}
+\DeclareSIUnit\jansky{Jy}
+\DeclareSIUnit\mJy{\milli\jansky}
 
 \def\sectionautorefname{Section}
 \def\subsectionautorefname{Section}
@@ -350,25 +353,47 @@ performance of separation.
 
 %%======================================================================
 \section{Experiments}
-\label{sec:expriments}
-
-We simulate a data set to train the CDAE and evaluate the performance.
-We also carry out comparison of performance between our proposed method
-and the traditional polynomial fitting method.
-
+\label{sec:experiments}
 
 %%----------------------------------------------------------------------
-\subsection{Data Simulation}
+\subsection{Data simulation}
 \label{sec:simulation}
 
-We take the \SIrange{154}{162}{\MHz} frequency band as an example.
-We simulate the sky images of the EoR signal, Galactic diffuse emission,
+In order to derive the data set to train the proposed CDAE and evaluate
+its performance, we carry out end-to-end simulations to generate the
+`observed' image cubes.
+Specifically, we take the \SIrange{154}{162}{\MHz} frequency band as an
+example and simulate the sky images of the EoR signal, Galactic diffuse
+emission (including Galactic synchrotron and free-free emissions),
 extragalactic point sources, and radio haloes.
-The SKA1-Low layout configuration is employed to simulate the SKA1
+The SKA1-Low layout configuration is employed to simulate the SKA
 `observed' images.
 In this way, we take into account the complicated instrumental effects
 of radio interferometers.
-See \citealt{li2018} for more details.
+See \citet{li2018} for the details.
+
+To generate the best-quality images for performing the EoR signal
+separation, we make the following minor adjustments to the simulation
+pipeline presented in \citet{li2018}.
+(1) The frequency resolution is improved to be \SI{80}{\kHz} to better
+preserve the spectral structures of the EoR signal, thus the chosen
+\SIrange{154}{162}{\MHz} frequency band has 101 channels.
+(2) The bright point sources that have a flux density
+$S_{158} > \SI{10}{\mJy}$ at \SI{158}{\MHz} are assumed to be
+removed \citep[e.g.,][]{liu2009ps}.
+(3) The images are created from the visibility data using the natural
+weighting method and baseline range of \numrange{30}{1000} wavelengths
+to emphasise the faint diffuse EoR signal.
+(4) Only the central \SI[product-units=repeat]{2 x 2}{\degree} regions
+(i.e., \num{360 x 360} pixels with a pixel size of \SI{20}{\arcsecond})
+of the created images are cropped out for use in this work.
+Therefore, we obtained two image cubes of dimension \num{360 x 360 x 101}
+as the data set for the CDAE.
+One is the input data that contains both the EoR signal and foreground
+emissions, and the other is the labelled data that contains only the
+EoR signal.
+
+
 
 
 %%----------------------------------------------------------------------
