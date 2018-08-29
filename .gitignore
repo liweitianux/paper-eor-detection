@@ -13,6 +13,7 @@
 *.log
 *.out
 *-converted-to.*
+*-crop.*
 *.synctex.gz
 *.fdb_latexmk
 
