@@ -387,13 +387,31 @@ to emphasise the faint diffuse EoR signal.
 (4) Only the central \SI[product-units=repeat]{2 x 2}{\degree} regions
 (i.e., \num{360 x 360} pixels with a pixel size of \SI{20}{\arcsecond})
 of the created images are cropped out for use in this work.
-Therefore, we obtained two image cubes of dimension \num{360 x 360 x 101}
-as the data set for the CDAE.
-One is the input data that contains both the EoR signal and foreground
-emissions, and the other is the labelled data that contains only the
-EoR signal.
-The total number of data points in the data set, i.e., the number of
+Therefore, we obtain two image cubes of dimension \num{360 x 360 x 101}
+for the EoR signal and the foreground contamination, respectively.
+The spectra of two example pixels are shown in \autoref{fig:simudata},
+where the absolute differences between two adjacent frequencies are
+also plotted for the foreground emission.
+It is clearly shown that the spectral smoothness is seriously damaged
+by the complicated instrumental effects.
+
+The input data for the CDAE are the addition of the two image cubes,
+i.e., both the EoR signal and the foreground contamination,
+and the labelled data are the image cube of the EoR signal.
+The total number of data points in this data set, i.e., the number of
 pixels of the image cubes, is 129,600.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{simudata}
+  \caption{\label{fig:simudata}%
+    The spectra of two example pixels in the simulated image cubes
+    of the EoR signal (the top panel) and the foreground emission
+    (the bottom panel).
+    The absolute differences between two adjacent frequencies are
+    also plotted for the foreground emission in thin lines.
+  }
+\end{figure}
 
 
 %%----------------------------------------------------------------------
