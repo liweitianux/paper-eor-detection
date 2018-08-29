@@ -38,6 +38,7 @@
   product-units=power,
   list-separator={, },
   list-final-separator={, and },
+  separate-uncertainty=true,
 }
 \DeclareSIUnit\MHz{\mega\hertz}
 \DeclareSIUnit\kHz{\kilo\hertz}
@@ -197,10 +198,10 @@ speech separation \citep{grais2017}, and so on.
 In this paper, we propose a novel method to separate the EoR signal by
 making use of the convolutional denoising autoencoder (CDAE), a common
 variant of autoencoders that is designed to learn noise robust features.
-We introduce the CDAE and elaborate the proposed method in
-\autoref{sec:method}.
-The method is then applied to the simulated SKA image cubes to
-evaluate its performance, as demonstrated in \autoref{sec:experiments},
+In \autoref{sec:method}, we introduce the CDAE and elaborate the
+proposed method.
+The method is then applied to the simulated SKA images to evaluate its
+performance, as demonstrated in \autoref{sec:experiments},
 where we also carry out a comparison of performance between our
 deep-learning-based method and traditional polynomial fitting method.
 Finally, we conclude our work in \autoref{sec:conclusions}.
@@ -236,7 +237,7 @@ This makes it possible to implement very deep and expressive CAEs that
 can extract intricate features from the data.
 In order to learn more robust features, the CAE can be trained to
 predict the original data from the noisy or corrupted data, hence the
-so-called convolutional denoising autoencoder (CDAE).
+so-called convolutional denoising autoencoder.
 
 In the task of separating the EoR signal, the foreground contamination
 can be regarded as the noise that corrupts the target signal.
@@ -309,7 +310,7 @@ but need minor adjustments.
 After applying the Fourier Transform, excising the $n_{\R{ex}}$ lowest
 components, and concatenating the real and imaginary parts,
 the labelled data are truncated within the 1$^{\R{th}}$ and 99$^{\R{th}}$
-percentiles to remove the possible outliers, and then divided by the
+percentiles to remove possible outliers, and then divided by the
 maximum absolute value of the truncated data.
 In this way, the sign of the labelled data is preserved for the purpose
 of reconstruction and the value range is constrained within $[-1, 1]$,
@@ -325,7 +326,8 @@ The loss function describes the difference between the output of the
 CDAE and the labelled data.
 By training the CDAE to minimise the loss function, the CDAE is able
 to predict the expected output from the input data.
-In this work, the loss function is chosen to be the `mean squared error.'
+In this work, the loss function is chosen to be the
+`mean squared error' (MSE).
 The CDAE is initialised by the Glorot uniform initialiser \citep{glorot2010}
 and is trained using the Adam optimisation method \citep{kingma2015}.
 
@@ -433,7 +435,12 @@ The parameters of Adam optimisation method are set to the recommended
 default values, i.e., learning rate being $\alpha = 0.001$, and
 exponential decay rates for the first and second moment estimates being
 $\beta_1 = 0.9$ and $\beta_2 = 0.999$, respectively \citep{kingma2015}.
-The batch size is 100, and the CDAE is trained for 100 epochs.
+The batch size is 100, and the CDAE is trained on the training set
+for 100 epochs.
+The validation set does not participate in optimising the parameters,
+but is used to calculate the evaluation index (\autoref{sec:index})
+that describes the `current' performance of the CDAE at the end of
+each epoch.
 
 All the code and data are made public at
 \url{https://github.com/lwieitianux/cdae-eor}.
@@ -514,7 +521,7 @@ This work is supported by
 the Ministry of Science and Technology of China
 (grant No. 2018YFA0404601),
 the National Natural Science Foundation of China
-(grant Nos. 11433002, 11621303, 61371147),
+(grant Nos. 11433002, 11621303, 11835009, 61371147),
 and the National Key Research and Discovery Plan
 (grant No. 2017YFF0210903).
 
