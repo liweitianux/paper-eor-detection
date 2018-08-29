@@ -503,7 +503,28 @@ foreground contamination and complicated instrumental effects.
 \subsection{Comparison}
 \label{sec:comparison}
 
-Compare to the traditional polynomial fitting method ...
+In order to better demonstrate the excellent performance of our proposed
+method, we carry out a comparison between our method and the traditional
+polynomial fitting method.
+Using the same data set simulated in \autoref{sec:data}, for each pixel
+in the image cube of the addition of the EoR signal and the foreground
+contamination, a low-order polynomial is fitted along the frequency
+dimension, the fitted value of which is then subtracted to uncover the
+EoR signal.
+We have tested polynomials of order from 2 (quadratic) to 5 (quintic),
+and find that the quartic polynomial (order of 4) can give the
+relatively best result.
+However, the correlation coefficient evaluated for the separated EoR
+signal in such case is only $\rho_{\R{pfit}} = \num{0.241 +- 0.103}$,
+which is small and indicates that the polynomial fitting method
+performs very bad in separating the EoR signal.
+As illustrated in \autoref{fig:simudata}, the complicated instrumental
+effects seriously damage the spectral smoothness of the foreground
+emission, causing rapid fluctuations of similar strength with or even
+stronger than the EoR signal, therefore, it is unsurprising that the
+polynomial fitting method gives very poor results.
+On the contrary, our deep-learning-based method is superior and
+by far outperforms the traditional polynomial fitting method.
 
 
 %%======================================================================
