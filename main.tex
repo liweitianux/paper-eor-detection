@@ -443,8 +443,53 @@ All the code and data are made public at
 \subsection{Results}
 \label{sec:results}
 
-The training results ...
-The EoR separation performance ...
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{cdae-train}
+  \caption{\label{fig:train}%
+    The correlation coefficient evaluated on the validation set (the
+    solid green line with the shaded region showing the standard
+    deviation), training loss (the solid red line), and validation loss
+    (the solid blue line) during the CDAE training.
+  }
+\end{figure}
+
+The losses and the correlation coefficient evaluated on the validation
+set during the CDAE training are shown in \autoref{fig:train}.
+The steadily decreasing losses and increasing correlation coefficient
+suggest that the CDAE is well trained.
+After training for 100 epochs, the CDAE achieves excellent performance
+with a correlation coefficient of \num{0.985 +- 0.009} on the validation
+set.
+An example of the EoR signal separated by the trained CDAE is presented
+in \autoref{fig:result}.
+This separation example has a correlation coefficient of 0.985 and well
+demonstrates that the faint EoR signal can be separated with high
+accuracy by the CDAE.
+Consequently, our deep-learning-based method by using the CDAE is able
+to accurately separate the faint EoR signal in the presence of severe
+foreground contamination and complicated instrumental effects.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{eor-result}
+  \caption{\label{fig:result}%
+    An example of the EoR signal separated by the trained CDAE.
+    \textbf{(top)} The labelled EoR signal (i.e., the ground truth;
+    the blue line) and the separated EoR signal (the green line) in the
+    Fourier domain where the CDAE training is performed.
+    The grey line represents the input data to the CDAE that contains
+    both the EoR signal and the foreground contamination.
+    The magenta hatched region marks the lowest Fourier components that
+    are excised in data preprocessing.
+    \textbf{(bottom)} The labelled EoR signal (the blue line) and the
+    separated EoR signal (the green line) transformed back to the
+    observing frequency domain.
+    The signals are very different from those shown in
+    \autoref{fig:simudata}(a) because the Blackman-Nuttall window is
+    applied along the frequency domain.
+  }
+\end{figure}
 
 
 %%----------------------------------------------------------------------
