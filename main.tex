@@ -363,14 +363,26 @@ In order to derive the data set to train the proposed CDAE and evaluate
 its performance, we carry out end-to-end simulations to generate the
 `observed' image cubes.
 Specifically, we take the \SIrange{154}{162}{\MHz} frequency band as an
-example and simulate the sky images of the EoR signal, Galactic diffuse
-emission (including Galactic synchrotron and free-free emissions),
-extragalactic point sources, and radio haloes.
+example and simulate the sky images of the EoR signal and the foreground
+contamination, which includes Galactic synchrotron and free-free
+emissions, extragalactic point sources, and radio haloes.
 The SKA1-Low layout configuration is employed to simulate the SKA
 `observed' images.
 In this way, we take into account the complicated instrumental effects
 of radio interferometers.
 See \citet{li2018} for the details.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{simudata}
+  \caption{\label{fig:simudata}%
+    The spectra of two example pixels in the simulated image cubes
+    of the EoR signal (the top panel) and the foreground emission
+    (the bottom panel).
+    The absolute differences between two adjacent frequencies are
+    also plotted for the foreground emission in thin lines.
+  }
+\end{figure}
 
 To generate the best-quality images for performing the EoR signal
 separation, we make the following minor adjustments to the simulation
@@ -400,18 +412,6 @@ i.e., both the EoR signal and the foreground contamination,
 and the labelled data are the image cube of the EoR signal.
 The total number of data points in this data set, i.e., the number of
 pixels of the image cubes, is 129,600.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\columnwidth]{simudata}
-  \caption{\label{fig:simudata}%
-    The spectra of two example pixels in the simulated image cubes
-    of the EoR signal (the top panel) and the foreground emission
-    (the bottom panel).
-    The absolute differences between two adjacent frequencies are
-    also plotted for the foreground emission in thin lines.
-  }
-\end{figure}
 
 
 %%----------------------------------------------------------------------
