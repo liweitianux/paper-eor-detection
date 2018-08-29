@@ -392,8 +392,33 @@ as the data set for the CDAE.
 One is the input data that contains both the EoR signal and foreground
 emissions, and the other is the labelled data that contains only the
 EoR signal.
+The total number of data points in the data set, i.e., the number of
+pixels of the image cubes, is 129,600.
 
 
+%%----------------------------------------------------------------------
+\subsection{Method implementation}
+\label{sec:implementation}
+
+We first preprocess the simulated data according to the steps described
+in \autoref{sec:data}.
+The number of lowest Fourier components to excise ($n_{\R{ex}}$) is
+set to 6, thus the length of each preprocessed data point is 90.
+The data set is then randomly divided into two parts:
+(1) the training set, which has 103,680 data points, accounting for
+80 per cent of the whole data set;
+(2) the validation set, containing the remaining 25,920 data points.
+
+We implement the CDAE using the \textsc{Keras} framework \citep{keras}
+with the \textsc{TensorFlow} back end \citep{tensorflow}.
+The parameters of Adam optimisation method are set to the recommended
+default values, i.e., learning rate being $\alpha = 0.001$, and
+exponential decay rates for the first and second moment estimates being
+$\beta_1 = 0.9$ and $\beta_2 = 0.999$, respectively \citep{kingma2015}.
+The batch size is 100, and the CDAE is trained for 100 epochs.
+
+All the code and data are made public at
+\url{https://github.com/lwieitianux/cdae-eor}.
 
 
 %%----------------------------------------------------------------------
