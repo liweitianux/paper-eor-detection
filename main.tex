@@ -136,8 +136,8 @@ By training and evaluating the CDAE on the simulated SKA images, it
 achieves excellent performance with the correlation coefficient between
 the separated EoR signal and the simulated `true' signal being
 $\rho_{\R{cdae}} = \num{0.985 +- 0.009}$.
-As a comparison, the traditional polynomial fitting method only gives
-$\rho_{\R{pfit}} = \num{0.241 +- 0.103}$ on the same data set.
+As a comparison, the traditional polynomial fitting method has very poor
+performance ($\rho_{\R{pfit}} = \num{0.241 +- 0.103}$ on the same data set).
 In conclusion, our deep-learning-based method can accurately separate
 the faint EoR signal in the presence of severe foreground contamination
 and complicated instrumental effects.
@@ -175,21 +175,21 @@ HERA \citep{deboer2017}, and SKA \citep{koopmans2015rev}.
 The observational challenges, however, are immense due to a variety of
 complicated instrumental effects, ionospheric distortions, radio frequency
 interference, and the strong astronomical foreground contamination that
-overwhelms the EoR signal by about \numrange{4}{5} orders of magnitudes
+overwhelms the EoR signal by about \numrange{4}{5} orders of magnitude
 \citep[see][for a review]{morales2010rev}.
 
-Fortunately, the severe foreground contamination is expected to be
+Fortunately, the foreground contamination is expected to be
 spectrally smooth, while the EoR signal fluctuates rapidly along the
 frequency dimension.
 This important difference is the key characteristic exploited by many
 foreground removal methods in order to uncover the faint EoR signal in
-the presence of overwhelming foreground contamination, including the
+the presence of overwhelming foreground contamination, including
 parametric fitting methods \citep[e.g.,][]{wang2006,liu2009fgrm,wang2013}
 and non-parametric methods \citep[e.g.,][]{harker2009,chapman2013,mertens2018}.
 
 However, the frequency-dependent beam effects can damage the smoothness
 of the foreground spectrum \citep{liu2009ps}.
-The synthesised beam, which is also called the point spread function (PSF)
+The synthesised beam, which is also called the point spread function
 and is the Fourier Transform of the interferometer layout, has jagged
 side-lobes extending far beyond the central peak due to the incomplete
 $uv$ coverage.
@@ -216,7 +216,7 @@ speech separation \citep{grais2017}, and so on.
 
 In this paper, we propose a novel method to separate the EoR signal by
 making use of the convolutional denoising autoencoder (CDAE), a common
-variant of autoencoders that is designed to learn noise robust features.
+variant of autoencoders that is designed to learn noise-robust features.
 In \autoref{sec:method}, we introduce the CDAE and elaborate the
 proposed method.
 The method is then applied to the simulated SKA images to evaluate its
@@ -302,8 +302,8 @@ observing frequency dimension.
 
 To better train the CDAE, the data should be appropriately preprocessed.
 The raw input data are an image cube that covers a frequency band and
-contains both the EoR signal and severe foreground contamination.
-Each pixel of the image cube is represented by a vector, which is on
+contains both the EoR signal and foreground contamination.
+Each pixel of the image cube is represented by a vector, which is one
 data point to be input to the CDAE.
 Given the important difference in spectral structures between the EoR
 signal and the foreground emission, we apply the Fourier Transform to
@@ -385,7 +385,7 @@ its performance, we carry out end-to-end simulations to generate the
 `observed' image cubes.
 Specifically, we take the \SIrange{154}{162}{\MHz} frequency band as an
 example and simulate the sky images of the EoR signal and the foreground
-contamination, which includes Galactic synchrotron and free-free
+emission, which includes the Galactic synchrotron and free-free
 emissions, extragalactic point sources, and radio haloes.
 The SKA1-Low layout configuration is employed to simulate the SKA
 `observed' images.
@@ -396,7 +396,7 @@ See \citet{li2018} for the details.
 To generate the best-quality images for performing the EoR signal
 separation, we make the following minor adjustments to the simulation
 pipeline presented in \citet{li2018}.
-(1) The frequency resolution is improved to be \SI{80}{\kHz} to better
+(1) The frequency resolution is improved to \SI{80}{\kHz} to better
 preserve the spectral structures of the EoR signal, thus the chosen
 \SIrange{154}{162}{\MHz} frequency band has 101 channels.
 (2) The bright point sources that have a flux density
@@ -409,12 +409,12 @@ to emphasise the faint diffuse EoR signal.
 (i.e., \num{360 x 360} pixels with a pixel size of \SI{20}{\arcsecond})
 of the created images are cropped out for use in this work.
 Therefore, we obtain two image cubes of dimension \num{360 x 360 x 101}
-for the EoR signal and the foreground contamination, respectively.
+for the EoR signal and the foreground emission, respectively.
 The spectra of two example pixels are shown in \autoref{fig:simudata},
 where the absolute differences between two adjacent frequencies are
 also plotted for the foreground emission.
 It is clearly shown that the spectral smoothness is seriously damaged
-by the complicated instrumental effects.
+by the instrumental effects.
 
 The input data for the CDAE are the addition of the two image cubes,
 i.e., both the EoR signal and the foreground contamination,
@@ -427,7 +427,7 @@ pixels of the image cubes, is 129,600.
   \includegraphics[width=\columnwidth]{simudata}
   \caption{\label{fig:simudata}%
     The spectra of two example pixels in the simulated image cubes
-    of the EoR signal (the top panel) and the foreground emission
+    for the EoR signal (the top panel) and the foreground emission
     (the bottom panel).
     The absolute differences between two adjacent frequencies are
     also plotted for the foreground emission in thin lines.
@@ -473,14 +473,14 @@ All the code and data are made public at
   \centering
   \includegraphics[width=\columnwidth]{cdae-train}
   \caption{\label{fig:train}%
-    The correlation coefficient evaluated on the validation set (the
-    solid green line with the shaded region showing the standard
-    deviation), training loss (the solid red line), and validation loss
-    (the solid blue line) during the CDAE training.
+    The correlation coefficient calculated on the validation set (the
+    green line with the shaded region showing the standard deviation),
+    training loss (the red line), and validation loss (the blue line)
+    during the training of the CDAE.
   }
 \end{figure}
 
-The losses and the correlation coefficient evaluated on the validation
+The losses and the correlation coefficient calculated on the validation
 set during the CDAE training are shown in \autoref{fig:train}.
 The steadily decreasing losses and increasing correlation coefficient
 suggest that the CDAE is well trained.
@@ -491,7 +491,7 @@ An example of the EoR signal separated by the trained CDAE is presented
 in \autoref{fig:result}.
 This separation example has a correlation coefficient of $\rho = 0.985$
 and well demonstrates that the faint EoR signal can be separated with
-high accuracy by the CDAE.
+high accuracy by our method.
 Consequently, our deep-learning-based method by using the CDAE is able
 to accurately separate the faint EoR signal in the presence of severe
 foreground contamination and complicated instrumental effects.
@@ -511,9 +511,9 @@ foreground contamination and complicated instrumental effects.
     \textbf{(bottom)} The labelled EoR signal (the blue line) and the
     separated EoR signal (the green line) transformed back to the
     observing frequency domain.
-    The signals are very different from those shown in
+    The signals are very different to those shown in
     \autoref{fig:simudata}(a) because the Blackman-Nuttall window is
-    applied along the frequency domain.
+    applied along the frequency axis.
   }
 \end{figure}
 
@@ -527,19 +527,19 @@ method, we carry out a comparison between our method and the traditional
 polynomial fitting method.
 Using the same data set simulated in \autoref{sec:data}, for each pixel
 in the image cube of the addition of the EoR signal and the foreground
-contamination, a low-order polynomial is fitted along the frequency
+emission, a low-order polynomial is fitted along the frequency
 dimension, the fitted value of which is then subtracted to uncover the
 EoR signal.
 We have tested polynomials of order from 2 (quadratic) to 5 (quintic),
 and find that the quartic polynomial (order of 4) can give the
 relatively best result.
-However, the correlation coefficient evaluated for the separated EoR
+However, the correlation coefficient calculated for the separated EoR
 signal in such case is only $\rho_{\R{pfit}} = \num{0.241 +- 0.103}$,
 which is rather small and indicates that the polynomial fitting method
-performs very bad in separating the EoR signal.
+performs very poor in separating the EoR signal.
 As illustrated in \autoref{fig:simudata}, the complicated instrumental
 effects seriously damage the spectral smoothness of the foreground
-emission, causing rapid fluctuations of similar strength with or even
+emission, causing rapid fluctuations of similar strength as or even
 stronger than the EoR signal, therefore, it is unsurprising that the
 polynomial fitting method gives very poor results.
 On the contrary, our deep-learning-based method is superior and
