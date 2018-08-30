@@ -161,11 +161,11 @@ radio continuum: general
 \section{Introduction}
 \label{sec:intro}
 
-The epoch of reionization (EoR; $z \sim \numrange{6}{15}$) is a period
-of the Universe that is still poorly understood.
 The \SI{21}{\cm} line emission of the neutral hydrogen (\Hi), which is
 redshifted to frequencies below \SI{200}{\MHz}, is regarded as the
-decisive probe to directly explore the EoR
+decisive probe to directly explore the epoch of reionization (EoR),
+a period of the early Universe ($z \sim \numrange{6}{15}$) that is
+still poorly understood
 \citep[see][for reviews]{furlanetto2006rev,furlanetto2016rev}.
 In order to probe the EoR, several low-frequency radio interferometers
 are built or to be built to target the \SI{21}{\cm} signal, among which
@@ -190,7 +190,7 @@ and non-parametric methods \citep[e.g.,][]{harker2009,chapman2013,mertens2018}.
 However, the frequency-dependent beam effects can damage the smoothness
 of the foreground spectrum \citep{liu2009ps}.
 The synthesised beam, which is also called the point spread function (PSF)
-and is the Fourier transform of the interferometer layout, has jagged
+and is the Fourier Transform of the interferometer layout, has jagged
 side-lobes extending far beyond the central peak due to the incomplete
 $uv$ coverage.
 In addition, both the shape and response of the beams vary with
@@ -485,7 +485,7 @@ set during the CDAE training are shown in \autoref{fig:train}.
 The steadily decreasing losses and increasing correlation coefficient
 suggest that the CDAE is well trained.
 After training for 100 epochs, the CDAE achieves excellent performance
-with a correlation coefficient of $\rho_{\R{val}} = \num{0.985 +- 0.009}$
+with a correlation coefficient of $\rho_{\R{cdae}} = \num{0.985 +- 0.009}$
 on the validation set.
 An example of the EoR signal separated by the trained CDAE is presented
 in \autoref{fig:result}.
@@ -551,8 +551,8 @@ by far outperforms the traditional polynomial fitting method.
 \label{sec:conclusions}
 
 We have demonstrated to use the CDAE to separate the faint EoR signal
-that is buried in the overwhelming foreground contamination and is
-further corrupted by complicated instrumental effects.
+that is buried in the overwhelming foreground contamination with the
+complicated instrumental effects taken into account.
 The proposed CDAE, which consists of a 7-layer encoder, a 7-layer
 decoder, and one output layer, is trained on the simulated SKA images
 and achieves excellent performance that is by far better than the
@@ -560,9 +560,9 @@ traditional polynomial fitting method.
 In conclusion, our deep-learning-based method is able to accurately
 separate the faint EoR signal in the presence of severe foreground
 contamination and complicated instrumental effects.
-In addition, the proposed CDAE is simple and extensible, exhibiting
-great potential to play an important role in forthcoming EoR
-experiments.
+In addition, the proposed CDAE is simple but powerful, exhibiting the
+great potential of deep-learning-based methods to play an important
+role in forthcoming EoR experiments.
 
 
 %%======================================================================
