@@ -2,7 +2,7 @@
 #CJK:= ON
 
 # Name to identify the reported manuscript
-ID:= lwt
+ID:= cdae-eor
 
 DATE:=		$(shell date +'%Y%m%d')
 
@@ -10,27 +10,22 @@ DATE:=		$(shell date +'%Y%m%d')
 TEXINPUTS:=	.:mnras:revtex:texmf:$(TEXINPUTS)
 BSTINPUTS:=	.:mnras:revtex:texmf:$(BSTINPUTS)
 
-# EPS figures
-EPS_FIG:=	$(wildcard figures/*.eps)
-PDF_FIG:=	$(EPS_FIG:.eps=.pdf)
-
 # Files to pack for submission
-SRCS:=		main.tex references.bib
-FIGURES:=	figures/network-crop.pdf
 TEMPLATE:=	mnras/mnras.cls mnras/mnras.bst
+SRCS:=		main.tex references.bib
+FIGURES:=	figures/network-crop.pdf \
+		figures/simudata.pdf \
+		figures/cdae-train.pdf \
+		figures/eor-result.pdf
 
 default: main.pdf
 
-eps2pdf: $(PDF_FIG)
-
 report: main.pdf $(SRCS)
 	-mkdir reports
-	mkdir reports/v$(DATE)
-	cp main.pdf reports/v$(DATE)/manuscript-$(ID)-$(DATE).pdf
-	cp main.tex reports/v$(DATE)/manuscript-$(ID)-$(DATE).tex
-	cp references.bib reports/v$(DATE)/references-$(ID)-$(DATE).bib
+	cp main.pdf reports/$(ID)-$(DATE).pdf
+	cp main.tex reports/$(ID)-$(DATE).tex
 
-main.pdf: $(SRCS) $(TEMPLATE) $(FIGURES) eps2pdf
+main.pdf: $(SRCS) $(TEMPLATE) $(FIGURES)
 ifeq ($(CJK),ON)
 	# use XeLaTeX (support CJK)
 	env TEXINPUTS=$(TEXINPUTS) BSTINPUTS=$(BSTINPUTS) latexmk -xelatex $<
@@ -47,9 +42,6 @@ submission: $(SRCS) $(TEMPLATE) $(FIGURES)
 	tar -cf $@.$(DATE).tar -C $@.$(DATE)/ .
 	rm -r $@.$(DATE)
 
-%.pdf: %.eps
-	epstopdf $^ $@
-
 %-crop.pdf: %.pdf
 	pdfcrop $^
 
@@ -62,7 +54,6 @@ cleanall:
 
 help:
 	@echo "default - compile the paper PDF file (main.pdf)"
-	@echo "eps2pdf - convert figures from EPS to PDF"
 	@echo "submission - pack the necessary files and figures for submission"
 	@echo "clean - clean the temporary files"
 	@echo "cleanall - clean temporary files and the output PDF file"
