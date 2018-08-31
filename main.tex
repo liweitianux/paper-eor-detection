@@ -122,7 +122,7 @@ $^{6}${National Astronomical Observatories,
 \begin{abstract}
 The overwhelming foreground contamination is one of the primary
 challenge in measuring the \SI{21}{\cm} signal to probe the EoR.
-While the foreground is expected to be spectrally smooth,
+Although the foreground is expected to be spectrally smooth,
 the frequency-dependent beam effects of interferometers can
 seriously damage the smoothness of foreground spectrum,
 imposing great difficulties on existing foreground removal methods.
@@ -130,8 +130,8 @@ In this work, we propose a novel deep-learning-based method by employing
 the convolutional denoising autoencoder (CDAE) to separate the EoR signal.
 The proposed CDAE, which consists of a 7-layer encoder, a 7-layer
 decoder, and one output layer, is simple but powerful and successfully
-learns robust features of the faint EoR signal that is corrupted by the
-severe foreground contamination.
+learns robust features of the faint EoR signal that is contaminated by the
+severe foreground emission.
 By training and evaluating the CDAE on the simulated SKA images, it
 achieves excellent performance with the correlation coefficient between
 the separated EoR signal and the simulated `true' signal being
@@ -413,8 +413,8 @@ for the EoR signal and the foreground emission, respectively.
 The spectra of two example pixels are shown in \autoref{fig:simudata},
 where the absolute differences between two adjacent frequencies are
 also plotted for the foreground emission.
-It is clearly shown that the spectral smoothness is seriously damaged
-by the instrumental effects.
+It is clearly shown that the smoothness of the foreground spectrum is
+seriously damaged by the instrumental effects.
 
 The input data for the CDAE are the addition of the two image cubes,
 i.e., both the EoR signal and the foreground contamination,
