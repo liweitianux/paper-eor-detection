@@ -35,7 +35,7 @@
 \sisetup{
   range-phrase=\text{--},
   range-units=single,
-  product-units=power,
+  product-units=repeat,
   list-separator={, },
   list-final-separator={, and },
   separate-uncertainty=true,
@@ -382,31 +382,39 @@ performance of separation.
 In order to derive the data set to train the proposed CDAE and evaluate
 its performance, we carry out end-to-end simulations to generate the
 `observed' image cubes.
-Specifically, we take the \SIrange{154}{162}{\MHz} frequency band as an
-example and simulate the sky images of the EoR signal and the foreground
-emission, which includes the Galactic synchrotron and free-free
-emissions, extragalactic point sources, and radio haloes.
-The SKA1-Low layout configuration is employed to simulate the SKA
-`observed' images.
-In this way, we take into account the complicated instrumental effects
-of radio interferometers.
-See \citet{li2018} for the details.
-
-To generate the best-quality images for performing the EoR signal
-separation, we make the following minor adjustments to the simulation
-pipeline presented in \citet{li2018}.
-(1) The frequency resolution is improved to \SI{80}{\kHz} to better
-preserve the spectral structures of the EoR signal, thus the chosen
-\SIrange{154}{162}{\MHz} frequency band has 101 channels.
-(2) The bright point sources that have a flux density
+Following our previous works \citep{wang2010,wang2013}, we simulate the
+\SIrange{154}{162}{\MHz} sky images of the foreground emission,
+which includes the Galactic synchrotron and free-free emissions,
+extragalactic point sources, and radio haloes.
+The sky maps of the EoR signal are created using the 2016 data release
+from the Evolution Of 21~cm Structure project \citep{mesinger2016}.
+The sky images cover a sky patch of size \SI{10 x 10}{\degree} and have
+a pixel size of \SI{20}{\arcsecond} (i.e., \num{1800 x 1800} pixels).
+The \SIrange{154}{162}{\MHz} frequency band is divided into 101
+channels with a frequency resolution of \SI{80}{\kHz} to better
+preserve the spectral structures of the EoR signal.
+Note that the bright point sources that have a flux density
 $S_{158} > \SI{10}{\mJy}$ at \SI{158}{\MHz} are assumed to be
 removed \citep[e.g.,][]{liu2009ps}.
-(3) The images are created from the visibility data using the natural
-weighting method and baseline range of \numrange{30}{1000} wavelengths
-to emphasise the faint diffuse EoR signal.
-(4) Only the central \SI[product-units=repeat]{2 x 2}{\degree} regions
-(i.e., \num{360 x 360} pixels with a pixel size of \SI{20}{\arcsecond})
-of the created images are cropped out for use in this work.
+
+To take into account the practical instrumental effects of radio
+interferometers, the SKA1-Low layout configuration\footnote{%
+  SKA1-Low Configuration Coordinates:
+  \url{https://astronomers.skatelescope.org/wp-content/uploads/2016/09/SKA-TEL-SKO-0000422_02_SKA1_LowConfigurationCoordinates-1.pdf}
+  (released on 2016 May 21)}
+is employed to simulate the `observed' images.
+Specifically, the \textsc{oskar}\footnote{%
+  OSKAR: \url{https://github.com/OxfordSKA/OSKAR} (version 2.7.0)}
+simulator \citep{mort2010} is used to perform the simulated
+observations for \SI{6}{\hour}.
+The visibility data are then imaged by the \textsc{wsclean}\footnote{%
+  WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
+imager \citep{offringa2014} using the natural weighting and baseline
+range of \numrange{30}{1000} wavelengths to emphasise the faint diffuse
+EoR signal.
+Only the central \SI{2 x 2}{\degree} regions (i.e., \num{360 x 360}
+pixels) of the created images are cropped out for use in this work.
+
 Therefore, we obtain two image cubes of dimension \num{360 x 360 x 101}
 for the EoR signal and the foreground emission, respectively.
 The spectra of two example pixels are shown in \autoref{fig:simudata},
