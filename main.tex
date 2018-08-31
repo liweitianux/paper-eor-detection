@@ -341,11 +341,10 @@ layer in the CDAE.
 \subsection{Training}
 \label{sec:training}
 
-The loss function describes the difference between the output of the
-CDAE and the labelled data.
-By training the CDAE to minimise the loss function, the CDAE is able
-to predict the expected output from the input data.
-In this work, the loss function is chosen to be the
+By training the CDAE to minimise the loss, which describes the
+difference between the output of the CDAE and the labelled data,
+the CDAE is able to predict the expected output from the input data.
+The loss of the proposed CDAE is calculated as the
 `mean squared error' (MSE).
 The CDAE is initialised by the Glorot uniform initialiser \citep{glorot2010}
 and is trained using the Adam optimisation method \citep{kingma2015}.
@@ -444,8 +443,8 @@ in \autoref{sec:data}.
 It is sufficient to keep only half the Fourier coefficients because the
 input signal is real.
 The data of length 101 for one pixel is transformed to be
-51 complex Fourier coefficients, among which the 6 coefficients of
-the lowest Fourier frequencies ($n_{\R{ex}}$) is excised.
+51 complex Fourier coefficients, among which the $n_{\R{ex}} = 6$
+coefficients of the lowest Fourier frequencies are excised.
 Thus the length of each preprocessed data point is 90.
 The data set is then randomly divided into two parts:
 (1) the training set, which has 103,680 data points, accounting for
