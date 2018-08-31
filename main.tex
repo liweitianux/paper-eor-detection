@@ -269,7 +269,7 @@ of the EoR signal from the overwhelming foreground contamination.
 \subsection{Network architecture}
 \label{sec:architecture}
 
-We propose a simple deep CDAE for separating the EoR signal, as shown
+We propose a deep CDAE for separating the EoR signal, as shown
 in \autoref{fig:network}.
 The CDAE consists of a 7-layer encoder, a 7-layer decoder,
 and one output layer.
@@ -329,7 +329,7 @@ but need minor adjustments.
 After applying the Fourier Transform, excising the $n_{\R{ex}}$ lowest
 components, and concatenating the real and imaginary parts,
 the labelled data are truncated within the 1$^{\R{th}}$ and 99$^{\R{th}}$
-percentiles to remove possible outliers, and then divided by the
+percentiles to remove possible extreme values, and then divided by the
 maximum absolute value of the truncated data.
 In this way, the sign of the labelled data is preserved for the purpose
 of reconstruction and the value range is constrained within $[-1, 1]$,
@@ -429,8 +429,8 @@ pixels of the image cubes, is 129,600.
     The spectra of two example pixels in the simulated image cubes
     for the EoR signal (the top panel) and the foreground emission
     (the bottom panel).
-    The absolute differences between two adjacent frequencies are
-    also plotted for the foreground emission in thin lines.
+    The thin lines in the bottom panel show the absolute differences
+    between two adjacent frequencies for the foreground emission.
   }
 \end{figure}
 
@@ -441,8 +441,12 @@ pixels of the image cubes, is 129,600.
 
 We first preprocess the simulated data according to the steps described
 in \autoref{sec:data}.
-The number of lowest Fourier components to excise ($n_{\R{ex}}$) is
-set to 6, thus the length of each preprocessed data point is 90.
+It is sufficient to keep only half the Fourier coefficients because the
+input signal is real.
+The data of length 101 for one pixel is transformed to be
+51 complex Fourier coefficients, among which the 6 coefficients of
+the lowest Fourier frequencies ($n_{\R{ex}}$) is excised.
+Thus the length of each preprocessed data point is 90.
 The data set is then randomly divided into two parts:
 (1) the training set, which has 103,680 data points, accounting for
 80 per cent of the whole data set;
