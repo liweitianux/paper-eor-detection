@@ -325,76 +325,42 @@ experiments.
 
 
 %%----------------------------------------------------------------------
-\subsection{Data preprocessing}
-\label{sec:data}
+\subsection{Training and evaluation}
+\label{sec:train-eval}
 
-To better train the CDAE, the data should be appropriately preprocessed.
-The raw input data are an image cube that covers a frequency band and
-contains both the EoR signal and foreground contamination.
-Each pixel of the image cube is represented by a vector, which is one
-data point to be input to the CDAE.
-Given the important difference in spectral structures between the EoR
-signal and the foreground emission, we apply the Fourier Transform to
-the raw data along the frequency dimension to make the EoR signal more
-distinguishable and easier to learn by the CDAE.
-The Blackman-Nuttall window function is applied to suppress the side-lobes
-in the Fourier Transform caused by the sharp discontinuities at the ends
-of the finite frequency band \citep[e.g.,][]{chapman2016}.
-The $n_{\R{ex}}$ lowest Fourier components, which generally have large
-values and are almost contributed by the spectral-smooth foreground
-emission, are excised not only to avoid the higher Fourier components
-where the EoR signal mainly resides being overwhelmed, but also to
-make the pixels have similar weights to the CDAE.
-To be able to reconstruct the separated EoR signal, both the real and
-imaginary parts of the Fourier coefficients must be used in the CDAE,
-therefore, the real and imaginary parts are separated and concatenated
-into a new vector.
-Finally, the data are zero-centred and normalised to have unit variance.
-
-On the other hand, the preprocessing steps for the labelled data (i.e.,
-the image cube of the EoR signal only) are similar to the above steps
-but need minor adjustments.
-After applying the Fourier Transform, excising the $n_{\R{ex}}$ lowest
-components, and concatenating the real and imaginary parts,
-the labelled data are truncated within the 1$^{\R{th}}$ and 99$^{\R{th}}$
-percentiles to remove possible extreme values, and then divided by the
-maximum absolute value of the truncated data.
-In this way, the sign of the labelled data is preserved for the purpose
-of reconstruction and the value range is constrained within $[-1, 1]$,
-which allows us to use the `tanh' activation function for the output
-layer in the CDAE.
-
-
-%%----------------------------------------------------------------------
-\subsection{Training}
-\label{sec:training}
-
-By training the CDAE to minimise the loss, which describes the
-difference between the output of the CDAE and the labelled data,
-the CDAE is able to predict the expected output from the input data.
-The loss of the proposed CDAE is calculated as the
-`mean squared error' (MSE).
-The CDAE is initialised by the Glorot uniform initialiser \citep{glorot2010}
+The CDAE is initialised by the He uniform initialiser \citep{he2015}
 and is trained using the Adam optimisation method \citep{kingma2015}.
+The loss, which describes the difference between the output of the CDAE
+and the `true' data, is calculated as the `mean squared error' (MSE),
+i.e.,
+\begin{equation}
+  \label{eq:loss}
+  L = \frac{1}{N_{\R{ds}}} \sum_{i=1}^{N_{\R{ds}}}
+    \left[ \B{s}_o^{(i)} - \B{s}_t^{(i)} \right]^T
+    \left[ \B{s}_o^{(i)} - \B{s}_t^{(i)} \right],
+    \quad i = 1, 2, \cdots, N_{\R{ds}},
+\end{equation}
+where
+$\B{s}_o$ and $\B{s}_t$ are column vectors representing the separated
+and the simulated `true' EoR signal, respectively,
+and $N_{\R{ds}}$ is the number of data points in the data set.
+By training the CDAE to minimise the loss, the CDAE is able to predict
+the `true' data from the noisy input.
 
-
-%%----------------------------------------------------------------------
-\subsection{Evaluation index}
-\label{sec:index}
-
-To evaluate the performance of separating the EoR signal, the Pearson's
-correlation coefficient is adopted to measure the similarity between
-the separated signal $\mathbf{s}_p$ and the ground truth $\mathbf{s}_t$
-(i.e., the labelled data):
+To evaluate the performance of the CDAE in separating the EoR signal,
+the commonly used Pearson's correlation coefficient
+\citep[e.g.,][]{harker2009,chapman2013}
+is adopted to measure the similarity between the separated EoR signal
+$\B{s}_o$ and the `true' signal $\B{s}_t$:
 \begin{equation}
   \label{eq:corrcoef}
-  \rho(\mathbf{s}_p, \mathbf{s}_t) =
-    \frac{\sum_{i=1}^{n}(s_{p,i}-\bar{s}_p)(s_{t,i}-\bar{s}_t)}{
-      \sqrt{\sum_{i=1}^{n}(s_{p,i}-\bar{s}_p)^2
-        \sum_{i=1}^{n}(s_{t,i}-\bar{s}_t)^2}
+  \rho(\B{s}_o, \B{s}_t) =
+    \frac{\sum_{j=1}^{n}(s_{o,j}-\bar{s}_p)(s_{t,j}-\bar{s}_t)}{
+      \sqrt{\sum_{j=1}^{n}(s_{o,j}-\bar{s}_p)^2
+        \sum_{j=1}^{n}(s_{t,j}-\bar{s}_t)^2}
     },
 \end{equation}
-where $\bar{s}_p$ and $\bar{s}_t$ are the mean values.
+where $\bar{s}_o$ and $\bar{s}_t$ are the mean values.
 The closer the correlation coefficient is to one, the better the
 performance of separation.
 
