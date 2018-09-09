@@ -284,30 +284,43 @@ contamination and the frequency-dependent beam effects.
 \subsection{Network architecture}
 \label{sec:architecture}
 
-We propose a deep CDAE for separating the EoR signal, as shown
-in \autoref{fig:network}.
-The CDAE consists of a 7-layer encoder, a 7-layer decoder,
-and one output layer.
-The encoder and decoder parts are symmetric and use the rectified
-linear unit (ReLU) as the activation function, while the output layer
-uses the `tanh' activation function (see also \autoref{sec:data}).
-All the convolutional layers have filters of size 3 and the filters
-are one-dimensional (1D) because of the 1D input data, i.e., along the
+We follow the common practice to build the CDAE architecture
+\citep[e.g.,][]{suganuma2018,geron2017}.
+The encoder and decoder parts are symmetric and use the exponential
+linear unit (ELU) as the activation function \citep{clevert2016},
+while the output layer uses the `tanh' activation function (see also
+\autoref{sec:preprocessing}).
+The batch normalisation is applied to all layers except for the output
+layer to improve the training process as well as to act as a regularizer
+to prevent overfitting \citep{ioffe2015}.
+The filters in all layers are of size 3 and one-dimensional (1D) because
+the CDAE input is a 1D vector representing one sky pixel along the
 observing frequency dimension.
+
+We have evaluated multiple CDAE architectures of different number of
+layers and filters.
+The simplest one with sufficiently good performance is selected, as
+shown in \autoref{fig:network}.
+The chosen CDAE consists of a 4-layer encoder with $(32,64,64,32)$
+filters, a 4-layer decoder with $(32,64,64,32)$ filters, and one output
+layer.
+We also note that a simpler CDAE is less likely to overfit the data
+and can be more easily extended and applied to the forthcoming EoR
+experiments.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{network-crop}
+  \includegraphics[width=0.8\columnwidth]{network-crop}
   \caption{\label{fig:network}%
-    The network architecture of the proposed CDAE that
-    predicts the clean EoR signal from the noisy signal corrupted by
-    the foreground.
-    The CDAE consists of a 7-layer encoder (the orange boxes),
-    a 7-layer decoder (the blue boxes), and one output layer
-    (the green box).
-    All the convolutional layers use 1D filters of size 3, and
-    the number of filters in each layer is shown in the boxes
-    with bold font.}
+    The network architecture of the proposed CDAE, consisting of a
+    4-layer encoder (the orange boxes), a 4-layer decoder (the blue
+    boxes), and one output layer (the green box).
+    The layers in the encoder and decoder use the ELU activation
+    function and batch normalisation (BN), while the output layer uses
+    the `tanh' activation function.
+    All filters are of size 3 and the number of filters in each layer
+    is marked in the braces.
+  }
 \end{figure}
 
 
