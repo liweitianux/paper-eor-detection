@@ -589,31 +589,35 @@ resides on smaller Fourier modes.
 
 
 %%----------------------------------------------------------------------
-\subsection{Comparison}
-\label{sec:comparison}
+\subsection{Comparing with polynomial fitting method}
+\label{sec:polyfit}
 
-In order to better demonstrate the excellent performance of our proposed
-method, we carry out a comparison between our method and the traditional
-polynomial fitting method.
-Using the same data set simulated in \autoref{sec:data}, for each pixel
-in the image cube of the addition of the EoR signal and the foreground
-emission, a low-order polynomial is fitted along the frequency
-dimension, the fitted value of which is then subtracted to uncover the
-EoR signal.
+In order to further demonstrate the performance of our method, we carry
+out a comparison between our method and the traditional polynomial
+fitting method.
+Using the same image cubes simulated in \autoref{sec:simulation},
+a low-order polynomial is fitted along the frequency dimension for each
+pixel in the image cube of the total emission (i.e.,
+$\M{C}_{\R{tot}} = \M{C}_{\R{eor}} + \M{C}_{\R{fg}}$).
+Then by subtracting the fitted smooth component, which is regarded as
+the foreground emission, the EoR signal is uncovered.
 We have tested polynomials of order from 2 (quadratic) to 5 (quintic),
 and find that the quartic polynomial (order of 4) can give the
 relatively best result.
 However, the correlation coefficient calculated for the separated EoR
 signal in such case is only $\rho_{\R{pfit}} = \num{0.241 +- 0.103}$,
 which is rather small and indicates that the polynomial fitting method
-performs very poor in separating the EoR signal.
-As illustrated in \autoref{fig:simudata}, the complicated instrumental
-effects seriously damage the spectral smoothness of the foreground
-emission, causing rapid fluctuations of similar strength as or even
-stronger than the EoR signal, therefore, it is unsurprising that the
-polynomial fitting method gives very poor results.
-On the contrary, our deep-learning-based method is superior and
-by far outperforms the traditional polynomial fitting method.
+performs poor in removing the foreground emission.
+As illustrated in \autoref{fig:simudata}(b), the frequency-dependent
+beam effects cause rapid oscillations, which can be even stronger than
+the EoR signal, on the originally smooth foreground spectrum.
+The polynomial fitting method, which only models the smooth components,
+is unable to distinguish such rapid oscillations from the EoR signal,
+and hence only gives poor results.
+On the contrary, our deep-learning-based method is driven by the data
+so that it can learn the differences between the EoR signal and the
+foreground emission in the presence of frequency-dependent beam effects,
+achieving much better performance.
 
 
 %%======================================================================
