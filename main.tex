@@ -448,6 +448,50 @@ We implement the CDAE using the \textsc{Keras} framework \citep{keras}
 with the \textsc{TensorFlow} back end \citep{tensorflow}.
 The parameters of Adam optimisation method are set to the recommended
 default values, i.e., learning rate being $\alpha = 0.001$, and
+\subsection{Data preprocessing}
+\label{sec:preprocessing}
+
+The data set required by the CDAE consists of two parts:
+(1) the input data (i.e., noisy EoR signal) that are the addition of
+the EoR signal and the foreground emission, i.e.,
+$\M{X}_{\R{in}} = \M{C}_{\R{eor}} + \M{C}_{\R{fg}}$;
+(2) the `true' data that are the simulated EoR signal
+(i.e., $\M{Y}_{\R{true}} = \M{C}_{\R{eor}}$)
+and act as the goal of training the CDAE.
+
+For the input data ($\M{X}_{\R{in}}$), we propose to apply the Fourier
+Transform (FT) along the frequency dimension, which makes the EoR
+signal more distinguishable from the foreground emission and thus
+easier to learn by the CDAE (see also the comparison without applying
+such FT to the data in \autoref{sec:noft}).
+The Blackman-Nuttall window function is applied to suppress the
+FT side-lobes caused by the sharp discontinuities at the ends
+of the finite frequency band \citep[e.g.,][]{chapman2016}.
+It is sufficient to keep only half the Fourier coefficients because
+the data is real, thus the data of length 101 for one pixel in the
+image cube are transformed to be 51 complex Fourier coefficients.
+We excise the 6 coefficients of the lowest Fourier frequencies, which
+have large values and are almost contributed by the spectral-smooth
+foreground emission.
+Since both the real and imaginary parts of the Fourier coefficients
+are required to reconstruct the frequency-domain signal via inverse FT,
+the real and imaginary parts are separated and concatenated into a new
+vector of length 90.
+Finally, the data are zero-centred and normalised to have unit variance.
+
+The preprocessing steps for the `true' data ($\M{Y}_{\R{true}}$) are
+similar but need minor adjustments.
+After applying the FT, excising the 6 lowest Fourier components, and
+concatenating the real and imaginary parts,
+the data elements with value less than the 1$^{\R{th}}$ percentile or
+greater than the 99$^{\R{th}}$ percentile are truncated, improving the
+robustness of the data for training the CDAE.
+Finally, the data are divided by the maximum absolute value of the
+truncated data, constraining the value range to be $[-1, 1]$,
+which renders the `tanh' activation function that has the same value
+range appropriate for the output layer of the CDAE.
+
+
 exponential decay rates for the first and second moment estimates being
 $\beta_1 = 0.9$ and $\beta_2 = 0.999$, respectively \citep{kingma2015}.
 The batch size is 100, and the CDAE is trained on the training set
