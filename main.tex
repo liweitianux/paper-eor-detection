@@ -624,19 +624,22 @@ achieving much better performance.
 \section{Conclusions}
 \label{sec:conclusions}
 
-We have demonstrated to use the CDAE to separate the faint EoR signal
-that is buried in the overwhelming foreground contamination with the
-complicated instrumental effects taken into account.
-The proposed CDAE, which consists of a 7-layer encoder, a 7-layer
-decoder, and one output layer, is trained on the simulated SKA images
-and achieves excellent performance that is by far better than the
-traditional polynomial fitting method.
-In conclusion, our deep-learning-based method is able to accurately
-separate the faint EoR signal in the presence of severe foreground
-contamination and complicated instrumental effects.
-In addition, the proposed CDAE is simple but powerful, exhibiting the
-great potential of deep-learning-based methods to play an important
-role in forthcoming EoR experiments.
+The frequency-dependent beam effects of radio interferometers can cause
+unpredictable and rapid fluctuations along the frequency dimension,
+which seriously damage the smoothness of the foreground spectrum and
+prevent traditional foreground removing methods (e.g., polynomial
+fitting) from uncovering the EoR signal.
+Given such beam effects are too complicated to craft a parametric
+model, the data-driven methods that can learn from the data are more
+feasible and appealing.
+To this end, we have proposed a deep-learning-based method by employing
+a CDAE to separate the EoR signal.
+The CDAE has been trained on the simulated SKA images and achieved
+excellent performance in separating the faint EoR signal with high
+accuracy.
+In addition, the proposed CDAE has simple architecture and is easily
+extensible, exhibiting the great potential of deep-learning-based
+methods to play an important role in the forthcoming EoR experiments.
 
 
 %%======================================================================
