@@ -250,35 +250,34 @@ The implementation code and data are made public at
 \subsection{Convolutional denoising autoencoder}
 \label{sec:cdae}
 
-The autoencoder is an unsupervised learning algorithm and consists of
-two parts: the encoder and the decoder.
-The former learns codes that can effectively represent the input data,
-while the latter reconstructs the input from the learned codes.
-By constraining the dimensionality or sparsity of the codes, the
-autoencoder is forced to learn robust features from the training data
+An autoencoder is composed of two parts: the encoder and the decoder,
+which can be described by two functions $f(\cdot)$ and $g(\cdot)$,
+respectively.
+The encoder maps the input $\B{x}$ to an internal code $\B{h}$, i.e.,
+$\B{h} = f(\B{x})$, while the decoder tries to reconstruct the input
+from the code $\B{h}$, i.e., $\B{r} = g(\B{h})$.
+By placing constraints (e.g., dimensionality, sparsity) on the
+internal code $\B{h}$ and training the autoencoder to minimise the
+loss $L(\B{x}, \B{r})$, which quantifies the difference between the
+reconstruction $\B{r}$ and the input $\B{x}$, the autoencoder is able
+to learn the codes that effectively represent the input data
 \citep[chapter 14]{goodfellow2016}.
 
-The convolutional autoencoder (CAE) is a variant of autoencoders that
-makes use of convolutional layers instead of fully connected layers
-\citep{masci2011}.
-Each convolutional layer consists of a series of filters and learns
-a set of localised features.
-More sophisticated features can thus be hierarchically built by stacking
-multiple convolutional layers.
-The weights (i.e., parameters) of filters are shared across all
-locations in the input data, which greatly reduces the number of
-parameters and eases the training.
-This makes it possible to implement very deep and expressive CAEs that
-can extract intricate features from the data.
-In order to learn more robust features, the CAE can be trained to
-predict the original data from the noisy or corrupted data, hence the
-so-called convolutional denoising autoencoder.
+The CDAE combines the ideas of both the convolutional neural network
+and the denoising autoencoder \citep{du2017}.
+The use of multiple convolutional layers improves the ability of the
+CDAE to extract sophisticated features in the data \citep{masci2011}.
+Training the CDAE on the noisy data $\B{\~{x}}$ forces the CDAE to
+learn features that are robust to the noise in the data, thus the
+trained CDAE can recover the original data $\B{x}$ from the noisy
+input $\B{\~{x}}$ \citep{vincent2008,vincent2010}.
 
-In the task of separating the EoR signal, the foreground contamination
-can be regarded as the noise that corrupts the target signal.
-A CDAE can therefore be trained to learn noise-robust features of the
-faint EoR signal and reconstruct it, achieving the effective separation
-of the EoR signal from the overwhelming foreground contamination.
+In the task of separating the EoR signal, the foreground contamination,
+albeit very strong, can be regarded as the noise that corrupts the
+target signal.
+Therefore, the CDAE is the appropriate deep-learning method to extract
+the features of the faint EoR signal that are robust to the foreground
+contamination and the frequency-dependent beam effects.
 
 
 %%----------------------------------------------------------------------
