@@ -127,27 +127,29 @@ $^{6}${National Astronomical Observatories,
 % (<=200 words for Letters)
 %
 \begin{abstract}
-The overwhelming foreground contamination is one of the primary
-challenge in measuring the \SI{21}{\cm} signal to probe the EoR.
-Although the foreground is expected to be spectrally smooth,
-the frequency-dependent beam effects of interferometers can
-seriously damage the smoothness of foreground spectrum,
-imposing great difficulties on existing foreground removal methods.
+The smoothness of the foreground spectrum is the key characteristic
+on which the traditional foreground removal methods rely to uncover
+the faint EoR signal.
+However, the frequency-dependent beam effects of the interferometers
+can cause rapid fluctuations along the frequency dimension, seriously
+damaging the smoothness of foreground spectrum and hence imposing
+great difficulties on removing the foreground contamination for
+traditional methods.
 In this work, we propose a novel deep-learning-based method by employing
 the convolutional denoising autoencoder (CDAE) to separate the EoR signal.
-The proposed CDAE, which consists of a 7-layer encoder, a 7-layer
-decoder, and one output layer, is simple but powerful and successfully
-learns robust features of the faint EoR signal that is contaminated by the
-severe foreground emission.
-By training and evaluating the CDAE on the simulated SKA images, it
-achieves excellent performance with the correlation coefficient between
-the separated EoR signal and the simulated `true' signal being
-$\rho_{\R{cdae}} = \num{0.985 +- 0.009}$.
-As a comparison, the traditional polynomial fitting method has very poor
-performance ($\rho_{\R{pfit}} = \num{0.241 +- 0.103}$ on the same data set).
-In conclusion, our deep-learning-based method can accurately separate
-the faint EoR signal in the presence of severe foreground contamination
-and complicated instrumental effects.
+The proposed CDAE, which consists of a 4-layer encoder, a 4-layer
+decoder, and one output layer, has simple architecture and is powerful
+in learning the features of the faint EoR signal.
+By training the CDAE on the simulated SKA images, it achieves excellent
+performance, obtaining a correlation coefficient between
+the separated EoR signal and the simulated `true' signal to be
+$\rho_{\R{cdae}} = \num{0.969 +- 0.020}$.
+As a comparison, the traditional polynomial fitting method has
+poor performance
+($\rho_{\R{pfit}} = \num{0.241 +- 0.103}$ on the same data set).
+In conclusion, the deep-learning-based method can accurately separate
+the faint EoR signal from the foreground contamination in the presence
+of frequency-dependent beam effects.
 \end{abstract}
 
 % Select between one and six entries from the list of approved keywords.
