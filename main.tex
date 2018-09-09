@@ -370,68 +370,59 @@ performance of separation.
 \label{sec:experiments}
 
 %%----------------------------------------------------------------------
-\subsection{Data simulation}
+\subsection{Simulation of the SKA images}
 \label{sec:simulation}
 
-In order to derive the data set to train the proposed CDAE and evaluate
-its performance, we carry out end-to-end simulations to generate the
-`observed' image cubes.
-Following our previous works \citep{wang2010,wang2013}, we simulate the
-\SIrange{154}{162}{\MHz} sky images of the foreground emission,
-which includes the Galactic synchrotron and free-free emissions,
-extragalactic point sources, and radio haloes.
-The sky maps of the EoR signal are created using the 2016 data release
-from the Evolution Of 21~cm Structure project \citep{mesinger2016}.
-The sky images cover a sky patch of size \SI{10 x 10}{\degree} and have
+We carry out end-to-end simulations to generate the SKA images for
+training the proposed CDAE and evaluating the performance.
+We choose the \SI{8}{\MHz} frequency band centred at \SI{158}{\MHz} as
+an example, which is divided into 101 channels of width \SI{80}{\kHz}.
+Following the approach described in detail in our previous works
+\citep{wang2010,wang2013}, we simulate the sky maps of the foreground
+emission contributed by the Galactic synchrotron and free-free
+emissions, extragalactic point sources (the bright ones with a
+\SI{158}{\MHz} flux density $S_{158} > \SI{10}{\mJy}$ are assumed to
+have been removed; e.g., \citealt{liu2009ps}), and radio haloes.
+The sky maps of the EoR signal are created using the `faint galaxies'
+data set released by the Evolution Of 21~cm Structure project
+\citep{mesinger2016}.
+The maps cover a sky patch of size \SI{10 x 10}{\degree} and have
 a pixel size of \SI{20}{\arcsecond} (i.e., \num{1800 x 1800} pixels).
-The \SIrange{154}{162}{\MHz} frequency band is divided into 101
-channels with a frequency resolution of \SI{80}{\kHz} to better
-preserve the spectral structures of the EoR signal.
-Note that the bright point sources that have a flux density
-$S_{158} > \SI{10}{\mJy}$ at \SI{158}{\MHz} are assumed to be
-removed \citep[e.g.,][]{liu2009ps}.
 
-To take into account the practical instrumental effects of radio
+To fully take into account the frequency-dependent beam effects of
 interferometers, the SKA1-Low layout configuration\footnote{%
   SKA1-Low Configuration Coordinates:
   \url{https://astronomers.skatelescope.org/wp-content/uploads/2016/09/SKA-TEL-SKO-0000422_02_SKA1_LowConfigurationCoordinates-1.pdf}
   (released on 2016 May 21)}
-is employed to simulate the `observed' images.
-Specifically, the \textsc{oskar}\footnote{%
+is employed in the \textsc{oskar}\footnote{%
   OSKAR: \url{https://github.com/OxfordSKA/OSKAR} (version 2.7.0)}
-simulator \citep{mort2010} is used to perform the simulated
-observations for \SI{6}{\hour}.
+simulator \citep{mort2010} to perform the simulated observations for the
+above sky maps.
 The visibility data are then imaged by the \textsc{wsclean}\footnote{%
   WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
 imager \citep{offringa2014} using the natural weighting and baseline
-range of \numrange{30}{1000} wavelengths to emphasise the faint diffuse
-EoR signal.
-Only the central \SI{2 x 2}{\degree} regions (i.e., \num{360 x 360}
-pixels) of the created images are cropped out for use in this work.
-
-Therefore, we obtain two image cubes of dimension \num{360 x 360 x 101}
-for the EoR signal and the foreground emission, respectively.
-The spectra of two example pixels are shown in \autoref{fig:simudata},
-where the absolute differences between two adjacent frequencies are
-also plotted for the foreground emission.
-It is clearly shown that the smoothness of the foreground spectrum is
-seriously damaged by the instrumental effects.
-
-The input data for the CDAE are the addition of the two image cubes,
-i.e., both the EoR signal and the foreground contamination,
-and the labelled data are the image cube of the EoR signal.
-The total number of data points in this data set, i.e., the number of
-pixels of the image cubes, is 129,600.
+range of \numrange{30}{1000} wavelengths in order to emphasise the
+faint diffuse EoR signal, and the created images are cropped to keep
+only the central \SI{2 x 2}{\degree} regions (i.e., \num{360 x 360}
+pixels).
+Therefore, we obtain two image cubes of size \num{360 x 360 x 101}
+for the EoR signal ($\M{C}_{\R{eor}}$) and the foreground emission
+($\M{C}_{\R{fg}}$), respectively.
+An example spectrum and the corresponding differential spectrum for
+the foreground emission are shown in \autoref{fig:simudata}.
+It is clearly shown that, compared with the original spectrum without
+instrument observation (the top panel), the smoothness of the foreground
+spectrum is seriously damaged by the frequency-dependent beam effects.
 
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{simudata}
   \caption{\label{fig:simudata}%
-    The spectra of two example pixels in the simulated image cubes
-    for the EoR signal (the top panel) and the foreground emission
-    (the bottom panel).
-    The thin lines in the bottom panel show the absolute differences
-    between two adjacent frequencies for the foreground emission.
+    Example spectra (the bold blue lines) and the corresponding
+    differential spectra (the thin red lines) for the foreground
+    emission.
+    The top and bottom panels show the cases without and with
+    instrument observation, respectively.
   }
 \end{figure}
 
