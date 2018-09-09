@@ -1,5 +1,5 @@
 # Comment out to disable CJK support (use `pdflatex' instead of `xelatex')
-#CJK:= ON
+CJK:= ON
 
 # Name to identify the reported manuscript
 ID:= cdae-eor
@@ -21,7 +21,7 @@ FIGURES:=	figures/network-crop.pdf \
 default: main.pdf
 
 report: main.pdf $(SRCS)
-	-mkdir reports
+	@test -d "reports" || mkdir reports
 	cp main.pdf reports/$(ID)-$(DATE).pdf
 	cp main.tex reports/$(ID)-$(DATE).tex
 

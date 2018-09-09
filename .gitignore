@@ -12,6 +12,7 @@
 *.lof
 *.log
 *.out
+*.xdv
 *-converted-to.*
 *-crop.*
 *.synctex.gz
