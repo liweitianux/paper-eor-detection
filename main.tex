@@ -168,15 +168,15 @@ radio continuum: general
 \section{Introduction}
 \label{sec:intro}
 
-The \SI{21}{\cm} line emission of the neutral hydrogen (\Hi), which is
-redshifted to frequencies below \SI{200}{\MHz}, is regarded as the
-decisive probe to directly explore the epoch of reionization (EoR),
-a period of the early Universe ($z \sim \numrange{6}{15}$) that is
-still poorly understood
+The \SI{21}{\cm} line emission of the neutral hydrogen,
+which is believed to be redshifted to frequencies below \SI{200}{\MHz},
+is regarded as a decisive probe to directly explore the epoch of
+reionization (EoR), a period of the early Universe
+($z \sim \numrange{6}{15}$) that is still poorly understood
 \citep[see][for reviews]{furlanetto2006rev,furlanetto2016rev}.
-In order to probe the EoR, several low-frequency radio interferometers
-are built or to be built to target the \SI{21}{\cm} signal, among which
-there are 21CMA \citep{zheng2016}, MWA \citep{tingay2013},
+As of today, several low-frequency radio interferometers have been built
+or under construction to target the \SI{21}{\cm} signal, including
+21CMA \citep{zheng2016}, GMRT \citep{paciga2011}, MWA \citep{tingay2013},
 LOFAR \citep{vanHaarlem2013}, PAPER \citep{parsons2010},
 HERA \citep{deboer2017}, and SKA \citep{koopmans2015rev}.
 The observational challenges, however, are immense due to a variety of
@@ -185,52 +185,61 @@ interference, and the strong astronomical foreground contamination that
 overwhelms the EoR signal by about \numrange{4}{5} orders of magnitude
 \citep[see][for a review]{morales2010rev}.
 
-Fortunately, the foreground contamination is expected to be
-spectrally smooth, while the EoR signal fluctuates rapidly along the
-frequency dimension.
+Fortunately, in the frequency dimension, the foreground contamination
+is expected to be very smooth, while the EoR signal fluctuates rapidly
+on scales of $\lesssim \si{\MHz}$.
 This important difference is the key characteristic exploited by many
-foreground removal methods in order to uncover the faint EoR signal in
-the presence of overwhelming foreground contamination, including
+foreground removal methods in order to uncover the faint EoR signal,
+including
 parametric fitting methods \citep[e.g.,][]{wang2006,liu2009fgrm,wang2013}
 and non-parametric methods \citep[e.g.,][]{harker2009,chapman2013,mertens2018}.
 
 However, the frequency-dependent beam effects can damage the smoothness
-of the foreground spectrum \citep{liu2009ps}.
-The synthesised beam, which is also called the point spread function
-and is the Fourier Transform of the interferometer layout, has jagged
-side-lobes extending far beyond the central peak due to the incomplete
-$uv$ coverage.
-In addition, both the shape and response of the beams vary with
-observing frequencies.
-Therefore, any unresolved or mis-subtracted foreground sources leave
-rapidly oscillating residuals along the frequency dimension, which may
-seriously compromise the separation of the EoR signal.
+of the foreground spectra \citep{liu2009ps}.
+The point spread function (PSF), which is the Fourier Transform (FT)
+of the interferometer layout, varies with observing frequencies and
+has jagged side-lobes extending far beyond the main lobe due to the
+incomplete $uv$ coverage.
+Therefore, an unresolved or mis-subtracted source can leave residuals
+at different positions in the cleaned images of different frequencies.
+As a result, every pixel in the obtained image cube has unpredictable
+oscillating residuals along the frequency dimension, imposing great
+difficulties on the foreground removal methods that rely on the
+smoothness of the foreground contamination \citep[see also][]{liu2009ps}.
 
-Given the complexity of beam profiles, it is extremely difficult to
-craft a parametric model for existing foreground removal methods to
-overcome the intricate beam effects.
-The data-driven modelling method is thus more feasible and appealing.
+Given the complicated profiles and frequency-dependent variations of
+the PSF, it is extremely difficult to craft a parametric model for
+existing foreground removal methods to overcome the intricate beam
+effects, thus the data-driven modelling method is more feasible and
+appealing [这主要是我们自己的观点、未找到相关文献可引].
 In recent years, the deep learning algorithms have seen prosperous
 developments and brought breakthroughs into a variety of fields, such
 as image classification, speech recognition, and object detection
-\citep{lecun2015}.
+\citep[see][for a recent review]{lecun2015}.
 Among all kinds of neural network architectures, the autoencoder
-aims to learn robust features in the data \citep{vincent2008}
+is able to learn robust features in the data \citep{vincent2008}
 and has been widely applied to
 dimensionality reduction \citep{hinton2006},
 image inpainting and denoising \citep{suganuma2018},
 speech separation \citep{grais2017}, and so on.
 
-In this paper, we propose a novel method to separate the EoR signal by
-making use of the convolutional denoising autoencoder (CDAE), a common
-variant of autoencoders that is designed to learn noise-robust features.
-In \autoref{sec:method}, we introduce the CDAE and elaborate the
-proposed method.
-The method is then applied to the simulated SKA images to evaluate its
-performance, as demonstrated in \autoref{sec:experiments},
-where we also carry out a comparison of performance between our
-deep-learning-based method and traditional polynomial fitting method.
+In this paper, in order to tackle the intricate frequency-dependent
+beam effects, we propose a novel deep-learning-based method to separate
+the EoR signal along the frequency dimension by making use of the
+convolutional denoising autoencoder (CDAE), a popular variant of
+autoencoders that is designed to recover the original clean signal
+from the noisy data.
+To the best of our knowledge, there is no similar deep-learning-based
+methods for the EoR signal separation in the literature.
+In \autoref{sec:method}, we briefly introduce the CDAE and elaborate
+the proposed method.
+In \autoref{sec:experiments}, we demonstrate the performance of the
+method by applying it to the simulated SKA images.
+We discuss the method and carry out a comparison to the traditional
+polynomial fitting method in \autoref{sec:discussions}.
 Finally, we conclude our work in \autoref{sec:conclusions}.
+The implementation code and data are made public at
+\url{https://github.com/lwieitianux/cdae-eor}.
 
 
 %%======================================================================
