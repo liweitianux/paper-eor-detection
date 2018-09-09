@@ -428,26 +428,6 @@ spectrum is seriously damaged by the frequency-dependent beam effects.
 
 
 %%----------------------------------------------------------------------
-\subsection{Method implementation}
-\label{sec:implementation}
-
-We first preprocess the simulated data according to the steps described
-in \autoref{sec:data}.
-It is sufficient to keep only half the Fourier coefficients because the
-input signal is real.
-The data of length 101 for one pixel is transformed to be
-51 complex Fourier coefficients, among which the $n_{\R{ex}} = 6$
-coefficients of the lowest Fourier frequencies are excised.
-Thus the length of each preprocessed data point is 90.
-The data set is then randomly divided into two parts:
-(1) the training set, which has 103,680 data points, accounting for
-80 per cent of the whole data set;
-(2) the validation set, containing the remaining 25,920 data points.
-
-We implement the CDAE using the \textsc{Keras} framework \citep{keras}
-with the \textsc{TensorFlow} back end \citep{tensorflow}.
-The parameters of Adam optimisation method are set to the recommended
-default values, i.e., learning rate being $\alpha = 0.001$, and
 \subsection{Data preprocessing}
 \label{sec:preprocessing}
 
@@ -492,17 +472,32 @@ which renders the `tanh' activation function that has the same value
 range appropriate for the output layer of the CDAE.
 
 
+%%----------------------------------------------------------------------
+\subsection{Training}
+\label{sec:training}
+
+The data set has 129,600 data points, i.e., the number of pixels of
+the image cubes, and is randomly partitioned into the
+training set ($S_{\R{tr}}$), validation set ($S_{\R{val}}$), and
+test set ($S_{\R{test}}$) that account for 60, 20, and 20 per cent of
+the whole data set, respectively [这是机器学习常用的切分比例].
+The training set is used to train the parameters of the CDAE,
+the validation set helps to determine the hyperparameters (e.g., the
+number of layers and filters, the loss function),
+while the test set is only employed to evaluate the performance of the
+trained CDAE.
+
+We implement the proposed CDAE using the popular \textsc{Keras}\footnote{%
+  Keras: \url{https://keras.io} (version 2.2.0)}
+framework \citep{keras} with the \textsc{TensorFlow}\footnote{%
+TensorFlow: \url{https://www.tensorflow.org} (version 1.4.1)}
+back end \citep{tensorflow} [这是目前最常用的编写神经网络的软件包].
+The parameters of the Adam optimisation method are set to the default
+values, i.e., learning rate being $\alpha = 0.001$, and
 exponential decay rates for the first and second moment estimates being
 $\beta_1 = 0.9$ and $\beta_2 = 0.999$, respectively \citep{kingma2015}.
-The batch size is 100, and the CDAE is trained on the training set
-for 100 epochs.
-The validation set does not participate in optimising the parameters,
-but is used to calculate the evaluation index (\autoref{sec:index})
-that describes the `current' performance of the CDAE at the end of
-each epoch.
-
-All the code and data are made public at
-\url{https://github.com/lwieitianux/cdae-eor}.
+The CDAE is trained on the training set ($S_{\R{tr}}$) with batch size
+of 100 for 100 epochs so that the training loss converges.
 
 
 %%----------------------------------------------------------------------
