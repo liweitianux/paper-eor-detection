@@ -8,9 +8,7 @@
 %% 2018-08-23
 %%
 
-\documentclass[letters,a4paper,fleqn,usenatbib]{mnras}
-%\documentclass[letters,a4paper,fleqn,usenatbib,doublespacing]{mnras}
-% Available options:
+% Class options:
 % - letters : for papers in the journal's Letters section (<=5 pages)
 % - onecolumn : single column
 % - doublespacing : double line spacing (do NOT submit in this format)
@@ -19,10 +17,20 @@
 % - useAMS : support 3 upright Greek characters
 % - usedcolumn : use `dcolumn' package for table column alignment
 
-% Chinese
+%\documentclass[letters,fleqn,usenatbib]{mnras}
+\newlength{\myfigwidth}
+\setlength{\myfigwidth}{\columnwidth}
+
+%------ internal review ------
+\documentclass[letters,fleqn,usenatbib,onecolumn]{mnras}
+\setlength{\myfigwidth}{0.5\columnwidth}
+\geometry{top=35mm,bottom=35mm,left=30mm,right=30mm}
+\linespread{1.5}
+
 \usepackage{xeCJK}
 \setCJKmainfont{Noto Serif CJK SC}[BoldFont=Noto Sans CJK SC]
 \setCJKsansfont{Noto Sans CJK SC}
+%------ internal review ------
 
 \usepackage{newtxtext,newtxmath}
 \usepackage[T1]{fontenc}
@@ -326,7 +334,7 @@ as shown in \autoref{fig:network}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\columnwidth]{network-crop}
+  \includegraphics[width=0.8\myfigwidth]{network-crop}
   \caption{\label{fig:network}%
     The network architecture of the proposed CDAE, consisting of a
     4-layer encoder (the orange boxes), a 4-layer decoder (the blue
@@ -433,7 +441,7 @@ spectrum is seriously damaged by the frequency-dependent beam effects.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{simudata}
+  \includegraphics[width=\myfigwidth]{simudata}
   \caption{\label{fig:simudata}%
     Example spectra (the bold blue lines) and the corresponding
     differential spectra (the thin red lines) for the foreground
@@ -535,7 +543,7 @@ frequency-dependent beam effects and severe foreground contamination.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{cdae-train}
+  \includegraphics[width=\myfigwidth]{cdae-train}
   \caption{\label{fig:train}%
     The training loss (the red line), validation loss (the blue line),
     and correlation coefficient calculated on the validation set
@@ -546,7 +554,7 @@ frequency-dependent beam effects and severe foreground contamination.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{eor-result}
+  \includegraphics[width=\myfigwidth]{eor-result}
   \caption{\label{fig:result}%
     An example of the EoR signal reconstructed by the trained CDAE for
     one random pixel.
@@ -595,7 +603,7 @@ distributes mainly on smaller Fourier modes.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{cdae-train-noft}
+  \includegraphics[width=\myfigwidth]{cdae-train-noft}
   \caption{\label{fig:train-noft}%
     Same as \autoref{fig:train} but for the case that the data is not
     preprocessed by the FT.
