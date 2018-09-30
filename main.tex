@@ -58,6 +58,7 @@
 \DeclareSIUnit\kHz{\kilo\hertz}
 \DeclareSIUnit\jansky{Jy}
 \DeclareSIUnit\mJy{\milli\jansky}
+\DeclareSIUnit\mK{\milli\kelvin}
 
 \def\sectionautorefname{Section}
 \def\subsectionautorefname{Section}
@@ -87,34 +88,31 @@
 Weitian Li,$^{1}$\thanks{E-mail:
   \href{mailto:liweitianux@sjtu.edu.cn}{liweitianux@sjtu.edu.cn} (WL);
   \href{mailto:hgxu@sjtu.edu.cn}{hgxu@sjtu.edu.cn} (HX)}
-Haiguang Xu,$^{1,2,3}$\footnotemark[1]
-Zhixian Ma,$^{4}$
-Ruimin Zhu,$^{5}$
+Haiguang Xu,$^{1,2}$\footnotemark[1]
+Zhixian Ma,$^{3}$
+Ruimin Zhu,$^{4}$
 Dan Hu,$^{1}$
 Zhenghao Zhu,$^{1}$
-\newauthor
+\newauthor  % start on a new line
 Chenxi Shan,$^{1}$
-Jie Zhu$^{4}$
+Jie Zhu$^{3}$
 and
-Xiang-Ping Wu$^{6}$
+Xiang-Ping Wu$^{5}$
 \\
 % List of institutions
 $^{1}${School of Physics and Astronomy,
   Shanghai Jiao Tong University,
   800 Dongchuan Road, Shanghai 200240, China} \\
-$^{2}${Tsung-Dao Lee Institute,
+$^{2}${Tsung-Dao Lee Institute / IFSA Collaborative Innovation Center,
   Shanghai Jiao Tong University,
   800 Dongchuan Road, Shanghai 200240, China} \\
-$^{3}${IFSA Collaborative Innovation Center,
+$^{3}${Department of Electronic Engineering,
   Shanghai Jiao Tong University,
   800 Dongchuan Road, Shanghai 200240, China} \\
-$^{4}${Department of Electronic Engineering,
-  Shanghai Jiao Tong University,
-  800 Dongchuan Road, Shanghai 200240, China} \\
-$^{5}${Department of Statistics,
+$^{4}${Department of Statistics,
   Northwestern University,
   2006 Sheridan Road, Evanston, IL 60208, US} \\
-$^{6}${National Astronomical Observatories,
+$^{5}${National Astronomical Observatories,
   Chinese Academy of Sciences,
   20A Datun Road, Beijing 100012, China}
 }
@@ -136,30 +134,28 @@ $^{6}${National Astronomical Observatories,
 % (<=200 words for Letters)
 %
 \begin{abstract}
-{\color{cyan}%
-When applying the foreground removal methods, one of the two broad
-categories of methods to uncover the extremely faint signal from the
-epoch of reionization (EoR), the foreground spectrum must be assumed
-to be smooth.
+When applying the foreground removal methods to uncover the extremely
+faint signal from the epoch of reionization (EoR), the foreground spectra
+are assumed to be smooth.
 This assumption, however, can be seriously violated since the rapid
 fluctuations of residual foreground sources along the frequency
 dimension, which are caused by the frequency-dependent beam effects of
 the interferometers, usually cannot be avoided in practice.
 To address this issue, we propose a novel deep-learning-based method
-by employing a convolutional denoising autoencoder (CDAE) with a simple
-architecture (a 4-layer encoder, a 4-layer decoder, and one output layer),
-which is powerful in learning sophisticated features of the EoR signal
-from the overwhelming foreground emission due to the stack of multiple
-convolutional layers.
-After being trained on the simulated SKA images, for which the practical
-beam effects and CLEAN imaging process have been considered,
+that uses a convolutional denoising autoencoder (CDAE) consisting of
+a 4-layer encoder, a 4-layer decoder, and one output layer.
+After being trained on the simulated SKA images with realistic beam
+effects considered,
 the CDAE achieves excellent performance as the correlation coefficient
-between the reconstructed EoR signal and the input EoR signal reaches
+between the reconstructed and input EoR signal reaches
 $\rho_{\R{CDAE}} = \num{0.969 +- 0.020}$.
-As a comparison, the traditional polynomial fitting method fails to
-distinguish the EoR signal from the rapid fluctuations caused by the
-beam effects, leading to an unacceptable result
-($\rho_{\R{poly}} = \num{0.241 +- 0.103}$).
+In comparison, the polynomial fitting method fails to distinguish the
+EoR signal from the fluctuations caused by the beam effects, leading to
+an unacceptable result ($\rho_{\R{poly}} = \num{0.241 +- 0.103}$).
+{\color{cyan}%
+Owing to the architecture of stacking multiple convolutional layers,
+the CDAE hierarchically learns the subtle features of the EoR signal,
+which is flexible and powerful.
 In conclusion, the CDAE can overcome the frequency-dependent beam effects
 and accurately separate the EoR signal, exhibiting the great potential
 of deep learning methods in future EoR experiments.} % color
@@ -198,8 +194,7 @@ The observational challenges, however, are immense due to a variety of
 complicated instrumental effects, ionospheric distortions, radio frequency
 interference, and the strong astronomical foreground contamination that
 overwhelms the EoR signal by about \numrange{4}{5} orders of magnitude
-\citep[see][for a review]{morales2010rev}.
-
+(see \citealt{morales2010rev} for a review).
 Fortunately, in the frequency dimension the foreground contamination
 is expected to be intrinsically smooth, while the EoR signal fluctuates
 rapidly on $\lesssim \si{\MHz}$ scales.
@@ -210,59 +205,62 @@ including parametric fitting approaches
 and non-parametric approaches
 \citep[e.g.,][]{harker2009,chapman2013,mertens2018}.
 
-{\color{cyan}%
-However, the smoothness of the foreground spectra can be damaged by
-the frequency-dependent beam effects, i.e., the point spread function
-(PSF), which is the Fourier Transform (FT) of the interferometer layout,
-varies with frequencies \citep{liu2009ps}.
-The PSF has a complicated profile consisting of a narrow peaky main lobe
-and a multitude of jagged side lobes of relative amplitude of about
-\numrange{0.1}{1} per cent [MNRAS 要求使用 per cent] extending beyond the field of view (FoV),
-which is caused by the incomplete $uv$ coverage
+However, the smoothness of the foreground spectra can be destroyed by
+the frequency-dependent beam effects, i.e., the variation of the point
+spread function (PSF) with frequencies that cannot be perfectly
+calibrated \citep{liu2009ps}.
+Because of the incomplete $uv$ coverage,
+the PSF has a complicated profile consisting of a narrow peaky main lobe
+and a multitude of jagged side lobes with relative amplitudes of about
+\numrange{0.1}{1} per cent that extend beyond the field of view (FoV)
 \citep[e.g.,][figures 1 and 3]{liu2009ps}.
-Foreground sources that are unresolved or mis-subtracted (e.g., due to
-the limited FoV) during the CLEAN process leave catastrophic residuals
-within the whole image.
-Furthermore, the angular positions of the PSF's side lobes are inversely
-proportional to frequencies,
-thus the locations of residual in the images vary with frequencies.
-As a result, there arise unpredictable residuals along the frequency
-dimension, which are not spectrally smooth and thus cannot be separated
-from the EoR signal by the foreground removal methods that rely on the
-spectral smoothness of the foreground contamination.
+{\color{cyan}%
+A source that is unresolved or mis-subtracted (e.g., due to the limited
+FoV) during the CLEAN process leaves catastrophic residuals,
+the locations of which change with the frequency since the angular
+position of a PSF side lobe is inversely proportional to the frequency.}
+These effects lead to complicated residuals fluctuating along the
+frequency dimension, which cannot be correctly separated from the EoR
+signal by using the standard foreground removal methods that rely on
+the smoothness of the foreground spectra.
 
 Given the complicated profiles and frequency-dependent variations of
-the PSF, it would be difficult to craft a model for most, if not all,
-existing foreground removal methods and add extensive computation burden
-to overcome such beam effects \citep[e.g.,][]{lochner2015,vafaeiSadr2018}.
-Thus deep-learning-based methods that directly learn from the data
-seems feasible and appealing \citep[e.g.,][]{herbel2018,vafaeiSadr2018}.
+the PSF, it would be difficult to craft a practicable model for most,
+if not all, existing foreground removal methods to overcome the beam
+effects, even at the cost of extensive computation burden
+\citep[e.g.,][]{lochner2015,vafaeiSadr2018}.
+{\color{cyan}%
+Thus deep-learning-based methods, which can distill knowledge from the
+data and automatically refine the model, seem more feasible and
+appealing \citep[e.g.,][]{herbel2018,vafaeiSadr2018}.}
 In recent years, the deep learning algorithms have seen prosperous
-developments and brought breakthroughs into many fields
-\citep[see][for a recent review]{lecun2015}.
+developments and have brought breakthroughs into many fields
+(see \citealt{lecun2015} for a recent review).
 Among various deep learning algorithms, the convolutional denoising
-autoencoder (CDAE) and its variants are powerful in extracting features
-from the data and have been successfully applied to
-weak gravitational wave signal denoising \citep{shen2017}
-monaural audio source separation \citep{grais2017}, and so on.
-Although the signal-to-noise ratio (SNR) of the EoR signal is much
-lower than those in the above cases, the EoR signal and foreground
-emission as well as the beam effects are stationary, while the task of
-audio source separation needs to deal with highly non-stationary signal
-and noise \citep{grais2017}.
-Therefore, we expect that the CDAE has the ability to separate the
-low-SNR EoR signal.
+autoencoder (CDAE) and its variants are flexible and powerful in
+learning subtle and complicated features from the data and have been
+successfully applied to
+weak gravitational wave signal denoising \citep[e.g.,][]{shen2017},
+monaural audio source separation \citep[e.g.,][]{grais2017}, and so on.
+{\color{cyan}%
+These applications have demonstrated the abilities of the CDAE in
+extracting weak signals from highly temporal-variable data.
+We expect that the CDAE is promising to accurately separate
+the EoR signal;
+although the signal-to-noise ratio in the EoR detection is much lower
+than in existing applications, the EoR signal and foreground emission
+as well as the beam effects are stationary or semi-stationary.} % color
 
-In this paper, a novel deep-learning-based method by making use of the
-CDAE is proposed to tackle the intricate frequency-dependent beam effects
-and separate the EoR signal along the frequency dimension.} % color
+In this paper, a novel deep-learning-based method that uses a CDAE
+is proposed to tackle the intricate frequency-dependent beam effects
+and to separate the EoR signal along the frequency dimension.
 In \autoref{sec:method}, we briefly introduce the CDAE and elaborate
 the proposed method.
 In \autoref{sec:experiments}, we demonstrate the performance of the
 CDAE by applying it to the simulated SKA images.
-We discuss the method and carry out a comparison to the traditional
+We discuss the method and carry out a comparison to the standard
 polynomial fitting method in \autoref{sec:discussions}.
-Finally, we conclude our work in \autoref{sec:conclusions}.
+Finally, we summarize our work in \autoref{sec:summary}.
 The implementation code and data are made public at
 \url{https://github.com/lwieitianux/cdae-eor}.
 
@@ -278,11 +276,9 @@ The implementation code and data are made public at
 An autoencoder is composed of an encoder and a decoder, which can be
 characterized by the functions $f(\cdot)$ and $g(\cdot)$, respectively.
 The encoder maps the input $\B{x}$ to an internal code $\B{h}$, i.e.,
-$\B{h} = f(\B{x})$, while the decoder tries to reconstruct the wanted
-signal from the code $\B{h}$, i.e., $\B{r} = g(\B{h})$.
-{\color{cyan}%
-The $\B{x}$, $\B{h}$, and $\B{r}$ are all vectors in this work
-(see also \autoref{sec:architecture}).}
+$\B{h} = f(\B{x})$, and the decoder tries to reconstruct the wanted
+signal from the code $\B{h}$, i.e., $\B{r} = g(\B{h})$, where $\B{x}$,
+$\B{h}$, and $\B{r}$ are all vectors (see also \autoref{sec:architecture}).
 By placing constraints (e.g., dimensionality, sparsity, etc.\@) on the
 internal code $\B{h}$ and training the autoencoder to minimise the
 loss $L(\B{r}, \B{x})$, which quantifies the difference between the
@@ -290,20 +286,24 @@ reconstruction $\B{r}$ and the input $\B{x}$, the autoencoder tries to
 learn the codes that effectively represent the input data
 \citep[e.g.,][chapter 14]{goodfellow2016}.
 {\color{cyan}%
-When the input data are noisy, the autoencoder can be trained to learn
-features that are robust to the noise and reconstruct the denoised signal,
-hence the `denoising autoencoder' \citep{vincent2008,vincent2010}.
-The CDAE further introduces the ideas of the convolutional neural network
-into the denoising autoencoder, i.e., employing multiple convolutional
-layers to improve the ability of extracting sophisticated features
-from the data \citep{du2017}.
+When the autoencoder is trained to map the noisy input data to the
+corresponding noise-free signal, the learned features will be robust to
+the noise, and the trained autoencoder can thus reconstruct the denoised
+signal from the noisy input data, hence the `denoising autoencoder'
+\citep{vincent2008,vincent2010}.
+By introducing the architecture of stacking multiple convolutional
+layers, one of the major innovations of the convolutional neural network,
+into the denoising autoencoder, the CDAE gains the benefits of
+hierarchically learning the more and more sophisticated features from
+the data, which is a versatile technique that contributes to the great
+success of the convolutional neural network \citep{du2017}.} % color
 
-In the task of detecting the EoR signal, the foreground contamination
-can be regarded as strong noise that suppress the EoR signal, therefore,
-the CDAE is employed to learn the features of the EoR signal from the
-input data ($\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$) and then
-reconstruct the EoR signal $\B{r}_{\R{EoR}}$ that is expected to be as
-close as the input EoR signal $\B{x}_{\R{EoR}}$ as possible.} % color
+In the EoR detection task, the foreground contamination can be regarded
+as strong noise that suppress the EoR signal.
+Therefore, the CDAE is employed to learn the features of the EoR signal
+$\B{r}_{\R{EoR}}$ from the input ($\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$)
+and to obtain the reconstructed signal $\B{r}_{\R{EoR}}$ that is
+expected to be as close to the input $\B{x}_{\R{EoR}}$ as possible.
 
 
 %%----------------------------------------------------------------------
@@ -315,15 +315,15 @@ We follow common practices to build the CDAE architecture
 The encoder part is symmetric to the decoder part, and both of them
 use the exponential linear unit (ELU) as the activation function
 \citep{clevert2016},
-while the output layer uses the hyperbolic tangent function (tanh)
+while the output layer uses the hyperbolic tangent function (i.e., tanh)
 as the activation function (see also \autoref{sec:preprocessing}).
 The batch normalisation is applied to all layers except for the output
 layer to improve the training process as well as to act as a regularizer
 to prevent overfitting \citep{ioffe2015}.
-{\color{cyan}%
-The filters are vectors of length 3 in all layers because the CDAE's
-input is a vector that represents the emission of one sky pixel in the
-frequency dimension.}
+The filters are vectors of length 3 [即向量长度，无单位] in all layers,
+since each of the CDAE's input $\B{x}$ is the emission of one sky pixel,
+i.e., a vector of length $n_f$ with $n_f$ being the number of frequency
+channels in the image cube (see also \autoref{sec:simulation}).
 
 We have evaluated the performance of multiple CDAE architectures, each
 containing a different number of layers and filters.
@@ -354,19 +354,18 @@ as shown in \autoref{fig:network}.
 
 The CDAE is initialised by the He uniform initialiser \citep{he2015}
 and is trained using the Adam optimisation method \citep{kingma2015}.
-{\color{cyan}%
 The loss, which describes the difference between the reconstructed EoR
 signal $\B{r}_{\R{EoR}}$ and the input EoR signal $\B{x}_{\R{EoR}}$
 (see \autoref{sec:simulation}),
-is calculated as the `mean squared error' (MSE),
+is calculated as the mean squared error (MSE), i.e.,
 \begin{equation}
   \label{eq:loss}
   L = \frac{1}{N} \sum_{i=1}^{N}
     \left[ \B{r}_{\R{EoR}}^{(i)} - \B{x}_{\R{EoR}}^{(i)} \right]^T
     \left[ \B{r}_{\R{EoR}}^{(i)} - \B{x}_{\R{EoR}}^{(i)} \right],
 \end{equation}
-where $N$ is the number of data points in the training data set
-(see \autoref{sec:training}).} % color
+where $N$ is the number of data points in the training dataset
+(see \autoref{sec:training}).
 By being trained to minimise the loss, the CDAE gains the ability to
 reconstruct the EoR signal from the input data
 ($\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$).
@@ -385,7 +384,8 @@ signal $\B{r}_{\R{EoR}}$ and the input EoR signal $\B{x}_{\R{EoR}}$:
           \sum_{j=1}^{n}(x_{\R{EoR},j} - \bar{x}_{\R{EoR}})^2}
     },
 \end{equation}
-where $n$ is the length of the signals.
+where $n$ is the length of the signals,
+and $\bar{r}_{\R{EoR}}$ and $\bar{x}_{\R{EoR}}$ represent the mean values.
 The closer the correlation coefficient is to one, the better the
 performance of separation.
 
@@ -398,10 +398,11 @@ performance of separation.
 \subsection{Simulation of the SKA images}
 \label{sec:simulation}
 
-We carry out end-to-end simulations to generate the SKA images for
-training the proposed CDAE and evaluating the performance.
+We carry out end-to-end simulations to generate the SKA images to
+train the proposed CDAE and evaluate its performance.
 We choose the \SI{8}{\MHz} frequency band centred at \SI{158}{\MHz} as
-an example, which is divided into 101 channels of width \SI{80}{\kHz}.
+an example, which is divided into $n_f = 101$ channels with a resolution
+of \SI{80}{\kHz}.
 Following the approach described in detail in our previous works
 \citep{wang2010,wang2013}, we simulate the sky maps of the foreground
 emission contributed by the Galactic synchrotron and free-free
@@ -410,34 +411,39 @@ emissions, extragalactic point sources (the bright ones with a
 have been removed; e.g., \citealt{liu2009ps}), and radio haloes.
 The sky maps of the EoR signal are created using the `faint galaxies'
 data released by the Evolution Of 21~cm Structure project
-\citep{mesinger2016}.
-All the sky maps cover a sky area of \SI{10 x 10}{\degree} and have
-a pixel size of \SI{20}{\arcsecond} (i.e., \num{1800 x 1800} pixels).
+(EOS; \citealt{mesinger2016}).
+The simulated sky maps cover a sky area of \SI{10 x 10}{\degree} and are
+pixelised into \num{1800 x 1800} with a pixel size of \SI{20}{\arcsecond}.
 
-To fully take into account the frequency-dependent beam effects of
-interferometers, the SKA1-Low layout configuration\footnote{%
+To fully take into account the frequency-dependent beam effects,
+the SKA1-Low layout configuration\footnote{\raggedright%
   SKA1-Low layout:
   \url{https://astronomers.skatelescope.org/wp-content/uploads/2016/09/SKA-TEL-SKO-0000422_02_SKA1_LowConfigurationCoordinates-1.pdf}}
 is employed in the \textsc{oskar}\footnote{%
   OSKAR: \url{https://github.com/OxfordSKA/OSKAR} (version 2.7.0)}
-simulator \citep{mort2010} to perform the simulated observations for the
-above sky maps.
-The visibility data are then imaged by the \textsc{wsclean}\footnote{%
+\citep{mort2010} to simulate observations for the sky maps,
+yielding the visibility data, from which the observed images are created
+by the \textsc{wsclean}\footnote{%
   WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
-imager \citep{offringa2014} using the natural weighting and baseline
+imager \citep{offringa2014} with the natural weighting and baseline
 range of \numrange{30}{1000} wavelengths in order to emphasise the
 faint diffuse EoR signal.
 The created images are cropped to keep only the central
 \SI{2 x 2}{\degree} regions (i.e., \num{360 x 360} pixels) for the sake
 of the best imaging quality.
-Therefore, we obtain two image cubes of size \num{360 x 360 x 101}
+Therefore, we obtain two image cubes of the size \num{360 x 360 x 101}
 for the EoR signal ($C_{\R{EoR}}$) and the foreground emission
 ($C_{\R{fg}}$), respectively.
 An example spectrum and the corresponding differential spectrum for
 the foreground emission are shown in \autoref{fig:simudata}.
-It is clearly shown that, compared with the original spectrum without
-instrument observation (the top panel), the smoothness of the foreground
-spectrum is seriously damaged by the frequency-dependent beam effects.
+It is clearly shown that, compared with the original foreground spectrum
+(the top panel),
+{\color{cyan}%
+the smoothness of the foreground spectrum is seriously damaged by the
+jagged fluctuations with strength of about \SI{10}{\mK}
+(the bottom panel),
+resulting from the frequency-dependent beam effects introduced by the
+interferometric observation.}
 
 \begin{figure}
   \centering
@@ -456,71 +462,82 @@ spectrum is seriously damaged by the frequency-dependent beam effects.
 \subsection{Data preprocessing}
 \label{sec:preprocessing}
 
-The data set $S$ required by the CDAE consists of two parts:
-(1) the input data that are the addition of the EoR signal and the
-foreground emission, i.e., $X = C_{\R{EoR}} + C_{\R{fg}}$;
-(2) the input EoR signal (i.e., $X_{\R{EoR}} = C_{\R{EoR}}$)
-that acts as the goal of training the CDAE.
+{\color{cyan}%
+The dataset $S = \{(\B{x}, \B{x}_{\R{EoR}})\}$ for the CDAE is derived
+from the simulated image cubes (i.e., $C_{\R{EoR}}$ and $C_{\R{fg}}$),
+with each of the data point $(\B{x}, \B{x}_{\R{EoR}})$ representing
+the total emission and the EoR signal of one pixel in the image cubes,
+respectively, i.e., $\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$.
+The dataset thus consists of $N = \num{360x360} = \num{129600}$ data points.}
 
-For the input data $X$, we propose to apply the FT along the frequency
-dimension, which makes the EoR signal more distinguishable from the
-foreground emission and thus easier to learn by the CDAE (see also the
-comparison without applying such FT to the data in \autoref{sec:noft}).
+For the input data $X = \{\B{x}\}$, we propose to apply the
+Fourier Transform (FT) along the frequency dimension,
+which makes the EoR signal more distinguishable from the
+foreground emission and thus easier to be learned by the CDAE
+(a comparison with the results derived without applying the FT is
+presented in \autoref{sec:why-ft}).
 The Blackman-Nuttall window function is applied to suppress the
-FT side-lobes caused by the sharp discontinuities at the ends
+FT side-lobes caused by the sharp discontinuities at both ends
 of the finite frequency band \citep[e.g.,][]{chapman2016}.
 It is sufficient to keep only half the Fourier coefficients because
-the data is real, thus a vector of length 101 representing one pixel in
-the image cube is transformed to be 51 complex Fourier coefficients.
-We excise the 6 coefficients of the lowest Fourier frequencies, which
-have large values and are mostly contributed by the spectral-smooth
-foreground emission.
-Since both the real and imaginary parts of the Fourier coefficients
-are required to reconstruct the frequency-domain signal via inverse FT,
-the real and imaginary parts are separated and concatenated into a new
-vector of length 90.
+$\B{x}$ is real, thus $\B{x}$ of length $n_f = 101$ is transformed to
+be 51 complex Fourier coefficients,
+{\color{cyan}%
+among which the $n_{\R{ex}}$
+coefficients of the lowest Fourier frequencies are excised since they
+are mostly contributed by the spectral-smooth foreground emission.
+We adopt $n_{\R{ex}} = 6$ to achieve a trade-off between the benefit of
+foreground suppression and the loss of data.
+The real and imaginary parts of the remaining 45 complex coefficients
+are then concatenated into a new real vector of length 90, as the CDAE
+requires real data.}
 Finally, the data are zero-centred and normalised to have unit variance.
 
 The preprocessing steps for the input EoR signal $X_{\R{EoR}}$ are
-similar but need minor adjustments.
-After applying the FT, excising the 6 lowest Fourier components, and
-concatenating the real and imaginary parts,
-the elements in the data that have a value less than the 1$^{\R{th}}$
+basically the same except for minor adjustments.
+After applying the FT, excising the $n_{\R{ex}}$ lowest Fourier
+components, and concatenating the real and imaginary parts,
+the data elements that have a value less than the 1$^{\R{st}}$
 percentile or greater than the 99$^{\R{th}}$ percentile are truncated,
-improving the robustness of the data for training the CDAE.
-Finally, the data are divided by the maximum absolute value of the
-truncated data, constraining the value range to be $[-1, 1]$,
-which renders the `tanh' activation function that has the same value
-range appropriate for the output layer of the CDAE.
+{\color{cyan}%
+in order to prevent the possible outliers hindering the training of
+the CDAE.
+Finally, the value range of the data is scaled to be $[-1, 1]$ by
+dividing by the maximum absolute value,
+which allows to use the `tanh' activation function with the same value
+range in the output layer of the CDAE (\autoref{sec:architecture}).}
 
 
 %%----------------------------------------------------------------------
 \subsection{Training}
 \label{sec:training}
 
-The data set has 129,600 data points, i.e., the number of pixels of
-the image cubes, and is randomly partitioned into the
-training set ($S_{\R{tr}}$), validation set ($S_{\R{val}}$), and
-test set ($S_{\R{test}}$) that account for 60, 20, and 20 per cent of
-the whole data set, respectively [这是常用的切分比例].
+The preprocessed dataset is randomly partitioned into the
+training set ($S_{\R{tr}}$), validation set ($S_{\R{val}}$),
+and test set ($S_{\R{test}}$) that account for
+60, 20, and 20 per cent of the whole dataset, respectively.
 The training set is used to train the parameters of the CDAE by
 minimising the loss,
 the validation set helps to determine the hyperparameters (e.g., the
 number of layers and filters, the choice of the loss function),
 while the test set is only employed to evaluate the performance of the
 trained CDAE.
+[如此划分和使用 training/validation/test 数据集是机器学习的惯例；
+老马的文章在 pre-training 和 fine-tuning 两个阶段都使用了
+validation 数据集，用来说明网络训练效果是否良好，所选网络架构是否合理；
+与此处的描述是一致的。]
 
 We implement the proposed CDAE using the popular \textsc{Keras}\footnote{%
   Keras: \url{https://keras.io} (version 2.2.0)}
 framework \citep{keras} with the \textsc{TensorFlow}\footnote{%
 TensorFlow: \url{https://www.tensorflow.org} (version 1.4.1)}
-back end \citep{tensorflow} [这是目前最常用的编写神经网络的软件包].
+back end \citep{tensorflow}.
 The parameters of the Adam optimisation method are set to the default
 values, i.e., learning rate being $\alpha = 0.001$, and
 exponential decay rates for the first and second moment estimates being
 $\beta_1 = 0.9$ and $\beta_2 = 0.999$, respectively \citep{kingma2015}.
 The CDAE is trained on the training set ($S_{\R{tr}}$) with a batch size
-of 100 for 100 epochs so that the training loss converges.
+of 100 for 100 epochs until the training loss converges.
 
 
 %%----------------------------------------------------------------------
@@ -537,9 +554,23 @@ achieves excellent performance with a correlation coefficient of
 $\rho_{\R{CDAE}} = \num{0.969 +- 0.020}$.
 As an example, \autoref{fig:result} illustrates the reconstructed EoR
 signal ($\rho = 0.965$) for one random pixel.
-Consequently, the proposed CDAE is able to learn the features of the
-faint EoR signal and accurately reconstruct it, overcoming the
-frequency-dependent beam effects and severe foreground contamination.
+{\color{cyan}%
+In addition, we calculate the one-dimensional power spectra for each
+pixel in $S_{\R{test}}$ \citep[e.g.,][]{chapman2013}
+and find that the reconstructed EoR signal can recover the total power
+to a fraction of $R_{\R{CDAE}} = \num{91.9 +- 9.5}$ per cent.
+
+The achieved excellent performance of the CDAE can be mainly ascribed
+to the architecture of stacking multiple convolutional layers, which
+allows to extract sophisticated features from the data by hierarchically
+combining the simpler features learned by the filters in each layer
+\citep{lecun2015}.
+The proposed CDAE has \num{54337} trainable parameters and is flexible
+enough to distinguish the subtle differences between the spectra of the
+EoR signal and the foreground emission after being well trained.
+Consequently, the trained CDAE is able to accurately reconstruct the
+EoR signal, overcoming the frequency-dependent beam effects and severe
+foreground contamination.}  % color
 
 \begin{figure}
   \centering
@@ -577,89 +608,84 @@ frequency-dependent beam effects and severe foreground contamination.
 \label{sec:discussions}
 
 %%----------------------------------------------------------------------
-\subsection{Without Fourier Transform}
-\label{sec:noft}
+\subsection{Why preprocess dataset with Fourier Transform?}
+\label{sec:why-ft}
 
-We perform another experiment using the same CDAE architecture and data,
-but the data is preprocessed without applying the FT along the
-frequency dimension as depicted in \autoref{sec:preprocessing}.
+We have performed another experiment using the same CDAE architecture,
+dataset, and data preprocessing steps, except for applying the FT
+as depicted in \autoref{sec:preprocessing}.
 After training the CDAE in the same way as described in
 \autoref{sec:training}, the achieved performance is
-$\rho_{\R{noft}} = \num{0.927 +- 0.051}$, which is smaller and has a
-larger uncertainty than the case with FT applied, indicating a worse
-performance.
+$\rho_{\R{noFT}} = \num{0.927 +- 0.051}$, which is smaller than the case
+with FT applied, indicating a worse performance with a larger uncertainty.
 The losses and the correlation coefficient on the validation set
 during the training phase are presented in \autoref{fig:train-noft}.
-We find that the training process is slightly unstable given the small
-spikes on the curves of the training loss and the correlation
-coefficient.
-The training loss also converges slower compared with the case with FT.
-Such a comparison indicates that it is beneficial to preprocess the
-data by applying the FT along the frequency dimension, because the FT
+We also find that the training process is slightly unstable given the
+small spikes on the curves of both the training loss and the correlation
+coefficient, and the training loss converges slower.
+These indicate that it is beneficial to preprocess the
+dataset by applying the FT along the frequency dimension, because the FT
 renders the EoR signal and the foreground emission more distinguishable
 in the Fourier domain, where the fluctuating EoR signal concentrates on
-larger Fourier modes but the spectral-smooth foreground emission
-distributes mainly on smaller Fourier modes.
+larger Fourier modes while the spectral-smooth foreground emission
+distributes mainly on smaller Fourier modes \citep[e.g.,][]{parsons2012}.
 
 \begin{figure}
   \centering
   \includegraphics[width=\myfigwidth]{cdae-train-noft}
   \caption{\label{fig:train-noft}%
-    Same as \autoref{fig:train} but for the case that the data is not
-    preprocessed by the FT.
+    Same as \autoref{fig:train} but for the case that the data are
+    preprocessed without applying the FT.
   }
 \end{figure}
 
 
 %%----------------------------------------------------------------------
-\subsection{Comparing with polynomial fitting method}
+\subsection{Comparing with the standard polynomial fitting method}
 \label{sec:polyfit}
 
-In order to further demonstrate the performance of our method, we carry
-out a comparison between our method and the traditional polynomial
+In order to further demonstrate the performance of our method, we have
+carried out a comparison between our method and the standard polynomial
 fitting method \citep[e.g.,][]{wang2006,liu2009ps}.
 Using the same image cubes simulated in \autoref{sec:simulation},
-a low-order polynomial is fitted along the frequency dimension for each
+a low-degree polynomial is fitted along the frequency dimension for each
 pixel in the image cube of the total emission (i.e.,
 $C_{\R{tot}} = C_{\R{EoR}} + C_{\R{fg}}$).
 Then by subtracting the fitted smooth component, which is regarded as
 the foreground emission, the EoR signal is uncovered.
-While polynomials of too low order are insufficient to model the
-foreground emission, polynomials of too high order risk fitting out
-the wanted EoR signal.
-We have tested polynomials of order from 2 (quadratic) to 5 (quintic),
-and find that the quartic polynomial (order of 4) can give the
-relatively best result.
+We have tested polynomials of the degree from 2 (quadratic) to
+5 (quintic), and find that the quartic polynomial (degree of 4)
+can give the best result.
 However, the correlation coefficient calculated for the separated EoR
-signal in such case is only $\rho_{\R{poly}} = \num{0.241 +- 0.103}$,
-which is rather small and indicates that the polynomial fitting method
-performs poor in removing the foreground emission.
+signal in such a case is only $\rho_{\R{poly}} = \num{0.241 +- 0.103}$,
+which indicates that the polynomial fitting method
+performs poorly in removing the foreground emission.
 As illustrated in \autoref{fig:simudata}(b), the frequency-dependent
-beam effects cause rapid oscillations, which can be even stronger than
+beam effects cause rapid fluctuations, which can be even stronger than
 the EoR signal, on the originally smooth foreground spectrum.
 The polynomial fitting method, which can only model the smooth
-spectrum, is unable to distinguish such rapid oscillations from the
-EoR signal, hence leading to poor results.
-On the contrary, the proposed CDAE is driven by the data so that it can
-learn the differences between the spectra of the EoR signal and the
-foreground emission, achieving much better performance.
+spectrum, is unable to distinguish these rapid fluctuations from the
+EoR signal, hence leading to inferior results.
+{\color{cyan}%
+On the contrary, given its flexibility and data-driven nature,
+the CDAE can learn the features of the EoR signal from the data and
+gain superior performance.}
 
 
 %%======================================================================
-\section{Conclusions}
-\label{sec:conclusions}
+\section{Summary}
+\label{sec:summary}
 
-The frequency-dependent beam effects of radio interferometers can cause
-unpredictable and rapid fluctuations along the frequency dimension,
-which seriously damage the smoothness of the foreground spectra and
-prevent traditional foreground removing methods (e.g., polynomial
-fitting) from uncovering the EoR signal.
-It is difficult to craft models to overcome such complicated beam
-effects, therefore, the data-driven methods, such as the deep learning
-methods, that learn from the data seems more feasible and appealing.
+The frequency-dependent beam effects of interferometers can cause
+complicated fluctuations along the frequency dimension,
+which destroy the smoothness of the foreground spectra and prevent
+standard foreground removal methods from uncovering the EoR signal.
+Given the difficulty in crafting practicable models to overcome the
+complicated beam effects, methods that learn from the data seem more
+feasible and appealing.
 To this end, we have proposed a deep-learning-based method by employing
 the CDAE to separate the EoR signal.
-The CDAE has been trained on the simulated SKA images and achieved
+The CDAE has been trained on the simulated SKA images and has achieved
 excellent performance in separating the EoR signal, demonstrating its
 ability to overcome the intricate frequency-dependent beam effects.
 In addition, the proposed CDAE has a simple architecture and is easily
