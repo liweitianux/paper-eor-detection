@@ -78,9 +78,9 @@
 %%
 
 %      ............................................. (<=45 chars)
-\title[EoR Separation with CDAE]{%
+\title[EoR Signal Separation with a CDAE]{%
   Separating the EoR Signal with a Convolutional Denoising Autoencoder:
-  A Deep-learning-based Method
+  a Deep-learning-based Method
 }
 
 % If you need two or more lines of authors, add an extra line using \newauthor
@@ -137,10 +137,9 @@ $^{5}${National Astronomical Observatories,
 When applying the foreground removal methods to uncover the faint EoR
 signal, the foreground spectra are assumed to be smooth.
 However, this assumption can be seriously violated in practice since
-{\color{cyan}%
-the unresolved or mis-subtracted foreground sources, when entangled
-with the frequency-dependent beam effects of the interferometers,
-leave significant rapid fluctuations along the frequency dimension.}
+the unresolved or mis-subtracted foreground sources, which are further
+complicated by the frequency-dependent beam effects of interferometers,
+will generate significant fluctuations along the frequency dimension.
 To address this issue, we propose a novel deep-learning-based method
 that uses a 9-layer convolutional denoising autoencoder (CDAE) to
 separate the EoR signal.
@@ -150,13 +149,11 @@ coefficient ($\rho$) between the reconstructed and input EoR signals
 reaches \num{0.969 +- 0.020}.
 In comparison, the traditional polynomial fitting method fails to
 uncover the EoR signal ($\rho = \num{0.241 +- 0.103}$).
-{\color{cyan}%
-We conclude that the CDAE can overcome the frequency-dependent beam
-effects and accurately separate the EoR signal, which can be mainly
-contributed to the powerful technique of hierarchically learning
-sophisticated features by stacking multiple convolutional layers.
-Our method also exhibits the great potential of deep-learning-based
-methods in future EoR experiments.}
+We conclude that, by hierarchically learning sophisticated features
+through multiple convolutional layers, the CDAE is a powerful tool that
+can be used to overcome the frequency-dependent beam effects and
+accurately separate the EoR signal, which exhibits the great potential
+of deep-learning-based methods in future EoR experiments.
 \end{abstract}
 
 % Select between one and six entries from the list of approved keywords.
@@ -235,15 +232,14 @@ successfully applied to
 weak gravitational wave signal denoising \citep[e.g.,][]{shen2017},
 monaural audio source separation \citep[e.g.,][]{grais2017}, and so on.
 These applications have demonstrated the outstanding abilities of the
-CDAE in extracting weak signals from highly temporal-variable data
-{\color{cyan}[前文提及的是引力波探测，是时变数据]},
+CDAE in extracting weak signals from highly temporal-variable data,
 thus it is worth trying to apply the CDAE to separate the EoR signal.
 Although the signal-to-noise ratio in the EoR detection is much lower
 than in existing applications, the EoR signal and foreground emission
 as well as the beam effects are stationary or semi-stationary.
 
 In this paper, a novel deep-learning-based method that uses a CDAE
-is proposed to tackle the intricate frequency-dependent beam effects
+is proposed to tackle the complicated frequency-dependent beam effects
 and to separate the EoR signal along the frequency dimension.
 In \autoref{sec:method}, we briefly introduce the CDAE and elaborate
 the proposed method.
@@ -276,27 +272,23 @@ loss $L(\B{r}, \B{x})$, which quantifies the difference between the
 reconstruction $\B{r}$ and the input $\B{x}$, the autoencoder tries to
 learn the codes that effectively represent the input data
 \citep[e.g.,][chapter 14]{goodfellow2016}.
-{\color{cyan}%
-When being trained to reconstruct the noise-free signal from the
-noisy input data, the autoencoder is able to learn robust features
-that can be used to denoise the input data and to recover the
-noise-free signal as much as possible (i.e., denoising autoencoder;
-\citealt{vincent2008,vincent2010}).
-Furthermore, by introducing the architecture of stacking multiple
-convolutional layers, one of the major innovations of the convolutional
-neural network, into the denoising autoencoder,
-the CDAE gains the ability of learning more and more sophisticated
-features from the data in a hierarchical way \citep{du2017}
-and can be employed to distinguish the subtle differences between the
-EoR signal and the foreground emission.} % color
 
-In the EoR detection task, the foreground emission $\B{x}_{\R{fg}}$
-can be regarded as the strong noise that suppress the EoR signal
-$\B{x}_{\R{EoR}}$.
-The CDAE is then employed to learn the features of the EoR signal
-from the input ($\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$)
-and to obtain the reconstructed signal $\B{r}_{\R{EoR}}$ that is
-expected to be as close to the input $\B{x}_{\R{EoR}}$ as possible.
+A denoising autoencoder is a variant of autoencoders that is trained
+to reconstruct the noise-free signal from the noisy input data,
+therefore it is expected to learn robust features that can be used to
+denoise the input data and to recover the noise-free signal effectively
+\citep[e.g.,][]{vincent2008,xie2012}.
+Convolutional neural networks are well known for their outstanding
+performance in image classification and relevant fields due to the
+powerful technique of learning more and more sophisticated features
+from the data in a hierarchical way \citep{lecun2015}.
+By combining the strengths of both denoising autoencoders and
+convolutional neural networks, the CDAE gains excellent denoising
+ability to reconstruct even seriously corrupted signal \citep{du2017}.
+Therefore, the CDAE is well suited to separate the faint EoR signal
+$\B{x}_{\R{EoR}}$ from the strong foreground emission $\B{x}_{\R{fg}}$,
+which is regarded as the noise, by denoising the input total emission
+($\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$).
 
 
 %%----------------------------------------------------------------------
@@ -468,9 +460,8 @@ $\B{x}$ is real, thus $\B{x}$ of length $n_f = 101$ is transformed to
 be 51 complex Fourier coefficients, among which the $n_{\R{ex}}$
 coefficients of the lowest Fourier frequencies are excised since they
 are mostly contributed by the spectral-smooth foreground emission.
-{\color{cyan}%
 We adopt $n_{\R{ex}} = 6$ to achieve a balance between the foreground
-suppression and the loss of the EoR signal.}
+suppression and the loss of the EoR signal.
 The real and imaginary parts of the remaining 45 complex coefficients
 are then concatenated into a new real vector of length 90, since the CDAE
 requires real data.
@@ -496,15 +487,14 @@ is also $[-1, 1]$ in the output layer of the CDAE
 \subsection{Training and results}
 \label{sec:training}
 
-{\color{cyan}%
 The preprocessed dataset is randomly partitioned into
-the training set ($S_{\R{tr}}$; 60 per cent) to train the parameters of
-the CDAE by minimising the loss,
+the training set ($S_{\R{tr}}$; 60 per cent) to fit the weights of
+filters by minimising the loss $L$,
 the validation set ($S_{\R{val}}$; 20 per cent) to determine the
 hyperparameters (e.g., the number of layers and filters, the choice of
 loss function),
 and the test set ($S_{\R{test}}$; 20 per cent) that is employed to
-evaluate the performance of the trained CDAE.}
+evaluate the performance of the trained CDAE.
 
 We implement the proposed CDAE using the popular \textsc{Keras}\footnote{%
   Keras: \url{https://keras.io} (version 2.2.0)}
@@ -531,18 +521,17 @@ signal ($\rho = 0.965$) for one random pixel.
 In addition, we calculate the one-dimensional power spectra for each
 pixel in $S_{\R{test}}$ \citep[e.g.,][]{chapman2013}
 and find that the reconstructed EoR signal can recover the total power
-to a fraction of $R_{\R{CDAE}} = \num{91.9 +- 9.5}$ per cent.
+to a fraction of $R_{\R{CDAE}} = \num{90.1 +- 8.9}$ per cent.
 
 The achieved excellent performance of the CDAE can be mainly attributed
 to the architecture of stacking multiple convolutional layers, which
-{\color{cyan}%
 implements a powerful feature extraction technique by hierarchically
-combining the simpler features learned in each layer to build more and
+combining the basic features learned in each layer to build more and
 more sophisticated features \citep{lecun2015}.
-Combined with its flexibility provided by the \num{54337} trainable
-parameters, the CDAE, after being well trained, can learn a model that
-is optimised to accurately separate the faint EoR signal
-\citep[e.g.,][]{domingos2012}.}
+Combined with the flexibility provided by the \num{54337} trainable
+weights, the CDAE, after being well trained, can intelligently learn a
+model that is optimised to accurately separate the faint EoR signal
+\citep[e.g.,][]{domingos2012}.
 
 \begin{figure}
   \centering
@@ -640,9 +629,8 @@ The polynomial fitting method, which can only model the smooth
 spectrum, is unable to distinguish these rapid fluctuations from the
 EoR signal, hence leading to inferior results.
 On the contrary, given its flexibility and data-driven nature,
-{\color{cyan}%
 the CDAE can distill knowledge from the data to optimise itself for
-the EoR signal separation and hence achieve superior performance.}
+the EoR signal separation and hence achieve superior performance.
 
 
 %%======================================================================
@@ -653,19 +641,17 @@ The frequency-dependent beam effects of interferometers can cause
 rapid fluctuations along the frequency dimension,
 which destroy the smoothness of the foreground spectra and prevent
 traditional foreground removal methods from uncovering the EoR signal.
-{\color{cyan}%
-Given the difficulty in crafting practicable models to overcome the
-complicated beam effects, methods that can learn tailored models from
-the data seem more feasible and appealing.}
+Given the difficulties in crafting practicable models to overcome the
+complicated beam effects, methods that can intelligently learn tailored
+models from the data seem more feasible and appealing.
 To this end, we have proposed a deep-learning-based method that uses
 a 9-layer CDAE to separate the EoR signal.
 The CDAE has been trained on the simulated SKA images and has achieved
 excellent performance.
-{\color{cyan}%
 We conclude that the CDAE has outstanding ability to overcome the
-intricate beam effects and accurately separate the EoR signal,
+beam effects and accurately separate the EoR signal,
 exhibiting the great potential of deep-learning-based methods
-to play an important role in the forthcoming EoR experiments.}
+to play an important role in the forthcoming EoR experiments.
 
 
 %%======================================================================
