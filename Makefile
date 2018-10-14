@@ -16,7 +16,8 @@ SRCS:=		main.tex references.bib
 FIGURES:=	figures/network-crop.pdf \
 		figures/simudata.pdf \
 		figures/cdae-train.pdf \
-		figures/eor-result.pdf
+		figures/eor-result.pdf \
+		figures/cdae-train-noft.pdf
 
 default: main.pdf
 
@@ -36,10 +37,10 @@ endif
 
 submission: $(SRCS) $(TEMPLATE) $(FIGURES)
 	mkdir $@.$(DATE)
-	@for f in $(SRCS) $(TEMPLATE) $(FIGURES); do \
+	@for f in $(SRCS) $(TEMPLATE) $(FIGURES) README.txt; do \
 		cp -v $$f $@.$(DATE)/; \
 	done
-	tar -cf $@.$(DATE).tar -C $@.$(DATE)/ .
+	tar -czf $@.$(DATE).tar.gz -C $@.$(DATE)/ .
 	rm -r $@.$(DATE)
 
 %-crop.pdf: %.pdf
@@ -58,4 +59,4 @@ help:
 	@echo "clean - clean the temporary files"
 	@echo "cleanall - clean temporary files and the output PDF file"
 
-.PHONY: report clean cleanall help
+.PHONY: report clean cleanall help submission
