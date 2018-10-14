@@ -151,9 +151,9 @@ In comparison, the traditional polynomial fitting method fails to
 uncover the EoR signal ($\rho = \num{0.241 +- 0.103}$).
 We conclude that, by hierarchically learning sophisticated features
 through multiple convolutional layers, the CDAE is a powerful tool that
-can be used to overcome the frequency-dependent beam effects and
-accurately separate the EoR signal, which exhibits the great potential
-of deep-learning-based methods in future EoR experiments.
+can be used to overcome the complicated frequency-dependent beam effects
+and accurately separate the EoR signal, which exhibits the great
+potential of deep-learning-based methods in future EoR experiments.
 \end{abstract}
 
 % Select between one and six entries from the list of approved keywords.
@@ -219,7 +219,7 @@ the PSF, it would be difficult to craft a practicable model for most,
 if not all, existing foreground removal methods to overcome the beam
 effects, even at the cost of extensive computation burden
 \citep[e.g.,][]{lochner2015}.
-Therefore deep-learning-based methods, which can distill knowledge from
+Therefore deep-learning-based methods, which can distil knowledge from
 the data to automatically refine the model, seem more feasible
 and appealing \citep[e.g.,][]{herbel2018,vafaeiSadr2018}.
 In recent years, the deep learning algorithms have seen prosperous
@@ -247,7 +247,7 @@ In \autoref{sec:experiments}, we demonstrate the performance of the
 CDAE by applying it to the simulated SKA images.
 We discuss the method and carry out a comparison to the traditional
 polynomial fitting method in \autoref{sec:discussions}.
-Finally, we summarize our work in \autoref{sec:summary}.
+Finally, we summarise our work in \autoref{sec:summary}.
 The implementation code and data are made public at
 \url{https://github.com/lwieitianux/cdae-eor}.
 
@@ -261,14 +261,14 @@ The implementation code and data are made public at
 \label{sec:cdae}
 
 An autoencoder is composed of an encoder and a decoder, which can be
-characterized by the functions $f(\cdot)$ and $g(\cdot)$, respectively.
+characterised by the functions $f(\cdot)$ and $g(\cdot)$, respectively.
 The encoder maps the input $\B{x}$ to an internal code $\B{h}$, i.e.,
 $\B{h} = f(\B{x})$, and the decoder tries to reconstruct the wanted
 signal from the code $\B{h}$, i.e., $\B{r} = g(\B{h})$, where $\B{x}$,
 $\B{h}$, and $\B{r}$ are all vectors for this work.
 By placing constraints (e.g., dimensionality, sparsity) on the
-internal code $\B{h}$ and training the autoencoder to minimise the
-loss $L(\B{r}, \B{x})$, which quantifies the difference between the
+internal code $\B{h}$ and training the autoencoder to minimize the
+loss $L(\B{r}, \, \B{x})$, which quantifies the difference between the
 reconstruction $\B{r}$ and the input $\B{x}$, the autoencoder tries to
 learn the codes that effectively represent the input data
 \citep[e.g.,][chapter 14]{goodfellow2016}.
@@ -306,8 +306,8 @@ The batch normalisation is applied to all layers except for the output
 layer to improve the training process as well as to act as a regularizer
 to prevent overfitting \citep{ioffe2015}.
 The filters are vectors of length 3 in all layers
-since each of the CDAE's input $\B{x}$ is the emission of one sky pixel,
-i.e., a vector of length $n_f$ with $n_f$ being the number of frequency
+since the CDAE input $\B{x}$ is a vector of length $n_f$ that represents
+the emission of one sky pixel, where $n_f$ is the number of frequency
 channels in the image cube (see also \autoref{sec:simulation}).
 
 We have evaluated the performance of multiple CDAE architectures, each
@@ -328,7 +328,7 @@ as illustrated in \autoref{fig:network}.
     function and batch normalisation (BN), while the output layer uses
     the `tanh' activation function.
     All filters are vectors of length 3 and the numbers of filters in
-    each layer are marked in braces.
+    each layer are marked in parentheses.
   }
 \end{figure}
 
@@ -338,7 +338,7 @@ as illustrated in \autoref{fig:network}.
 \label{sec:train-eval}
 
 The CDAE is initialised by the He uniform initialiser \citep{he2015}
-and is trained using the Adam optimisation method \citep{kingma2015}.
+and is trained by using the Adam optimisation method \citep{kingma2015}.
 The loss, which describes the difference between the reconstructed EoR
 signal $\B{r}_{\R{EoR}}$ and the input EoR signal $\B{x}_{\R{EoR}}$,
 is calculated as the mean squared error (MSE), i.e.,
@@ -349,7 +349,7 @@ is calculated as the mean squared error (MSE), i.e.,
     \left[ \B{r}_{\R{EoR}}^{(i)} - \B{x}_{\R{EoR}}^{(i)} \right],
 \end{equation}
 where $N$ is the number of data points in the training dataset.
-By being trained to minimise the loss, the CDAE gains the ability to
+By being trained to minimize the loss $L$, the CDAE learns to
 reconstruct the EoR signal from the input data $\B{x}$.
 
 To evaluate the performance of the CDAE in separating the EoR signal,
@@ -384,7 +384,7 @@ train the proposed CDAE and evaluate its performance.
 We choose the \SI{8}{\MHz} frequency band centred at \SI{158}{\MHz} as
 an example, which is divided into $n_f = 101$ channels with a resolution
 of \SI{80}{\kHz}.
-Following the approach described in detail in our previous works
+Following the approaches described in detail in our previous works
 \citep{wang2010,wang2013}, we simulate the sky maps of the foreground
 emission contributed by the Galactic synchrotron and free-free
 emissions, extragalactic point sources (the bright ones with a
@@ -394,7 +394,7 @@ The sky maps of the EoR signal are created using the `faint galaxies'
 data released by the Evolution Of 21~cm Structure project
 (EOS; \citealt{mesinger2016}).
 The simulated sky maps cover a sky area of \SI{10 x 10}{\degree} and are
-pixelised into \num{1800 x 1800} with a pixel size of \SI{20}{\arcsecond}.
+pixelized into \num{1800 x 1800} with a pixel size of \SI{20}{\arcsecond}.
 
 To fully take into account the frequency-dependent beam effects,
 the SKA1-Low layout configuration\footnote{\raggedright%
@@ -407,11 +407,11 @@ yielding the visibility data, from which the observed images are created
 by the \textsc{wsclean}\footnote{%
   WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
 imager \citep{offringa2014} with the natural weighting and baseline
-range of \numrange{30}{1000} wavelengths in order to emphasise the
+range of \numrange{30}{1000} wavelengths in order to emphasize the
 faint diffuse EoR signal.
 The created images are cropped to keep only the central
-\SI{2 x 2}{\degree} regions (i.e., \num{360 x 360} pixels) for the sake
-of the best imaging quality.
+\SI{2 x 2}{\degree} regions (i.e., \num{360 x 360} pixels) for the
+purpose of the best quality.
 Therefore, we obtain two image cubes of the size \num{360 x 360 x 101}
 for the EoR signal ($C_{\R{EoR}}$) and the foreground emission
 ($C_{\R{fg}}$), respectively.
@@ -419,7 +419,7 @@ Example spectra and the corresponding differential spectra for the
 foreground emission with and without the beam effects are shown in
 \autoref{fig:simudata}.
 As clearly shown, when the beam effects are considered, the smoothness
-of the foreground spectrum is seriously damaged by the jagged
+of the foreground spectrum is seriously damaged by the significant
 fluctuations with strength of about \SI{10}{\mK} (the bottom panel).
 
 \begin{figure}
@@ -489,7 +489,7 @@ is also $[-1, 1]$ in the output layer of the CDAE
 
 The preprocessed dataset is randomly partitioned into
 the training set ($S_{\R{tr}}$; 60 per cent) to fit the weights of
-filters by minimising the loss $L$,
+filters by minimizing the loss $L$,
 the validation set ($S_{\R{val}}$; 20 per cent) to determine the
 hyperparameters (e.g., the number of layers and filters, the choice of
 loss function),
@@ -509,13 +509,13 @@ The CDAE is trained on the training set ($S_{\R{tr}}$) with a batch size
 of 100 for 100 epochs until the training loss converges.
 
 The training and validation losses together with the evaluation index
-(i.e., the correlation coefficient) calculated on the validation set
+(i.e., the correlation coefficient $\rho$) calculated on the validation set
 ($S_{\R{val}}$) during the training phase are shown in \autoref{fig:train}.
 The steadily decreasing losses and increasing correlation coefficient
 suggest that the CDAE is well trained without overfitting.
-By evaluating on the test set ($S_{\R{test}}$), the trained CDAE
-achieves excellent performance with a correlation coefficient of
-$\rho_{\R{CDAE}} = \num{0.969 +- 0.020}$.
+The evaluation on the test set ($S_{\R{test}}$) demonstrates that the
+trained CDAE achieves excellent performance with a correlation
+coefficient of $\rho_{\R{CDAE}} = \num{0.969 +- 0.020}$.
 As an example, \autoref{fig:result} illustrates the reconstructed EoR
 signal ($\rho = 0.965$) for one random pixel.
 In addition, we calculate the one-dimensional power spectra for each
@@ -603,7 +603,7 @@ distributes mainly on smaller Fourier modes \citep[e.g.,][]{parsons2012}.
 
 
 %%----------------------------------------------------------------------
-\subsection{Comparing with the polynomial fitting method}
+\subsection{Comparing to the polynomial fitting method}
 \label{sec:polyfit}
 
 In order to further demonstrate the performance of our method, we have
@@ -614,7 +614,7 @@ a low-degree polynomial is fitted along the frequency dimension for each
 sky pixel in the image cube of the total emission (i.e.,
 $C_{\R{tot}} = C_{\R{EoR}} + C_{\R{fg}}$).
 Then by subtracting the fitted smooth component, which is regarded as
-the foreground emission, the EoR signal is uncovered.
+the foreground emission, the EoR signal is expected to be uncovered.
 We have tested polynomials of the degree from 2 (quadratic) to
 5 (quintic), and find that the quartic polynomial (degree of 4)
 can give the best result.
@@ -623,13 +623,13 @@ signal in such a case is only $\rho_{\R{poly}} = \num{0.241 +- 0.103}$,
 which indicates that the polynomial fitting method
 performs poorly in removing the foreground emission.
 As illustrated in \autoref{fig:simudata}(b), the frequency-dependent
-beam effects cause rapid fluctuations, which can be even stronger than
-the EoR signal, on the originally smooth foreground spectrum.
+beam effects cause significant fluctuations, which can be even stronger
+than the EoR signal, on the originally smooth foreground spectra.
 The polynomial fitting method, which can only model the smooth
 spectrum, is unable to distinguish these rapid fluctuations from the
 EoR signal, hence leading to inferior results.
 On the contrary, given its flexibility and data-driven nature,
-the CDAE can distill knowledge from the data to optimise itself for
+the CDAE can distil knowledge from the data to optimise itself for
 the EoR signal separation and hence achieve superior performance.
 
 
@@ -649,7 +649,7 @@ a 9-layer CDAE to separate the EoR signal.
 The CDAE has been trained on the simulated SKA images and has achieved
 excellent performance.
 We conclude that the CDAE has outstanding ability to overcome the
-beam effects and accurately separate the EoR signal,
+complicated beam effects and accurately separate the faint EoR signal,
 exhibiting the great potential of deep-learning-based methods
 to play an important role in the forthcoming EoR experiments.
 
