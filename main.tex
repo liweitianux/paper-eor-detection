@@ -425,44 +425,102 @@ performance of separation.
 
 We carry out end-to-end simulations to generate the SKA images to
 train the proposed CDAE and evaluate its performance.
-We choose the \SI{8}{\MHz} frequency band centred at \SI{158}{\MHz} as
-an example, which is divided into $n_f = 101$ channels with a resolution
-of \SI{80}{\kHz}.
-Following the approaches described in detail in our previous works
-\citep{wang2010,wang2013}, we simulate the sky maps of the foreground
-emission contributed by the Galactic synchrotron and free-free
-emissions, extragalactic point sources (the bright ones with a
-\SI{158}{\MHz} flux density $S_{158} > \SI{10}{\mJy}$ are assumed to
-have been removed; e.g., \citealt{liu2009ps}), and radio haloes.
-The sky maps of the EoR signal are created using the `faint galaxies'
-data released by the Evolution Of 21~cm Structure project
-(EOS; \citealt{mesinger2016}).
-The simulated sky maps cover a sky area of \SI{10 x 10}{\degree} and are
+\editwip{%
+An \SI{8}{\MHz} frequency band centred at \SI{158}{\MHz} is chosen as
+an example and is divided into $n_f = 101$ channels with a resolution of
+\SI{80}{\kHz}.
+At each frequency, the sky maps of the foreground emission and the EoR
+signal are simulated within an area of \SI{10 x 10}{\degree} and are
 pixelized into \num{1800 x 1800} with a pixel size of \SI{20}{\arcsecond}.
+For the foreground emission, we take into account the contributions from
+the Galactic synchrotron and free-free radiations, extragalactic point
+sources, and radio haloes.
+The Galactic synchrotron radiation is simulated by extrapolating the Haslam
+\SI{408}{\MHz} map with a power-law spectrum.  We make use of the
+reprocessed Haslam \SI{408}{\MHz} map\footnote{%
+  The reprocessed Haslam \SI{408}{\MHz} map:
+  \url{http://www.jb.man.ac.uk/research/cosmos/haslam_map/}}
+\citep{remazeilles2015} as the template, and the synchrotron spectral index
+map made by \citet{giardino2002} to account for the index variation with
+sky positions.
+By employing the tight relation between the H$\alpha$ and free-free
+emissions \citep[see][and references therein]{dickinson2003}, the Galactic
+free-free radiation can be derived from the H$\alpha$ survey map
+\citep{finkbeiner2003}.
+Since the Galactic diffuse emissions vary remarkably across the sky, we
+simulate them at a central position of (R.A., Dec\@.) = (\SI{0}{\degree},
+\SI{-27}{\degree}), which has a high galactic latitude
+($b = \SI{-78.5}{\degree}$) and thus is expected to be appropriate for
+EoR observations.
+We account for the following 5 types of extragalactic point sources:
+(1) star-forming and starburst galaxies, (2) radio-quiet active galactic
+nuclei (AGNs), (3) Fanaroff-Riley type I and type II AGNs, (4) GHz-peaked
+spectrum AGNs, and (5) compact steep spectrum AGNs.
+The former three types of sources are simulated by utilizing the results
+published by \citet{wilman2008} and the latter two types are simulated by
+employing their corresponding luminosity functions and spectral models.
+Similar to the real-time peeling of the brightest point sources in
+practical data analysis pipelines \citep[e.g.,][]{mitchell2008,intema2009},
+we assume that sources with a \SI{158}{\MHz} flux density
+$S_{158} > \SI{10}{\mJy}$ have been removed \citep[e.g.,][]{liu2009ps}.
+The radio haloes are simulated by generating a sample of galaxy clusters
+with the Press-Schechter formalism \citep{press1974} and then applying
+multiple scaling relations (e.g., between cluster mass and X-ray
+temperature, between X-ray temperature and radio power) to derive their
+radio emissions.
+More details regarding to the simulation of these foreground components can
+be found in our previous work \citep{wang2010} and references therein.
+For simulating the sky maps of the EoR signal, we take advantage of the
+2016 data release from the Evolution Of 21\,cm Structure project\footnote{%
+  The Evolution Of 21\,cm Structure project:
+  \url{http://homepage.sns.it/mesinger/EOS.html}}
+\citep{mesinger2016} and extract the image slices at needed redshifts
+(i.e., frequencies) from the light-cone cubes of the recommended `faint
+galaxies' case.
 
-To fully take into account the frequency-dependent beam effects,
-the SKA1-Low layout configuration\footnote{\raggedright%
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.8\textwidth]{obsimg-158}
+  \caption{\label{fig:obsimg}%
+    Simulated images of the EoR signal (left panel) and the foreground
+    emission (right panel) at \SI{158}{\MHz}.
+    Both images have a size of \num{360 x 360} and cover a sky area of
+    \SI{2 x 2}{\degree}.
+    The blobs in the right panel show the bright point sources and radio
+    haloes.
+  }
+\end{figure*}
+
+To fully incorporate realistic frequency-dependent beam effects into the
+simulated sky images, we further adopt the SKA1-Low layout
+configuration\footnote{\raggedright%
   SKA1-Low layout:
   \url{https://astronomers.skatelescope.org/wp-content/uploads/2016/09/SKA-TEL-SKO-0000422_02_SKA1_LowConfigurationCoordinates-1.pdf}}
-is employed in the \textsc{oskar}\footnote{%
+to simulate instrument observations.
+For each sky image, we employ the SKA1-Low layout in the
+\textsc{oskar}\footnote{%
   OSKAR: \url{https://github.com/OxfordSKA/OSKAR} (version 2.7.0)}
-\citep{mort2010} to simulate observations for the sky maps,
-yielding the visibility data, from which the observed images are created
-by the \textsc{wsclean}\footnote{%
+simulator \citep{mort2010} to perform an observation of \SI{6}{\hour}
+integration time, yielding the visibility data, from which the `observed'
+image is created by the \textsc{wsclean}\footnote{%
   WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
-imager \citep{offringa2014} with the natural weighting and baseline
-range of \numrange{30}{1000} wavelengths in order to emphasize the
-faint diffuse EoR signal.
-The created images are cropped to keep only the central
+imager \citep{offringa2014}.
+In order to emphasize the faint and relatively diffuse EoR signal, the
+natural weighting and only baselines of \numrange{30}{1000} wavelengths are
+utilized in the imaging process.} % editwip
+Finally, the created images are cropped to keep only the central
 \SI{2 x 2}{\degree} regions (i.e., \num{360 x 360} pixels) for the
 purpose of the best quality.
-Therefore, we obtain two image cubes of the size \num{360 x 360 x 101}
-for the EoR signal ($C_{\R{EoR}}$) and the foreground emission
-($C_{\R{fg}}$), respectively.
-Example spectra and the corresponding differential spectra for the
-foreground emission with and without the beam effects are shown in
-\autoref{fig:simudata}.
-As clearly shown, when the beam effects are considered, the smoothness
+Therefore, we obtain \editwip{a pair of} image cubes of size
+\num{360 x 360 x 101} for the EoR signal ($C_{\R{EoR}}^{(1)}$) and the
+foreground emission ($C_{\R{fg}}^{(1)}$), respectively
+\editwip{%
+(see \autoref{fig:obsimg} for the simulated images at \SI{158}{\MHz}).
+To better illustrate the impacts of beam effects on the foreground spectra,
+we take one sky pixel as an example and show its spectra and the
+corresponding differential spectra with and without the beam effects
+integrated (\autoref{fig:simudata}).} % editwip
+As it clearly shows, when the beam effects are considered, the smoothness
 of the foreground spectrum is seriously damaged by the significant
 fluctuations with strength of about \SI{10}{\mK} (the bottom panel).
 
@@ -472,11 +530,38 @@ fluctuations with strength of about \SI{10}{\mK} (the bottom panel).
   \caption{\label{fig:simudata}%
     Example spectra (the bold blue lines) and the corresponding
     differential spectra (the thin red lines) for the foreground
-    emission.
+    emission of one sky pixel.
     The top and bottom panels show the cases without and with
     instrument observation, respectively.
   }
 \end{figure}
+
+\editwip{%
+It is beneficial to simulate two pairs of image cubes, which are used to
+train and evaluate the CDAE, respectively.
+With the availability of a complete pair of image cubes for evaluation,
+the performance of the CDAE can be presented more intuitively with the
+images and power spectra of the separated EoR signal (see
+\autoref{sec:training}).
+To obtain another pair of image cubes, we simulate the Galactic diffuse
+emissions at a central coordinate of (R.A., Dec\@.) = (\SI{3}{\degree},
+\SI{-27}{\degree}), i.e., \SI{3}{\degree} from the above pair of image
+cubes, which is sufficient because the images are only \SI{2 x 2}{\degree}
+in size.
+Since extragalactic point sources, radio haloes, and the EoR signal are
+mostly isotropic, we shift their sky maps simulated above by
+\SI{3}{\degree} to generate the maps for use here.
+Following the same procedures to simulate instrument observations, we
+obtain the second pair of image cubes ($C_{\R{EoR}}^{(2)}$,
+$C_{\R{fg}}^{(2)}$).
+
+We note that the simulations do not include thermal noise because the
+proposed method is currently designed to create tomographic EoR images
+from very deep observations that have sufficiently low noise.
+For example, SKA1-Low is expected to perform EoR imaging observations of
+\SI{1000}{\hour} per pointing, reaching an unprecedented image noise level
+of $\lesssim \SI{1}{\mK}$ \citep[e.g.,][]{mellema2013rev,koopmans2015rev}.
+} % editwip
 
 
 %%----------------------------------------------------------------------
