@@ -279,19 +279,38 @@ reconstruction $\B{r}$ and the input $\B{x}$, the autoencoder tries to
 learn the codes that effectively represent the input data
 \citep[e.g.,][chapter 14]{goodfellow2016}.
 
-A denoising autoencoder is a variant of autoencoders that is trained
-to reconstruct the noise-free signal from the noisy input data,
-therefore it is expected to learn robust features that can be used to
-denoise the input data and to recover the noise-free signal effectively
-\citep[e.g.,][]{vincent2008,xie2012}.
-Convolutional neural networks are well known for their outstanding
-performance in image classification and relevant fields due to the
-powerful technique of learning more and more sophisticated features
-from the data in a hierarchical way \citep{lecun2015}.
-By combining the strengths of both denoising autoencoders and
-convolutional neural networks, the CDAE gains excellent denoising
-ability to reconstruct even seriously corrupted signal \citep{du2017}.
-Therefore, the CDAE is well suited to separate the faint EoR signal
+\editwip{%
+In order to make the autoencoder learn good representations of the input
+data instead of simply copying the input as the output,
+\citet{vincent2008,vincent2010} proposed to apply the denoising criterion,
+which states that `a good representation is one that can be obtained
+robustly from a corrupted input and that will be useful for recovering the
+corresponding clear input.'
+The input data are artificially corrupted (e.g., by adding noise) and the
+autoencoder is trained to reconstruct the original clean input for the
+purpose of learning robust features from the input data.
+In addition, the trained autoencoder can be employed to denoise the data
+\citep[e.g.,][]{xie2012,gondara2016}, hence being called a `denoising
+autoencoder.'
+
+Classic autoencoders use fully connected layers and thus have a large
+number of parameters, which are harder to train and prevent from build
+deeper and more powerful autoencoders
+\citep[e.g.,][]{glorot2010,larochelle2009}.
+On the other hand, convolutional layers as used in convolutional neural
+networks (CNNs) have much fewer parameters and can better exploit the local
+features in data.  Therefore it is easier and more intuitive to stack
+multiple convolutional layers to build highly expressive CNNs that achieve
+outstanding performance in image classification and relevant fields
+\citep[e.g.,][]{krizhevsky2012,simonyan2014,szegedy2015}.
+By utilizing multiple convolutional layers instead of fully connected
+layers in a denoising autoencoder, the resulting CDAE gains the similar
+capability of CNNs to fully exploit the complicated features in the data
+(e.g., the subtle differences between the EoR signal and foreground
+emission when interlaced with the beam effects), which may greatly improve
+the denoising ability and can reconstruct even seriously corrupted signal
+\citep{du2017}.}  % editwip
+Consequently, the CDAE is well suited to separate the faint EoR signal
 $\B{x}_{\R{EoR}}$ from the strong foreground emission $\B{x}_{\R{fg}}$,
 which is regarded as the noise, by denoising the input total emission
 ($\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$).
