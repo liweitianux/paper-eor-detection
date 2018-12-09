@@ -320,32 +320,11 @@ which is regarded as the noise, by denoising the input total emission
 \subsection{Network architecture}
 \label{sec:architecture}
 
-We follow common practices to build the CDAE architecture
-\citep[e.g.,][]{suganuma2018,geron2017}.
-The encoder part is symmetric to the decoder part, and both of them
-use the exponential linear unit (ELU) as the activation function
-\citep{clevert2016},
-while the output layer uses the hyperbolic tangent function
-(i.e., tanh; see also \autoref{sec:preprocessing}).
-The batch normalisation is applied to all layers except for the output
-layer to improve the training process as well as to act as a regularizer
-to prevent overfitting \citep{ioffe2015}.
-The filters are vectors of length 3 in all layers
-since the CDAE input $\B{x}$ is a vector of length $n_f$ that represents
-the emission of one sky pixel, where $n_f$ is the number of frequency
-channels in the image cube (see also \autoref{sec:simulation}).
-
-We have evaluated the performance of multiple CDAE architectures, each
-containing a different number of layers and filters.
-The simplest one with sufficiently good performance is selected,
-which consists of a 4-layer encoder with $(32,64,64,32)$ filters,
-a 4-layer decoder with $(32,64,64,32)$ filters, and one output layer,
-as illustrated in \autoref{fig:network}.
-
-\begin{figure}
+\begin{figure*}
   \centering
-  \includegraphics[width=\myfigwidth]{network-crop}
+  \includegraphics[width=0.5\textwidth]{network-crop}
   \caption{\label{fig:network}%
+    [TODO]
     The network architecture of the proposed CDAE, consisting of a
     4-layer encoder (the orange boxes), a 4-layer decoder (the blue
     boxes), and one output layer (the green box).
@@ -355,7 +334,47 @@ as illustrated in \autoref{fig:network}.
     All filters are vectors of length 3 and the numbers of filters in
     each layer are marked in parentheses.
   }
-\end{figure}
+\end{figure*}
+
+\editwip{%
+The CDAE consists of multiple convolutional layers with each layer
+containing a number of filters and an activation function.
+Each filter is convolved with the output of the previous layer and the
+convolution result then goes through the activation function to produce
+the output of this layer.
+Because the CDAE output $\B{r}$, which has the same size as the input
+$\B{x}$, is a vector of length $n_f$ with $n_f$ being the number of
+frequency channels in the image cube (see also \autoref{sec:simulation}),
+the last convolutional layer (i.e., the output layer) has only one filter.
+The remaining convolutional layers can be divided into the encoder and
+decoder parts.
+The number of layers in the encoder and decoder as well as the number of
+filters in each layer are hyperparameters of the CDAE.
+
+We adopt filters of size 3 in all layers, and use the hyperbolic tangent
+function (i.e., tanh; see also \autoref{sec:preprocessing}) and the
+exponential linear unit \citep{clevert2016} as activation functions for the
+output layer and other layers, respectively.
+The batch normalisation is applied to all layers except for the output
+layer to improve the training process as well as to act as a regularizer
+to prevent overfitting \citep{ioffe2015}.
+
+We have followed common practices \citep[e.g.,][]{suganuma2018,geron2017}
+to build multiple CDAE architectures, each containing a different number of
+layers and filters.
+After evaluating their performances (see also \autoref{sec:training}),} % editwip
+the simplest one with sufficiently good performance is selected,
+which consists of a 4-layer encoder with $(32,64,64,32)$ filters,
+a 4-layer decoder with $(32,64,64,32)$ filters, and one output layer,
+as illustrated in \autoref{fig:network}.
+\editwip{%
+We have also tested to use pairs of pooling and upsampling layers in the
+CDAE, but it has very little impacts on the performance.
+Moreover, we focus on the feature extraction and denoising abilities of the
+CDAE rather than the specific formats of the internal codes.
+Thus it is reasonable to not use pooling and upsampling layers, which also
+eases the explanation of how the CDAE learns (\autoref{sec:explanation}).
+}
 
 
 %%----------------------------------------------------------------------
