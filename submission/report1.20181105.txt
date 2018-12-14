@@ -1,0 +1,48 @@
+Scientific Editor's Comments:
+Editor: Tim Pearson
+Comments to the Author:
+-----------------------
+I do not think this paper needs rapid publication as a Letter, but I will
+be happy to consider a revised version for the main journal. You should use
+the extra space this gives you to provide more details and explanation, as
+suggested by the reviewer. I think the paper would also be stronger if you
+could give more details of the simulations, so that readers can judge what
+types of signals can be distinguished from foregrounds by this method and
+which cannot. It might be helpful to include images of the input EoR signal
+and the recovered signal. Did you include noise in your simulations?
+
+
+
+Reviewer's Comments:
+Reviewer: 1
+Comments to the Author
+----------------------
+The paper presents an innovative methodology to extract relevant
+information from noisy observations of 21 cm line emission from the epoch
+of reionization, adopting a machine learning approach, based on a
+Convolutional Denoising Autoencoder technique. The methodology, tested on
+simulated data, proves to improve the performance of traditional solutions.
+
+The paper is properly written, although a more exhaustive description of
+the methodology would be beneficial for the reader and the potential user.
+However, the page limit of the Letter does not allow extensive add-ons.
+
+Nevertheless, the main request of the reviewer is to describe in some
+details how the Convolutional Neural Network (CNN) approach combines with
+the Autoencoder methodology. As it is presented in the current version of
+the paper, this is not clear and also Figure 1 is not explicit enough to
+understand how the two methods work together. In other words, it should be
+more explicitly stated that the "f(x)" function of the encoder IS a
+combination of typical convolution+pooling layers. If possible, it would
+also be beneficial to explain how the network learns during the training
+(this second request only if space permits).
+
+A further request is related to section 4.2 and the comparison with the
+"polynomial fitting" method. It would be useful to specify if this is the
+only alternative method for the kind of data processing presented in the
+paper and, if not, to mention the others and to justify why they have not
+been considered in the paper.
+
+The only additional comment of the reviews regards the use of "EoR" in the
+abstract. It would be clearer to avoid the acronym, explicitly writing
+"epoch of reionization".
