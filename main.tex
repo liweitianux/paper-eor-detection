@@ -64,6 +64,8 @@
 \DeclareSIUnit\jansky{Jy}
 \DeclareSIUnit\mJy{\milli\jansky}
 \DeclareSIUnit\mK{\milli\kelvin}
+\DeclareSIUnit\parsec{pc}
+\DeclareSIUnit\Mpc{\mega\parsec}
 
 \def\sectionautorefname{Section}
 \def\subsectionautorefname{Section}
@@ -709,6 +711,56 @@ that the CDAE has been well trained.} % ediwip
 As an example, \autoref{fig:eor-pix} illustrates the reconstructed EoR
 signal (\editwip{$\rho = 0.931$}) for one random pixel
 \editwip{in $S_{\R{test}}$}.
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.8\textwidth]{eor-img-comp}
+  \caption{\label{fig:eor-img}\editwip{%
+    Comparison between the input EoR image (the left panel) and
+    reconstructed EoR image (the right panel) at \SI{158}{\MHz}.
+    The images have the same size (\num{360 x 360} pixel) and the figures
+    share the same colour bar (the amplitude is normalised for the CDAE).
+  }}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.8\textwidth]{eor-ps-comp}
+  \caption{\label{fig:eor-ps}\editwip{%
+    Comparison of 2D power spectra between the input (the left panel) and
+    reconstructed (the right panel) EoR signals.
+  }}
+\end{figure*}
+
+\editwip{%
+Since the test set $S_{\R{test}}$ is derived from one complete pair of
+simulated image cubes $\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$,
+we can make images of the reconstructed EoR signal and further calculate
+the power spectrum.
+As shown in \autoref{fig:eor-img} the images at \SI{158}{\MHz}, the
+reconstructed EoR signal (the right panel) has almost identical structures
+and amplitudes as the input EoR signal (the left panel).
+We note that the reconstructed EoR image has small slight ripples, which
+are associated with the excision of the $n_{\R{ex}}$ lowest Fourier
+frequencies in data preprocessing (\autoref{sec:preprocessing}).
+In addition, we calculate the two-dimensional (2D) power spectra from the
+image cubes of the input and reconstructed EoR signals
+(\autoref{fig:eor-ps}).
+It illustrates that the trained CDAE successfully recovers the EoR signal
+on all covered scales except for a very thin stripe region at
+$k_{\bot} \approx \SI{0.7}{\per\Mpc}$, where extra powers are generated
+by the aforementioned ripples in the reconstructed EoR images.
+} % editwip
+
+The achieved excellent performance of the CDAE can be mainly attributed
+to the architecture of stacking multiple convolutional layers, which
+implements a powerful feature extraction technique by hierarchically
+combining the basic features learned in each layer to build more and
+more sophisticated features \citep{lecun2015}.
+Combined with the flexibility provided by the \num{53569} trainable
+weights, the CDAE, after being well trained, can intelligently learn a
+model that is optimised to accurately separate the faint EoR signal
+\citep[e.g.,][]{domingos2012}.
 
 
 %%======================================================================
