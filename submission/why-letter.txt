@@ -1,0 +1,13 @@
+The revolutionary deep learning methods are rapidly developing and seeing
+more and more applications in various fields of astronomy. However, there
+are rare applications of deep learning methods in removing the strong
+foreground contamination and separating the faint signal from the epoch
+of reionization (EoR), which is one of the major challenges in the EoR
+detection, given the complicated instrument effects. This work is a
+pioneering attempt to deal with this challenge by employing the deep
+learning methods, specifically the convolutional denoising autoencoder
+(CDAE). We have demonstrated the proposed CDAE performed significantly
+better than the traditional foreground removal methods (e.g., polynomial
+fitting method), which exhibits the great potential of deep learning methods
+in future EoR experiments. We therefore hope our work could benefit the
+community as soon as possible.
