@@ -257,9 +257,11 @@ and to separate the EoR signal along the frequency dimension.
 In \autoref{sec:method}, we introduce the CDAE and elaborate
 the proposed method.
 In \autoref{sec:experiments}, we demonstrate the performance of the
-CDAE by applying it to the simulated SKA images.
-We discuss the method and carry out a comparison to the traditional
-polynomial fitting method in \autoref{sec:discussions}.
+CDAE by applying it to the simulated SKA images
+\editwip{and briefly explain how the CDAE learns}.
+We discuss the method and carry out
+\editwip{comparisons to traditional methods}
+in \autoref{sec:discussions}.
 Finally, we summarise our work in \autoref{sec:summary}.
 The implementation code and data are made public at
 \url{https://github.com/lwieitianux/cdae-eor}.
@@ -761,6 +763,115 @@ Combined with the flexibility provided by the \num{53569} trainable
 weights, the CDAE, after being well trained, can intelligently learn a
 model that is optimised to accurately separate the faint EoR signal
 \citep[e.g.,][]{domingos2012}.
+
+
+%%----------------------------------------------------------------------
+\editwip{%
+\subsection{How does the CDAE learn?}
+\label{sec:explanation}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.8\textwidth]{occlusion-fgeor}
+  \caption{\label{fig:occ-fgeor}\editwip{%
+    The sensitivity distribution $\B{s}$ (the blue lines in both panels)
+    obtained by applying the occlusion method.
+    We also plot the r.m.s\@. amplitudes of the foreground emission
+    ($\B{y}_{\R{fg}}$, the red line in the left panel) and the EoR signal
+    ($\B{y}_{\R{eor}}$, the green line in the right panel).
+    The sensitivity distribution is more correlated with the EoR signal
+    [$\rho(\B{s}, \B{y}_{\R{eor}}) = 0.742$] than the foreground
+    [$\rho(\B{s}, \B{y}_{\R{fg}}) = 0.562$].
+  }}
+\end{figure*}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\myfigwidth]{occlusion-epoch}
+  \caption{\label{fig:occ-epoch}\editwip{%
+    The variations of $\rho(\B{s}, \B{y}_{\R{fg}})$ (the solid red line),
+    $\rho(\B{s}, \B{y}_{\R{eor}})$ (the solid green line), and their difference
+    $d = \rho(\B{s}, \B{y}_{\R{eor}}) - \rho(\B{s}, \B{y}_{\R{fg}})$
+    (the dashed blue line) along the training process.
+  }}
+\end{figure}
+
+There is a growing sense that neural networks need to be interpretable to
+humans.
+However, the visualisation and interpretability of neural networks are
+still outstanding challenges and are the frontier of deep learning studies
+\citep[see][for recent reviews]{olah2017,olah2018}.
+Over the years, the deep learning community has developed multiple methods
+to help interpret neural networks
+\citep[e.g.,][]{simonyan2013,zeiler2014,mahendran2015,springenberg2015}.
+Considering that the proposed CDAE holds its own specificities, such as
+that it learns to separate weak signal instead of performing
+classifications and that the input data are are vectors rather than images,
+most of the developed feature visualisation and interpretation methods
+become inapplicable.
+Therefore, we employ the occlusion method \citep{zeiler2014} to gain some
+insights into how the CDAE learns to separate the EoR signal.
+
+The occlusion method applies a mask to occlude a small portion of the input
+data (e.g., an image) and then measure the induced performance loss.
+By sliding the mask among the input data and recording the performance
+loss, the sensitivities of each part of the data on the performance are
+derived.
+Then we can examine whether the signals or objects of interest have higher
+sensitivities and thus determine whether the neural network actually learns
+the right features from the data \citep{zeiler2014}.
+
+To visualise the trained CDAE, we make use of the validation set
+$S_{\R{val}}$ and apply a mask of length 3 to the input total emission
+$\B{x}$, i.e., occluding 3 adjacent elements of the input vectors, and then
+measure the sensitivity of the occluded part, which is calculated as the
+occlusion-induced performance loss, i.e.,
+\begin{equation}
+  \label{eq:perf-loss}
+  s = \rho(\B{r}_{\R{eor}}, \B{x}_{\R{eor}}) -
+      \rho(\B{r}^*_{\R{eor}}, \B{x}_{\R{eor}}),
+\end{equation}
+where $\B{x}_{\R{eor}}$ is the input EoR signal, and
+$\B{r}_{\R{eor}}$ and $\B{r}^*_{\R{eor}}$ are the reconstructed EoR signals
+without and with occlusion, respectively.
+By sliding the mask by one element and repeating the above calculation each
+time, we obtain the sensitivity distribution $\B{s}$ at each Fourier
+frequency, as shown in \autoref{fig:occ-fgeor}, where the r.m.s\@.
+amplitudes of the foreground emission ($\B{y}_{\R{fg}}$) and the EoR signal
+($\B{y}_{\R{fg}}$) are also plotted.
+We find that the sensitivity distribution is more correlated with the EoR
+signal [$\rho(\B{s}, \B{y}_{\R{eor}}) = 0.742$] than the foreground
+[$\rho(\B{s}, \B{y}_{\R{fg}}) = 0.562$].
+This verifies that the trained CDAE has learned to distinguish the EoR
+signal from the foreground contamination and hence becomes more sensitive
+to the data parts of higher signal-to-noise ratio.
+
+In addition, to further interpret the learning process of the CDAE, we
+apply the occlusion method at each epoch and derive the correlation
+coefficients between the sensitivity distribution ($\B{s}$) and the
+foreground emission ($\B{y}_{\R{fg}}$) and the EoR signal
+($\B{y}_{\R{eor}}$), i.e., $\rho(\B{s}, \B{y}_{\R{fg}})$ and
+$\rho(\B{s}, \B{y}_{\R{eor}})$, respectively.
+In \autoref{fig:occ-epoch}, we present the variations of
+$\rho(\B{s}, \B{y}_{\R{fg}})$, $\rho(\B{s}, \B{y}_{\R{eor}})$, and their
+difference $d = \rho(\B{s}, \B{y}_{\R{eor}}) - \rho(\B{s}, \B{y}_{\R{fg}})$
+along the training process.
+During the first several epochs, the $\rho(\B{s}, \B{y}_{\R{fg}})$ drops
+rapidly while the difference $d$ increases quickly, indicating the CDAE is
+capturing the major structures of the EoR signal.
+The small dip at about \numrange{4}{8} epochs for the difference $d$ may be
+caused by the momentum method employed in the Adam optimisation algorithm
+\citep{kingma2015}.
+As the traning continues, the difference $d$ keeps increasing slowly, which
+suggests that the CDAE is learning the fine characteristics of the EoR
+signal to better distinguish it from the foreground emission.
+
+None the less, how to rigorously interpret the CDAE remains an open
+question.
+Further works are essential to fully understand the CDAE in order to craft
+more tailored and efficient neural networks for practical EoR signal
+separation and various other applications.
+} % editwip
 
 
 %%======================================================================
