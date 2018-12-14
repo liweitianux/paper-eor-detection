@@ -523,32 +523,31 @@ and the foreground emission $\left( C_{\R{fg}}^{(1)} \right)$, respectively
 \editwip{%
 (see \autoref{fig:obsimg} for the simulated images at \SI{158}{\MHz}).
 To better illustrate the impacts of beam effects on the foreground spectra,
-we take one sky pixel as an example and show its spectra and the
-corresponding differential spectra with and without the beam effects
-integrated (\autoref{fig:simudata}).} % editwip
-As it clearly shows, when the beam effects are considered, the smoothness
-of the foreground spectrum is seriously damaged by the significant
-fluctuations with strength of about \SI{10}{\mK} (the bottom panel).
+we show in \autoref{fig:simudata} the root-mean-square (r.m.s\@.) spectra
+and the corresponding differential spectra of the foreground image cubes
+with and without the beam effects considered.
+Compared to the ideal sky foreground (the top panel), the spectral
+smoothness of the `observed' foreground is seriously damaged by the
+significant fluctuations resulted from the beam effects (the bottom panel).
+} % editwip
 
 \begin{figure}
   \centering
   \includegraphics[width=\myfigwidth]{simudata}
-  \caption{\label{fig:simudata}%
-    Example spectra (the bold blue lines) and the corresponding
-    differential spectra (the thin red lines) for the foreground
-    emission of one sky pixel.
-    The top and bottom panels show the cases without and with
-    instrument observation, respectively.
+  \caption{\label{fig:simudata}\editwip{%
+    The r.m.s\@. spectra (the bold blue lines) and the corresponding
+    differential spectra (the thin red lines) of the foreground image
+    cubes.} % editwip
+    The top and bottom panels show the cases without and with instrument
+    observation, respectively.
   }
 \end{figure}
 
 \editwip{%
-It is beneficial to simulate two pairs of image cubes, which are used to
-train and evaluate the CDAE, respectively.
-With the availability of a complete pair of image cubes for evaluation,
-the performance of the CDAE can be presented more intuitively with the
-images and power spectra of the separated EoR signal (see
-\autoref{sec:training}).
+It is beneficial to simulate two pairs of image cubes, because we could use
+one complete pair of them to evaluate the CDAE and hence illustrate its
+performance more intuitively by presenting images and power spectra of the
+separated EoR signal (see \autoref{sec:results}).
 To obtain another pair of image cubes, we simulate the Galactic diffuse
 emissions at a central coordinate of (R.A., Dec\@.) = (\SI{3}{\degree},
 \SI{-27}{\degree}), i.e., \SI{3}{\degree} from the above pair of image
@@ -579,7 +578,9 @@ from the simulated image cubes $C_{\R{eor}}$ and $C_{\R{fg}}$, each data
 point $(\B{x} = \B{x}_{\R{eor}} + \B{x}_{\R{fg}}, \,\B{x}_{\R{eor}})$
 representing the total emission and the EoR signal of one sky pixel,
 respectively.
-The dataset thus consists of $N = \num{360x360} = \num{129600}$ data points.
+\editwip{%
+The dataset thus has $N_S = \num{360x360 x 2} = \num{259200}$
+data points in total.}
 
 For the input data $X = \{\B{x}\}$, we propose to apply the
 Fourier Transform (FT) along the frequency dimension,
