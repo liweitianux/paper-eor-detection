@@ -623,84 +623,92 @@ is also $[-1, 1]$ in the output layer of the CDAE
 
 %%----------------------------------------------------------------------
 \subsection{Training and results}
-\label{sec:training}
+\label{sec:results}
 
-The preprocessed dataset is randomly partitioned into
-the training set ($S_{\R{tr}}$; 60 per cent) to fit the weights of
-filters by minimizing the loss $L$,
-the validation set ($S_{\R{val}}$; 20 per cent) to determine the
-hyperparameters (e.g., the number of layers and filters, the choice of
-loss function),
-and the test set ($S_{\R{test}}$; 20 per cent) that is employed to
-evaluate the performance of the trained CDAE.
+\editwip{%
+The preprocessed data of the first cube pair
+$\left( C_{\R{eor}}^{(1)}, C_{\R{fg}}^{(1)} \right)$
+is randomly partitioned into:
+(1) training set ($S_{\R{tr}}$; 80 per cent; \num{103680} data points)
+to fit the weights of filters by minimizing the loss $L$;
+(2) validation set ($S_{\R{val}}$; 20 per cent; \num{25920} data points)
+to determine the hyperparameters (e.g., the number of layers and filters,
+the choice of loss function).
+The preprocessed data of the second cube pair
+$\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$
+is used as the test set ($S_{\R{test}}$; \num{129600} data points) to
+evaluate the performance of the trained CDAE.} % editwip
 
-We implement the proposed CDAE using the popular \textsc{Keras}\footnote{%
-  Keras: \url{https://keras.io} (version 2.2.0)}
-framework \citep{keras} with the \textsc{TensorFlow}\footnote{%
-TensorFlow: \url{https://www.tensorflow.org} (version 1.4.1)}
-back end \citep{tensorflow}.
-The parameters of the Adam optimisation method are set to the default
-values (learning rate $\alpha = 0.001$, exponential decay rates for the
-first moment estimates $\beta_1 = 0.9$ and for the second moment
-estimates $\beta_2 = 0.999$; \citealt{kingma2015}).
-The CDAE is trained on the training set ($S_{\R{tr}}$) with a batch size
-of 100 for 100 epochs until the training loss converges.
-
-The training and validation losses together with the evaluation index
-(i.e., the correlation coefficient $\rho$) calculated on the validation set
-($S_{\R{val}}$) during the training phase are shown in \autoref{fig:train}.
-The steadily decreasing losses and increasing correlation coefficient
-suggest that the CDAE is well trained without overfitting.
-The evaluation on the test set ($S_{\R{test}}$) demonstrates that the
-trained CDAE achieves excellent performance with a correlation
-coefficient of $\rho_{\R{CDAE}} = \num{0.969 +- 0.020}$.
-As an example, \autoref{fig:result} illustrates the reconstructed EoR
-signal ($\rho = 0.965$) for one random pixel.
-In addition, we calculate the one-dimensional power spectra for each
-pixel in $S_{\R{test}}$ \citep[e.g.,][]{chapman2013}
-and find that the reconstructed EoR signal can recover the total power
-to a fraction of $R_{\R{CDAE}} = \num{90.1 +- 8.9}$ per cent.
-
-The achieved excellent performance of the CDAE can be mainly attributed
-to the architecture of stacking multiple convolutional layers, which
-implements a powerful feature extraction technique by hierarchically
-combining the basic features learned in each layer to build more and
-more sophisticated features \citep{lecun2015}.
-Combined with the flexibility provided by the \num{54337} trainable
-weights, the CDAE, after being well trained, can intelligently learn a
-model that is optimised to accurately separate the faint EoR signal
-\citep[e.g.,][]{domingos2012}.
+We implement the proposed CDAE using the
+\textsc{Keras}\footnote{Keras: \url{https://keras.io}
+  (\editwip{version 2.2.4})}
+framework \citep{keras} with the
+\textsc{TensorFlow}\footnote{TensorFlow:
+  \url{https://www.tensorflow.org} (\editwip{version 1.12.0})}
+back end \citep{tensorflow},
+\editwip{%
+which is accelerated by the \textsc{cuda}\footnote{\raggedright%
+  CUDA: \url{https://developer.nvidia.com/cuda-zone} (version 9.1.85)}
+toolkit.
+The ELU has a negative saturation of $a = 1.0$ \citep{clevert2016}.
+The Adam optimisation method uses the default values for the exponential
+decay rates of the first moment estimates $\beta_1 = 0.9$ and of the
+second moment estimates $\beta_2 = 0.999$ \citep{kingma2015}.
+We adopt a small initial learning rate ($\alpha = \num{e-5}$) and train the
+CDAE on the training set ($S_{\R{tr}}$) with a batch size of 100 until the
+training loss converges, which takes 50 epochs.
+} % editwip
 
 \begin{figure}
   \centering
   \includegraphics[width=\myfigwidth]{cdae-train}
   \caption{\label{fig:train}%
-    The training loss (the red line), validation loss (the blue line),
-    and correlation coefficient ($\rho$) calculated on the validation
-    set $S_{\R{val}}$ (the green line with the shaded region representing
-    the standard deviation) along the training of the CDAE.
+    The training loss (the solid red line), validation loss (the solid blue
+    line), and correlation coefficient ($\rho$) calculated on the
+    validation set $S_{\R{val}}$ (the \editwip{dashed blue} line with the
+    shaded region representing the standard deviation) along the training
+    of the CDAE.
   }
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=\myfigwidth]{eor-result}
-  \caption{\label{fig:result}%
+  \caption{\label{fig:eor-pix}%
     An example of the EoR signal reconstructed by the trained CDAE for
-    one random pixel.
-    \textbf{(top)} The input EoR signal $\B{x}_{\R{EoR}}$ (the solid
-    green line) and the reconstructed EoR signal $\B{r}_{\R{EoR}}$
+    one random pixel \editwip{in $S_{\R{test}}$}.
+    \textbf{(top)} The input EoR signal $\B{x}_{\R{eor}}$ (the solid
+    green line) and the reconstructed EoR signal $\B{r}_{\R{eor}}$
     (the dashed blue line) in the Fourier domain.
+    \editwip{The correlation coefficient between the input and
+      reconstructed EoR signals is $\rho = 0.931$.}
     The grey line represents the input total emission
-    $\B{x} = \B{x}_{\R{fg}} + \B{x}_{\R{EoR}}$.
+    $\B{x} = \B{x}_{\R{fg}} + \B{x}_{\R{eor}}$.
     The magenta hatched region marks the excised Fourier coefficients
     in data preprocessing.
-    \textbf{(bottom)} The input EoR signal $\B{x}_{\R{EoR}}$ (the solid
-    green line) and the reconstructed EoR signal $\B{r}_{\R{EoR}}$
+    \textbf{(bottom)} The input EoR signal $\B{x}_{\R{eor}}$ (the solid
+    green line) and the reconstructed EoR signal $\B{r}_{\R{eor}}$
     (the dashed blue line) transformed back to the observing frequency
     domain.
   }
 \end{figure}
+
+The training and validation losses together with the evaluation index
+(i.e., the correlation coefficient $\rho$) calculated on the validation set
+$S_{\R{val}}$ during the training phase are shown in \autoref{fig:train}.
+The steadily decreasing losses and increasing correlation coefficient
+suggest that the CDAE is well trained without overfitting.
+\editwip{%
+After training, the correlation coefficient reaches
+$\rho_{\R{val}} = \num{0.954 +- 0.029}$ on the validation set
+$S_{\R{val}}$ and $\rho_{\R{test}} = \num{0.929 +- 0.045}$ on the test set
+$S_{\R{test}}$, respectively.
+This indicates that the trained CDAE can precisely reconstruct the EoR
+signal and has excellent generalisation capability, which further confirms
+that the CDAE has been well trained.} % ediwip
+As an example, \autoref{fig:eor-pix} illustrates the reconstructed EoR
+signal (\editwip{$\rho = 0.931$}) for one random pixel
+\editwip{in $S_{\R{test}}$}.
 
 
 %%======================================================================
