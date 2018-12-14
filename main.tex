@@ -886,14 +886,15 @@ We have performed another experiment using the same CDAE architecture,
 datasets, and data preprocessing steps, except for applying the FT
 as depicted in \autoref{sec:preprocessing}.
 After training the CDAE in the same way as described in
-\autoref{sec:training}, the achieved performance is
-$\rho_{\R{noFT}} = \num{0.927 +- 0.051}$, which is smaller and has a
-larger uncertainty than the case with FT applied, indicating a worse
-performance.
-We also find that the training process is slightly unstable given the
-small spikes on the curves of both the training loss and the correlation
-coefficient, and the training loss converges more slowly,
-as presented in \autoref{fig:train-noft}.
+\autoref{sec:results}, \editwip{the correlation coefficients on the
+validation set $S_{\R{test}}$ and test set $S_{\R{test}}$ reach only
+$\rho_{\R{noft,val}} = \num{0.693 +- 0.137}$ and
+$\rho_{\R{noft,test}} = \num{0.628 +- 0.167}$, respectively,
+which indicates a worse performance compared to the case with FT applied.
+As presented in \autoref{fig:train-noft}, the training loss decreases more
+slowly and converges after about 100 epochs.} % editwip
+We also find that the training process is slightly unstable given the small
+spikes on the curves of both the loss and correlation coefficient.
 These indicate that it is beneficial to preprocess the
 dataset by applying the FT along the frequency dimension, because the
 EoR signal and the foreground emission become more distinguishable
