@@ -44,6 +44,11 @@
 \usepackage{amssymb}
 \usepackage{siunitx}  % typeset units; from `texlive-science'
 
+% Workaround the error:
+%   \pdfendlink ended up in different nesting level than \pdfstartlink
+% Credit: https://tex.stackexchange.com/a/154184
+\hypersetup{draft}
+
 \graphicspath{{./}{figures/}}  % NOTE: the trailing '/' matters
 
 \sisetup{
