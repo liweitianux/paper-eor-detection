@@ -327,18 +327,19 @@ which is regarded as the noise, by denoising the input total emission
 
 \begin{figure*}
   \centering
-  \includegraphics[width=0.5\textwidth]{network-crop}
-  \caption{\label{fig:network}%
-    [TODO]
-    The network architecture of the proposed CDAE, consisting of a
-    4-layer encoder (the orange boxes), a 4-layer decoder (the blue
-    boxes), and one output layer (the green box).
-    The layers in the encoder and decoder use the ELU activation
-    function and batch normalisation (BN), while the output layer uses
-    the `tanh' activation function.
-    All filters are vectors of length 3 and the numbers of filters in
-    each layer are marked in parentheses.
-  }
+  \includegraphics[width=0.9\textwidth]{network-crop}
+  \caption{\label{fig:network}\editwip{%
+    The network architecture of the proposed CDAE that consists of 9
+    convolutional layers, which can be divided into the encoder (the orange
+    boxes), the decoder (the blue boxes), and the output layer (the green
+    bar).
+    Each convolutional layer contains a number of filters (marked below the
+    boxes) and an activation function (ELU for the encoder and decoder
+    layers; `tanh' for the output layer).
+    The batch normalisation (BN) is applied to all layers except for the
+    first layer.
+    Pooling and upsampling layers are not employed.
+  }}
 \end{figure*}
 
 \editwip{%
@@ -358,16 +359,17 @@ filters in each layer are hyperparameters of the CDAE.
 
 We adopt filters of size 3 in all layers, and use the hyperbolic tangent
 function (i.e., tanh; see also \autoref{sec:preprocessing}) and the
-exponential linear unit \citep{clevert2016} as activation functions for the
-output layer and other layers, respectively.
-The batch normalisation is applied to all layers except for the output
-layer to improve the training process as well as to act as a regularizer
-to prevent overfitting \citep{ioffe2015}.
+exponential linear unit (ELU; \citealt{clevert2016}) as activation
+functions for the output layer and other layers, respectively.
+The batch normalisation is applied to all layers except for the first
+layer, for which the input data are already normalised, to improve the
+training process as well as to act as a regularizer to prevent overfitting
+\citep{ioffe2015}.
 
 We have followed common practices \citep[e.g.,][]{suganuma2018,geron2017}
 to build multiple CDAE architectures, each containing a different number of
 layers and filters.
-After evaluating their performances (see also \autoref{sec:training}),} % editwip
+After evaluating their performances (see also \autoref{sec:results}),} % editwip
 the simplest one with sufficiently good performance is selected,
 which consists of a 4-layer encoder with $(32,64,64,32)$ filters,
 a 4-layer decoder with $(32,64,64,32)$ filters, and one output layer,
