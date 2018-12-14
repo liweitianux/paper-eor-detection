@@ -142,7 +142,7 @@ $^{5}${National Astronomical Observatories,
 
 %
 % Abstract
-% (<=200 words for Letters)
+% (<=200 words for Letters, <=250 words for Articles)
 %
 \begin{abstract}
 When applying the foreground removal methods to uncover the faint EoR
@@ -215,7 +215,7 @@ Because of the incomplete $uv$ coverage,
 the PSF has a complicated profile consisting of a narrow peaky main lobe
 and a multitude of jagged side lobes with relative amplitudes of about
 \numrange{0.1}{1} per cent that extend beyond the field of view (FoV)
-\citep[e.g.,][figures 1 and 3]{liu2009ps}.
+\citep[e.g.,][their figures 1 and 3]{liu2009ps}.
 A source that is unresolved or mis-subtracted (e.g., due to the limited
 FoV) during the CLEAN process leaves catastrophic residuals,
 the locations of which vary with the frequency since the angular
@@ -252,7 +252,7 @@ as well as the beam effects are stationary or semi-stationary.
 In this paper, a novel deep-learning-based method that uses a CDAE
 is proposed to tackle the complicated frequency-dependent beam effects
 and to separate the EoR signal along the frequency dimension.
-In \autoref{sec:method}, we briefly introduce the CDAE and elaborate
+In \autoref{sec:method}, we introduce the CDAE and elaborate
 the proposed method.
 In \autoref{sec:experiments}, we demonstrate the performance of the
 CDAE by applying it to the simulated SKA images.
@@ -308,17 +308,17 @@ features in data.  Therefore it is easier and more intuitive to stack
 multiple convolutional layers to build highly expressive CNNs that achieve
 outstanding performance in image classification and relevant fields
 \citep[e.g.,][]{krizhevsky2012,simonyan2014,szegedy2015}.
-By utilizing multiple convolutional layers instead of fully connected
+By utilising multiple convolutional layers instead of fully connected
 layers in a denoising autoencoder, the resulting CDAE gains the similar
-capability of CNNs to fully exploit the complicated features in the data
+capabilities of CNNs to fully exploit the complicated features in the data
 (e.g., the subtle differences between the EoR signal and foreground
-emission when interlaced with the beam effects), which may greatly improve
+emission when interlaced with the beam effects), which greatly improves
 the denoising ability and can reconstruct even seriously corrupted signal
 \citep{du2017}.}  % editwip
-Consequently, the CDAE is well suited to separate the faint EoR signal
-$\B{x}_{\R{EoR}}$ from the strong foreground emission $\B{x}_{\R{fg}}$,
+In consequence, the CDAE is well suited to separate the faint EoR signal
+$\B{x}_{\R{eor}}$ from the strong foreground emission $\B{x}_{\R{fg}}$,
 which is regarded as the noise, by denoising the input total emission
-($\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}$).
+($\B{x} = \B{x}_{\R{eor}} + \B{x}_{\R{fg}}$).
 
 
 %%----------------------------------------------------------------------
@@ -389,33 +389,34 @@ eases the explanation of how the CDAE learns (\autoref{sec:explanation}).
 The CDAE is initialised by the He uniform initialiser \citep{he2015}
 and is trained by using the Adam optimisation method \citep{kingma2015}.
 The loss, which describes the difference between the reconstructed EoR
-signal $\B{r}_{\R{EoR}}$ and the input EoR signal $\B{x}_{\R{EoR}}$,
+signal $\B{r}_{\R{eor}}$ and the input EoR signal $\B{x}_{\R{eor}}$,
 is calculated as the mean squared error (MSE), i.e.,
 \begin{equation}
   \label{eq:loss}
   L = \frac{1}{N} \sum_{i=1}^{N}
-    \left[ \B{r}_{\R{EoR}}^{(i)} - \B{x}_{\R{EoR}}^{(i)} \right]^T
-    \left[ \B{r}_{\R{EoR}}^{(i)} - \B{x}_{\R{EoR}}^{(i)} \right],
+    \left[ \B{r}_{\R{eor}}^{(i)} - \B{x}_{\R{eor}}^{(i)} \right]^T
+    \left[ \B{r}_{\R{eor}}^{(i)} - \B{x}_{\R{eor}}^{(i)} \right],
 \end{equation}
 where $N$ is the number of data points in the training dataset.
 By being trained to minimize the loss $L$, the CDAE learns to
 reconstruct the EoR signal from the input data $\B{x}$.
 
 To evaluate the performance of the CDAE in separating the EoR signal,
-the commonly used Pearson's correlation coefficient
+the commonly used Pearson's correlation coefficient \editwip{(CC)}
 \citep[e.g.,][]{harker2009,chapman2013}
 is adopted to measure the similarity between the reconstructed EoR
-signal $\B{r}_{\R{EoR}}$ and the input EoR signal $\B{x}_{\R{EoR}}$:
+signal $\B{r}_{\R{eor}}$ and the input EoR signal $\B{x}_{\R{eor}}$:
 \begin{equation}
   \label{eq:corrcoef}
-  \rho = \frac{\sum_{j=1}^{n}(r_{\R{EoR},j} - \bar{r}_{\R{EoR}})
-      (x_{\R{EoR},j} - \bar{x}_{\R{EoR}})}{
-        \sqrt{\sum_{j=1}^{n}(r_{\R{EoR},j} - \bar{r}_{\R{EoR}})^2
-          \sum_{j=1}^{n}(x_{\R{EoR},j} - \bar{x}_{\R{EoR}})^2}
+  \rho(\B{r}_{\R{eor}}, \B{x}_{\R{eor}})
+      = \frac{\sum_{j=1}^{n}(r_{\R{eor},j} - \bar{r}_{\R{eor}})
+      (x_{\R{eor},j} - \bar{x}_{\R{eor}})}{
+        \sqrt{\sum_{j=1}^{n}(r_{\R{eor},j} - \bar{r}_{\R{eor}})^2
+          \sum_{j=1}^{n}(x_{\R{eor},j} - \bar{x}_{\R{eor}})^2}
     },
 \end{equation}
 where $n$ is the length of the signals,
-and $\bar{r}_{\R{EoR}}$ and $\bar{x}_{\R{EoR}}$ represent the mean values.
+and $\bar{r}_{\R{eor}}$ and $\bar{x}_{\R{eor}}$ represent the mean values.
 The closer the correlation coefficient is to one, the better the
 performance of separation.
 
@@ -486,14 +487,14 @@ galaxies' case.
 \begin{figure*}
   \centering
   \includegraphics[width=0.8\textwidth]{obsimg-158}
-  \caption{\label{fig:obsimg}%
+  \caption{\label{fig:obsimg}\editwip{%
     Simulated images of the EoR signal (left panel) and the foreground
     emission (right panel) at \SI{158}{\MHz}.
     Both images have a size of \num{360 x 360} and cover a sky area of
     \SI{2 x 2}{\degree}.
     The blobs in the right panel show the bright point sources and radio
     haloes.
-  }
+  }}
 \end{figure*}
 
 To fully incorporate realistic frequency-dependent beam effects into the
@@ -505,8 +506,8 @@ to simulate instrument observations.
 For each sky image, we employ the SKA1-Low layout in the
 \textsc{oskar}\footnote{%
   OSKAR: \url{https://github.com/OxfordSKA/OSKAR} (version 2.7.0)}
-simulator \citep{mort2010} to perform an observation of \SI{6}{\hour}
-integration time, yielding the visibility data, from which the `observed'
+simulator \citep{mort2010} to perform \SI{6}{\hour} synthesis imaging,
+yielding the visibility data, from which the `observed'
 image is created by the \textsc{wsclean}\footnote{%
   WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
 imager \citep{offringa2014}.
@@ -517,8 +518,8 @@ Finally, the created images are cropped to keep only the central
 \SI{2 x 2}{\degree} regions (i.e., \num{360 x 360} pixels) for the
 purpose of the best quality.
 Therefore, we obtain \editwip{a pair of} image cubes of size
-\num{360 x 360 x 101} for the EoR signal ($C_{\R{EoR}}^{(1)}$) and the
-foreground emission ($C_{\R{fg}}^{(1)}$), respectively
+\num{360 x 360 x 101} for the EoR signal $\left( C_{\R{eor}}^{(1)} \right)$
+and the foreground emission $\left( C_{\R{fg}}^{(1)} \right)$, respectively
 \editwip{%
 (see \autoref{fig:obsimg} for the simulated images at \SI{158}{\MHz}).
 To better illustrate the impacts of beam effects on the foreground spectra,
@@ -555,17 +556,17 @@ cubes, which is sufficient because the images are only \SI{2 x 2}{\degree}
 in size.
 Since extragalactic point sources, radio haloes, and the EoR signal are
 mostly isotropic, we shift their sky maps simulated above by
-\SI{3}{\degree} to generate the maps for use here.
+\SI{3}{\degree} to generate the new sky maps.
 Following the same procedures to simulate instrument observations, we
-obtain the second pair of image cubes ($C_{\R{EoR}}^{(2)}$,
-$C_{\R{fg}}^{(2)}$).
+obtain the second pair of image cubes
+$\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$.
 
 We note that the simulations do not include thermal noise because the
 proposed method is currently designed to create tomographic EoR images
 from very deep observations that have sufficiently low noise.
 For example, SKA1-Low is expected to perform EoR imaging observations of
 \SI{1000}{\hour} per pointing, reaching an unprecedented image noise level
-of $\lesssim \SI{1}{\mK}$ \citep[e.g.,][]{mellema2013rev,koopmans2015rev}.
+of $\,\lesssim \SI{1}{\mK}$ \citep[e.g.,][]{mellema2013rev,koopmans2015rev}.
 } % editwip
 
 
@@ -573,9 +574,9 @@ of $\lesssim \SI{1}{\mK}$ \citep[e.g.,][]{mellema2013rev,koopmans2015rev}.
 \subsection{Data preprocessing}
 \label{sec:preprocessing}
 
-The dataset $S = \{(\B{x}, \,\B{x}_{\R{EoR}})\}$ for the CDAE is derived
-from the simulated image cubes $C_{\R{EoR}}$ and $C_{\R{fg}}$, each data
-point $(\B{x} = \B{x}_{\R{EoR}} + \B{x}_{\R{fg}}, \,\B{x}_{\R{EoR}})$
+The dataset $S = \{(\B{x}, \,\B{x}_{\R{eor}})\}$ for the CDAE is derived
+from the simulated image cubes $C_{\R{eor}}$ and $C_{\R{fg}}$, each data
+point $(\B{x} = \B{x}_{\R{eor}} + \B{x}_{\R{fg}}, \,\B{x}_{\R{eor}})$
 representing the total emission and the EoR signal of one sky pixel,
 respectively.
 The dataset thus consists of $N = \num{360x360} = \num{129600}$ data points.
@@ -597,12 +598,12 @@ are mostly contributed by the spectral-smooth foreground emission.
 We adopt $n_{\R{ex}} = 6$ to achieve a balance between the foreground
 suppression and the loss of the EoR signal.
 The real and imaginary parts of the remaining 45 complex coefficients
-are then concatenated into a new real vector of length 90, since the CDAE
-requires real data.
+are then concatenated into a new real vector of length $n_d = 90$,
+since the CDAE requires real data.
 Finally, the data are zero-centred and normalised to have unit variance.
 
 The preprocessing steps for the input EoR signal
-$X_{\R{EoR}} = \{\B{x}_{\R{EoR}}\}$
+$X_{\R{eor}} = \{\B{x}_{\R{eor}}\}$
 are basically the same except for minor adjustments.
 After applying the FT, excising the $n_{\R{ex}}$ lowest Fourier
 components, and concatenating the real and imaginary parts,
@@ -708,7 +709,7 @@ model that is optimised to accurately separate the faint EoR signal
 \label{sec:why-ft}
 
 We have performed another experiment using the same CDAE architecture,
-dataset, and data preprocessing steps, except for applying the FT
+datasets, and data preprocessing steps, except for applying the FT
 as depicted in \autoref{sec:preprocessing}.
 After training the CDAE in the same way as described in
 \autoref{sec:training}, the achieved performance is
@@ -740,13 +741,15 @@ distributes mainly on smaller Fourier modes \citep[e.g.,][]{parsons2012}.
 \subsection{Comparing to the polynomial fitting method}
 \label{sec:polyfit}
 
-In order to further demonstrate the performance of our method, we have
-carried out a comparison between our method and the traditional polynomial
+In order to further demonstrate the performance of our method, we carry
+out a comparison between our method and the traditional polynomial
 fitting method \citep[e.g.,][]{wang2006,liu2009ps}.
-Using the same image cubes simulated in \autoref{sec:simulation},
+Using the same image cubes
+\editwip{$\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$}
+simulated in \autoref{sec:simulation},
 a low-degree polynomial is fitted along the frequency dimension for each
 sky pixel in the image cube of the total emission (i.e.,
-$C_{\R{tot}} = C_{\R{EoR}} + C_{\R{fg}}$).
+$C_{\R{tot}} = C_{\R{eor}} + C_{\R{fg}}$).
 Then by subtracting the fitted smooth component, which is regarded as
 the foreground emission, the EoR signal is expected to be uncovered.
 We have tested polynomials of the degree from 2 (quadratic) to
@@ -791,8 +794,10 @@ to play an important role in the forthcoming EoR experiments.
 %%======================================================================
 \section*{Acknowledgements}
 
-We would like to thank Jeffrey Hsu for reading the manuscript and
-providing suggestions.
+We thank the anonymous reviewer for the useful comments that helped
+improve the manuscript.
+We also thank Jeffrey Hsu for reading the manuscript and providing
+helpful suggestions.
 This work is supported by
 the Ministry of Science and Technology of China
 (grant Nos. 2018YFA0404601, 2017YFF0210903),
