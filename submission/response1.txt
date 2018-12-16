@@ -1,0 +1,110 @@
+Authors' Responses
+------------------
+
+We gratefully thank the reviewer and the scientific editor for their
+constructive comments that helped improve this manuscript.  Based on the
+comments, we have refined the method, added more comparisons to traditional
+methods, and extensively revised the manuscript with new sections and
+figures.
+
+The responses and explanations to their comments (indented with the ">"
+mark) are listed below:
+
+>   Scientific Editor's Comments
+>   ----------------------------
+>   I do not think this paper needs rapid publication as a Letter, but I
+>   will be happy to consider a revised version for the main journal. You
+>   should use the extra space this gives you to provide more details and
+>   explanation, as suggested by the reviewer.
+
+We have extensively revised the manuscript as suggested by the reviewer and
+the scientific editor.  Please refer to the following responses for the
+revision details.
+
+>   I think the paper would also be stronger if you could give more details
+>   of the simulations, so that readers can judge what types of signals can
+>   be distinguished from foregrounds by this method and which cannot.
+
+Section 3.1 has been rewritten to describe more details of the simulations,
+including the sky maps of the foreground components and the EoR signal, the
+synthesis imaging, as well as the image creation from the visibility data.
+We also present the simulated images at 158 MHz (Figure 2 in the new
+manuscript).
+
+>   It might be helpful to include images of the input EoR signal and the
+>   recovered signal.
+
+In this new version of the manuscript, we have added Figure 6 to show the
+images (at 158 MHz) of the input and reconstructed EoR signal.  In
+addition, we calculate the two-dimensional power spectra of the input and
+reconstructed EoR signal and present the comparison in Figure 7.  To this
+end, we have simulated another pair of image cubes for the foreground
+emission and the EoR signal, which has been described in the third
+paragraph of Section 3.1.
+
+>   Did you include noise in your simulations?
+
+We do not include thermal noise in the simulations since the proposed
+method targets the EoR tomographic imaging, which will reach a sufficiently
+low noise level (~< 1 mK).  This has been clarified in the last paragraph
+of Section 3.1.
+
+
+>   Reviewer's Comments
+>   -------------------
+>   The paper presents an innovative methodology to extract relevant
+>   information from noisy observations of 21 cm line emission from the
+>   epoch of reionization, adopting a machine learning approach, based on a
+>   Convolutional Denoising Autoencoder technique. The methodology, tested
+>   on simulated data, proves to improve the performance of traditional
+>   solutions.
+
+>   The paper is properly written, although a more exhaustive description
+>   of the methodology would be beneficial for the reader and the potential
+>   user.  However, the page limit of the Letter does not allow extensive
+>   add-ons.
+
+>   Nevertheless, the main request of the reviewer is to describe in some
+>   details how the Convolutional Neural Network (CNN) approach combines
+>   with the Autoencoder methodology. As it is presented in the current
+>   version of the paper, this is not clear and also Figure 1 is not
+>   explicit enough to understand how the two methods work together. In
+>   other words, it should be more explicitly stated that the "f(x)"
+>   function of the encoder IS a combination of typical convolution+pooling
+>   layers.
+
+We have expanded Sections 2.1 and 2.2 to describe the convolutional
+denoising autoencoder (CDAE) more clearly and completely.
+Figure 1 has also been redrawn to illustrate the proposed CDAE more
+intuitively.
+
+>   If possible, it would also be beneficial to explain how the network
+>   learns during the training (this second request only if space permits).
+
+We have added the new Section 3.4 to explain how the CDAE learns.  The
+occlusion method is employed to visualise the sensitivity distribution in
+the input data (Figure 8), which verifies that the CDAE has actually
+learned to distinguish the EoR signal from the foreground emission.  By
+tracking the variations of sensitivity distribution along the training
+process, we gain some insights into how the CDAE learns the major and fine
+features of the EoR signal (Figure 9).
+
+None the less, we note that a rigorously interpretation of the CDAE remains
+challenging and requires much further efforts.  A comprehensive
+understanding of the CDAE is of great importance to further improve it and
+craft more efficient neural networks for practical EoR signal separation.
+
+>   A further request is related to section 4.2 and the comparison with the
+>   "polynomial fitting" method. It would be useful to specify if this is
+>   the only alternative method for the kind of data processing presented
+>   in the paper and, if not, to mention the others and to justify why they
+>   have not been considered in the paper.
+
+TODO...
+
+>   The only additional comment of the reviews regards the use of "EoR" in
+>   the abstract. It would be clearer to avoid the acronym, explicitly
+>   writing "epoch of reionization".
+
+We now write the full name "epoch of reionization" when the "EoR" acronym
+is first used in the abstract.
