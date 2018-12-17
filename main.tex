@@ -319,7 +319,7 @@ capabilities of CNNs to fully exploit the complicated features in the data
 (e.g., the subtle differences between the EoR signal and foreground
 emission when interlaced with the beam effects), which greatly improves
 the denoising ability and can reconstruct even seriously corrupted signal
-\citep{du2017}.}  % editwip
+\citep[e.g.,][]{du2017}.}  % editwip
 In consequence, the CDAE is well suited to separate the faint EoR signal
 $\B{x}_{\R{eor}}$ from the strong foreground emission $\B{x}_{\R{fg}}$,
 which is regarded as the noise, by denoising the input total emission
@@ -380,13 +380,10 @@ which consists of a 4-layer encoder with $(32,64,64,32)$ filters,
 a 4-layer decoder with $(32,64,64,32)$ filters, and one output layer,
 as illustrated in \autoref{fig:network}.
 \editwip{%
-We have also tested to use pairs of pooling and upsampling layers in the
-CDAE, but it has very little impacts on the performance.
-Moreover, we focus on the feature extraction and denoising abilities of the
-CDAE rather than the specific formats of the internal codes.
-Thus it is reasonable to not use pooling and upsampling layers, which also
-eases the explanation of how the CDAE learns (\autoref{sec:explanation}).
-}
+We do not use pairs of pooling and upsampling layers in the CDAE because
+they have very little impact on the performance.
+Moreover, we focus on the feature extraction and denoising capabilities of
+the CDAE rather than the specific formats of the internal codes.} % editwip
 
 
 %%----------------------------------------------------------------------
