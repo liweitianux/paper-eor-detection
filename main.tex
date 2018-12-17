@@ -160,9 +160,11 @@ separate the EoR signal.
 After being trained on the SKA images simulated with realistic beam
 effects, the CDAE achieves excellent performance as the correlation
 coefficient ($\rho$) between the reconstructed and input EoR signals
-reaches \num{0.969 +- 0.020}.
-In comparison, the traditional polynomial fitting method fails to
-uncover the EoR signal ($\rho = \num{0.241 +- 0.103}$).
+reaches \editwip{\num{0.929 +- 0.045}}.
+In comparison, \editwip{the traditional polynomial fitting method and
+continuous wavelet transform method both fail to uncover the EoR signal,
+yielding $\rho_{\R{poly}} = \num{0.296 +- 0.121}$ and
+$\rho_{\R{cwt}} = \num{0.1982+- 0.160}$, respectively.} % editwip
 We conclude that, by hierarchically learning sophisticated features
 through multiple convolutional layers, the CDAE is a powerful tool that
 can be used to overcome the complicated frequency-dependent beam effects
@@ -204,11 +206,8 @@ Fortunately, in the frequency dimension the foreground contamination
 is expected to be intrinsically smooth, while the EoR signal fluctuates
 rapidly on $\lesssim \si{\MHz}$ scales.
 This difference is the key characteristic exploited by many
-foreground removal methods in order to uncover the faint EoR signal,
-including parametric fitting approaches
-\citep[e.g.,][]{wang2006,liu2009fgrm,wang2013}
-and non-parametric approaches
-\citep[e.g.,][]{harker2009,chapman2013,mertens2018}.
+foreground removal methods in order to uncover the faint EoR signal
+\citep[e.g.,][]{wang2006,liu2009fgrm,harker2009,wang2013,gu2013}.
 
 However, the smoothness of the foreground spectra can be destroyed by
 the frequency-dependent beam effects, i.e., the variation of the point
@@ -914,47 +913,86 @@ distributes mainly on smaller Fourier modes \citep[e.g.,][]{parsons2012}.
 
 
 %%----------------------------------------------------------------------
-\subsection{Comparing to the polynomial fitting method}
-\label{sec:polyfit}
+\editwip{%
+\subsection{Comparing to traditional methods}
+\label{sec:comparisons}
 
-In order to further demonstrate the performance of our method, we carry
-out a comparison between our method and the traditional polynomial
-fitting method \citep[e.g.,][]{wang2006,liu2009ps}.
-Using the same image cubes
-\editwip{$\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$}
-simulated in \autoref{sec:simulation},
+A variety of methods have been proposed to remove the foreground
+contamination with the aim of revealing the faint EoR signal.
+These methods can be broadly classified into two categories:
+(1) parametric methods that apply a parametric model (e.g., a low-degree
+polynomial) to fit and remove the foreground emission
+\citep[e.g.,][]{wang2006,liu2009fgrm,wang2013};
+(2) non-parametric methods, which do not assume a specific parametric model
+for the foreground emission but exploit the differences between the
+foreground emission and the EoR signal (e.g., their different spectral
+features) to separate them
+\citep[e.g.,][]{harker2009,gu2013,chapman2013,mertens2018}.
+
+In order to further demonstrate the performance of our method, we compare
+it to the polynomial fitting method \citep[e.g.,][]{wang2006} and the
+continuous wavelet transform (CWT) method \citep{gu2013}.
+Among the traditional methods, these two methods are chosen due to
+following reasons:
+(1) they both perform foreground removal along the frequency dimension
+pixel-by-pixel, the same operation scheme as our method;
+(2) they are one of the typical parametric and non-parametric methods,
+respectively;
+(3) they can give consistent and reliable results since they are intuitive
+to implement and use.
+
+With the polynomial fitting method,} % editwip
 a low-degree polynomial is fitted along the frequency dimension for each
 sky pixel in the image cube of the total emission (i.e.,
 $C_{\R{tot}} = C_{\R{eor}} + C_{\R{fg}}$).
 Then by subtracting the fitted smooth component, which is regarded as
 the foreground emission, the EoR signal is expected to be uncovered.
-We have tested polynomials of the degree from 2 (quadratic) to
+\editwip{Using the same image cubes
+\editwip{$\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$}
+simulated in \autoref{sec:simulation},} % editwip
+we have tested polynomials of the degree from 2 (quadratic) to
 5 (quintic), and find that the quartic polynomial (degree of 4)
 can give the best result.
 However, the correlation coefficient calculated for the separated EoR
-signal in such a case is only $\rho_{\R{poly}} = \num{0.241 +- 0.103}$,
-which indicates that the polynomial fitting method
-performs poorly in removing the foreground emission.
-As illustrated in \autoref{fig:simudata}(b), the frequency-dependent
-beam effects cause significant fluctuations, which can be even stronger
-than the EoR signal, on the originally smooth foreground spectra.
-The polynomial fitting method, which can only model the smooth
-spectrum, is unable to distinguish these rapid fluctuations from the
-EoR signal, hence leading to inferior results.
+signal in such a case is only
+\editwip{$\rho_{\R{poly}} = \num{0.296 +- 0.121}$},
+which indicates that the polynomial fitting method performs poorly in
+removing the foreground emission.
+
+\editwip{%
+The CWT method works based on the assumption that the foreground emission
+is spectrally smooth while the EoR signal spectral fluctuates rapidly.
+Since their characteristic scales are significantly different, after
+applying the CWT, the foreground emission can be easily distinguished from
+the EoR signal in the wavelet coefficient space and thus be removed
+\citep{gu2013}.
+For each sky pixel, the CWT with the Morlet mother wavelet function is
+applied to transform the spectrum to the wavelet coefficient space, where
+the coefficients contributed by the foreground emission are filtered out by
+utilising an appropriate mask.
+The remaining coefficients are then inversely transformed to derive the
+spectrum with foreground removed.
+By evaluating on the same dataset
+$\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$,
+we have tuned the method parameters (minimum scale $s_{\R{min}}$, maximum
+scale $s_{\R{max}}$, number of scales $n_s$, and cone of influence $c_i$)
+and adopt $s_{\R{min}} = 7.4$, $s_{\R{max}} = 50.0$, $n_s = 50$, and
+$c_i = 1.6$ to obtain the relatively best performance, which, however, is
+only $\rho_{\R{cwt}} = \num{0.1982+- 0.160}$.
+
+The main reason that both traditional foreground removal methods can only
+obtain remarkably inferior results is that the smoothness of the foreground
+spectra is seriously damaged by the frequency-dependent beam effects, which
+cause significant fluctuations of strength the same order as the EoR signal
+on the originally smooth foreground spectra [\autoref{fig:simudata}(b)].
+Therefore, the foreground spectra complicated by the beam effects cannot be
+well modelled by a low-degree polynomial and have more similar
+characteristic scales as the EoR signal.
+As a result, both methods are unable to well model the complicated
+foreground spectra and thus fail to remove them accurately.} % editwip
 On the contrary, given its flexibility and data-driven nature,
 the CDAE can distil knowledge from the data to optimise itself for
 the EoR signal separation and hence achieve superior performance.
-
-
-%%----------------------------------------------------------------------
-\editwip{%
-\subsection{Comparing to the non-parametric methods}
-\label{sec:nonparam}
-
-non-parametric foreground removing method ...
-continuous wavelet transform (CWT) method \citep{gu2013},
-Wp smoothing method \citep{harker2009} ...
-} % edit
 
 
 %%======================================================================
