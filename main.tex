@@ -217,10 +217,10 @@ calibrated \citep{liu2009ps}.
 Because of the incomplete $uv$ coverage,
 the PSF has a complicated profile consisting of a narrow peaky main lobe
 and a multitude of jagged side lobes with relative amplitudes of about
-\numrange{0.1}{1} per cent that extend beyond the field of view (FoV)
+\numrange{0.1}{1} per cent that extend beyond the field of view
 \citep[e.g.,][their figures 1 and 3]{liu2009ps}.
 A source that is unresolved or mis-subtracted (e.g., due to the limited
-FoV) during the CLEAN process leaves catastrophic residuals,
+field of view) during the CLEAN process leaves catastrophic residuals,
 the locations of which vary with the frequency since the angular
 position of a PSF side lobe is inversely proportional to the frequency.
 These effects lead to complicated residuals fluctuating along the
@@ -768,7 +768,7 @@ model that is optimised to accurately separate the faint EoR signal
 
 %%----------------------------------------------------------------------
 \editwip{%
-\subsection{How does the CDAE learn?}
+\subsection{How the CDAE learns?}
 \label{sec:explanation}
 
 \begin{figure*}
@@ -824,8 +824,8 @@ the right features from the data \citep{zeiler2014}.
 
 To visualise the trained CDAE, we make use of the validation set
 $S_{\R{val}}$ and apply a mask of length 3 to the input total emission
-$\B{x}$, i.e., occluding 3 adjacent elements of the input vectors, and then
-measure the sensitivity of the occluded part, which is calculated as the
+$\B{x}$, i.e., occluding 3 adjacent Fourier frequencies, and then measure
+the sensitivity of the occluded part, which is calculated as the
 occlusion-induced performance loss, i.e.,
 \begin{equation}
   \label{eq:perf-loss}
@@ -869,7 +869,7 @@ signal to better distinguish it from the foreground emission.
 
 None the less, how to rigorously interpret the CDAE remains an open
 question.
-Further works are essential to fully understand the CDAE in order to craft
+Further works are essential to fully understand the CDAE in order to design
 more tailored and efficient neural networks for practical EoR signal
 separation and various other applications.
 } % editwip
@@ -883,7 +883,7 @@ separation and various other applications.
 \subsection{Why preprocess the dataset with Fourier Transform?}
 \label{sec:why-ft}
 
-We have performed another experiment using the same CDAE architecture,
+We perform another experiment using the same CDAE architecture,
 datasets, and data preprocessing steps, except for applying the FT
 as depicted in \autoref{sec:preprocessing}.
 After training the CDAE in the same way as described in
@@ -891,9 +891,9 @@ After training the CDAE in the same way as described in
 validation set $S_{\R{test}}$ and test set $S_{\R{test}}$ reach only
 $\rho_{\R{noft,val}} = \num{0.693 +- 0.137}$ and
 $\rho_{\R{noft,test}} = \num{0.628 +- 0.167}$, respectively,
-which indicates a worse performance compared to the case with FT applied.
-As presented in \autoref{fig:train-noft}, the training loss decreases more
-slowly and converges after about 100 epochs.} % editwip
+which indicates a significantly worse performance compared to the case with
+FT applied.  As presented in \autoref{fig:train-noft}, the training loss
+decreases more slowly and converges after about 100 epochs.} % editwip
 We also find that the training process is slightly unstable given the small
 spikes on the curves of both the loss and correlation coefficient.
 These indicate that it is beneficial to preprocess the
