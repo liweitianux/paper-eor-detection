@@ -4,13 +4,13 @@ Authors' Responses
 We gratefully thank the reviewer and the scientific editor for their time
 and constructive comments that greatly help improve this manuscript.
 Based on the comments, we have improved the SKA image simulation with
-another pair of image cubes, refined the training and interpretation of the
+another pair of image cubes, refined the description and training of the
 proposed convolutional denoising autoencoder (CDAE), added the comparison
 to the continuous wavelet transform (CWT) method, and extensively revised
-the manuscript with new sections and figures to describe our method and
+the manuscript with new contents and figures to describe our method and
 results more thoroughly and clearly.
 
-All the changes to the manuscript are highlighted in cyan.  The
+All the changes to the manuscript are highlighted in 'cyan.'  The
 point-by-point responses to the comments (indented with the ">" mark) are
 listed below:
 
@@ -99,9 +99,11 @@ Response 3:
 Since our method is proposed to be applied in very deep EoR imaging
 observations with SKA1-Low, which is planned to integrate about 1000 hours
 for each EoR field and is expected to achieve a sufficiently low noise
-level of ~< 1 mK (e.g., Mellema et al. 2013; Koopmans et al. 2015), we do
-not include thermal noise in the simulations.  This has been clarified in
-the last paragraph of Section 3.1 ('Simulation of the SKA images').
+level of ~< 1 mK (e.g., Mellema et al. 2013,2015; Koopmans et al. 2015),
+we do not include the thermal noise in the simulations.  This has been
+clarified in the last paragraph of Section 3.1 ('Simulation of the SKA
+images').
+
 
 >   Reviewer's Comments
 >   -------------------
@@ -138,8 +140,8 @@ capabilities, into a CDAE and greatly improves its denoising performance
 parts consist of multiple convolutional layers, and each convolutional
 layer contains a number of filters and an activation function.  We note
 that the pooling and upsampling layers are not used in the proposed CDAE
-architecture because they have very little impact on the performance
-according to our tests (e.g., Springenberg et al. 2015).
+because they have very little impact on the performance according to our
+tests (e.g., Springenberg et al. 2015).
 
 In this new manuscript, Sections 2.1 ('Convolutional denoising autoencoder')
 and 2.2 ('Network architecture') have been significantly revised to
@@ -156,7 +158,7 @@ Response 5:
 
 The proposed CDAE is analogous to a CNN without the fully connected layers
 and is trained with the back-propagation method (e.g., Rumelhart et al.
-1986; LeCun et al. 1998) in a similar way as CNNs.  We have greatly
+1986; LeCun et al. 1998) in the similar way as CNNs.  We have greatly
 expanded Section 2.3 ('Training and evaluation') to describe the training
 process and how the CDAE learns to separate the EoR signal.  Specifically,
 the total emission (i.e., EoR signal + foreground) is fed into the CDAE and
@@ -193,15 +195,16 @@ widely used (e.g., Jelic et al. 2008; Liu et al. 2009a; Pritchard & Loeb
 2010).  In this revised manuscript, we have also chosen the continuous
 wavelet transform (CWT) method (Gu et al. 2013) as the representative
 non-parametric method for comparison, considering that the CWT method
-performs similarly well as other non-parametric methods meanwhile it is
-simpler and faster (Gu et al. 2009; Chapman et al. 2015).
+performs similarly well as other non-parametric methods (e.g., the Wp
+smoothing method, the generalized morphological component analysis method)
+meanwhile it is simpler and faster (Gu et al. 2009; Chapman et al. 2015).
 
 Section 4.2 ('Comparing to traditional methods') has been rewritten to
 mention more traditional foreground removal methods and to justify the
 selection of the polynomial fitting method and the CWT method for comparing
-with our method.  The comparisons show that both methods have outstanding
+with our method.  The comparisons show that both methods have great
 difficulties in uncovering the EoR signal when the smoothness of foreground
-spectra is damaged by beam effects.
+spectra is damaged by the frequency-dependent beam effects.
 
 >   The only additional comment of the reviews regards the use of "EoR" in
 >   the abstract. It would be clearer to avoid the acronym, explicitly
@@ -209,5 +212,5 @@ spectra is damaged by beam effects.
 
 Response 7:
 
-We now write the full name "epoch of reionization" when the "EoR" acronym
+We now write the full name 'epoch of reionization' when the 'EoR' acronym
 is first used in the abstract.
