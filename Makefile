@@ -14,9 +14,13 @@ BSTINPUTS:=	.:mnras:revtex:texmf:$(BSTINPUTS)
 TEMPLATE:=	mnras/mnras.cls mnras/mnras.bst
 SRCS:=		main.tex references.bib
 FIGURES:=	figures/network-crop.pdf \
+		figures/obsimg-158.png \
 		figures/simudata.pdf \
 		figures/cdae-train.pdf \
 		figures/eor-result.pdf \
+		figures/eor-img-comp.png \
+		figures/eor-ps-comp.png \
+		figures/occlusion-fgeor.pdf \
 		figures/cdae-train-noft.pdf
 
 default: main.pdf
@@ -42,6 +46,7 @@ submission: $(SRCS) $(TEMPLATE) $(FIGURES)
 	done
 	tar -czf $@.$(DATE).tar.gz -C $@.$(DATE)/ .
 	rm -r $@.$(DATE)
+	cp main.pdf $@.$(DATE).pdf
 
 %-crop.pdf: %.pdf
 	pdfcrop $^
