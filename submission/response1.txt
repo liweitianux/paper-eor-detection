@@ -29,71 +29,79 @@ listed below:
 Response 1:
 
 In this revised manuscript, Section 3.1 ('Simulation of the SKA images')
-has been rewritten to describe the whole simulation process in detail and
-includes the following four major changes:
+has been significantly rewritten to describe the whole simulation process
+with more details by making the following four major changes:
 
-(1) In the second paragraph, we now briefly describe the simulation methods
-employed to obtain the sky maps of each foreground component considered in
-this work, according to our previous work (Wang et al. 2010).
-Specifically, (a) the Galactic synchrotron radiation is simulated by
-extrapolating the Haslam 408 MHz template (Remazeilles et al. 2015); (b)
-the Galactic free-free radiation is derived from the H{\alpha} survey map
-(Finkbeiner 2003); (c) extragalactic point sources are simulated by
-utilising the data published by Wilman et al. (2008) as well as their
-luminosity functions and spectral models; (d) scaling relations between
-X-ray and radio observations are employed to simulate the radio haloes.
+(1) In the second paragraph, we now describe the simulation methods
+employed to generate the sky maps of each foreground component considered
+in this work, based on our previous work (Wang et al. 2010).  Specifically,
+(a) the Galactic synchrotron radiation is simulated by extrapolating the
+reprocessed Haslam 408 MHz map (Remazeilles et al. 2015), which has
+significantly better instrument calibration and more accurate extragalactic
+source subtraction and thus provides enhanced results over Wang et al.
+(2010); (b) the Galactic free-free radiation is derived from the H{\alpha}
+survey map (Finkbeiner 2003); (c) extragalactic point sources are simulated
+according to the luminosity functions and spectral models (e.g.,
+Wilman et al. 2008); (d) scaling relations between X-ray and radio
+properties are employed to simulate the radio haloes.
 
-(2) In the fourth paragraph, the SKA1-Low observation simulation from sky
-maps to 'observed' images have been described with more details, e.g., the
-SKA1-Low layout information, the simulation and imaging parameters.
-Moreover, we have presented in Figure 2 the simulated images of the
-foreground emission and the EoR signal at 158 MHz as an example.
+(2) In the fourth paragraph, the procedure of SKA1-Low observation
+simulation (i.e., incorporating the instrument effects into the sky maps
+to obtain the 'observed' images) have been described by including the
+information about the SKA1-Low layout and the simulation and imaging
+parameters.  Moreover, we have also presented in Figure 2 the simulated
+images of the foreground emission and the EoR signal at 158 MHz as an
+example.
 
-(3) We have simulated a second pair of image cubes (C2_eor, C2_fg) that can
-be completely used as the test set in Section 3.3.  This enables us to
-obtain a complete image cube of the reconstructed EoR signal, from which
-images and power spectra can be derived to demonstrate the performance of
-the trained CDAE.  Please see Response 2 below for more details.
+(3) As explained in the last but one paragraph, we have simulated a second
+pair of image cubes (C2_eor, C2_fg) that are solely used as the test set
+later (Section 3.3).  This enables us to obtain a complete image cube of
+the reconstructed EoR signal, from which images and power spectra can be
+derived to demonstrate the performance of the trained CDAE.  Please see
+Response 2 below for more explanations.
 
-(4) In the last paragraph, we have clarified that no thermal noise was
-included in the simulations because our method is currently proposed for
-tomographic EoR imaging that has a sufficiently low noise level (~< 1 mK;
-Mellema et al. 2013).  Please see also Response 3 below.
+(4) In the last paragraph, we have clarified that the simulations do not
+include thermal noise because our method is proposed for very deep SKA EoR
+imaging observations (about 1000-hour integration time) that has a
+sufficiently low noise level (~< 1 mK; Mellema et al. 2013).  Please see
+also Response 3 below.
 
 >   It might be helpful to include images of the input EoR signal and the
 >   recovered signal.
 
 Response 2:
 
-In the old manuscript, only one pair of image cubes were simulated and they
-were randomly partitioned into three sets (i.e., training, validation, and
-test).  As a result, the test set only contained a fraction of all the
-pixels and it was impossible to obtain a complete image of the
+In the old manuscript, only one pair of image cubes were simulated and the
+pixels of all frequencies were randomly partitioned into three sets (i.e.,
+training, validation, and test).  Therefore, the test set only contained
+a small fraction of all the pixels, which were randomly distributed on the
+sky.  As a result, it was impossible to obtain a complete image of the
 reconstructed EoR signal.
 
 In this revised version, we have simulated a second pair of image cubes
-(C2_eor, C2_fg) as the test set and thus obtained a complete image cube of
-the reconstructed EoR signal.  Based on this, the following two additional
-results have been appended to Section 3.3 ('Training and results'):
+(C2_eor, C2_fg) as the test set, from which we are now able to obtain a
+complete image cube of the reconstructed EoR signal.  Based on this, the
+following two additional results have been appended to Section 3.3
+('Training and results'):
 
 (1) The 158 MHz images of the input and reconstructed EoR signals have been
-shown in Figure 6;
+presented in Figure 6;
 (2) We have further calculated the two-dimensional power spectra of the
-input and reconstructed EoR signals and presented the comparison in Figure 7.
+input and reconstructed EoR signals, as shown in Figure 7.
 
-Both results clearly demonstrate that the trained CDAE can accurately
+The results clearly demonstrate that the trained CDAE can accurately
 reconstruct the EoR signal.
 
 >   Did you include noise in your simulations?
 
 Response 3:
 
-Since the proposed method targets the tomographic EoR imaging, which would
-be very deep pointed observations that could reach a sufficiently low noise
-level of ~< 1 mK (e.g., Mellema et al. 2013), we do not include thermal
-noise in the simulations.  This has been clarified in the last paragraph of
-Section 3.1 ('Simulation of the SKA images').
-
+Since our method is proposed to be applied in very deep EoR imaging
+observations with SKA1-Low, which is planned to integrate about 1000 hours
+for each EoR field and is expected to achieve a sufficiently low noise
+level of ~< 1 mK (e.g., Mellema et al. 2013; Koopmans et al. 2015), we do
+not include thermal noise in the simulations.  This has been clarified in
+the last paragraph of Section 3.1 ('Simulation of the SKA images').
 
 >   Reviewer's Comments
 >   -------------------
@@ -120,49 +128,52 @@ Section 3.1 ('Simulation of the SKA images').
 
 Response 4:
 
-Compared to classic denoising autoencoders, which use fully connected
-layers (e.g., Vincent et al. 2008,2010), a CDAE uses multiple convolutional
-layers to gain the powerful feature extraction capability of convolutional
-neural networks (CNNs) to improve its denoising performance (e.g., Du et al.
-2017).  Both the encoder and decoder parts of a CDAE consist of multiple
-convolutional layers, and each convolutional layer contains a number of
-filters and an activation function.  The pooling and upsampling layers are
-not used in the proposed CDAE architecture because they have very little
-impact on the performance according to our tests.
+Compared to classic denoising autoencoders, which are built with fully
+connected layers (e.g., Vincent et al. 2008,2010), a CDAE is built by
+replacing the fully connected layers in a classic denoising autoencoder
+with convolutional layers.  This introduces the major advantages of
+convolutional neural networks (CNNs), such as powerful feature extraction
+capabilities, into a CDAE and greatly improves its denoising performance
+(e.g., Du et al. 2017).  In the proposed CDAE, both the encoder and decoder
+parts consist of multiple convolutional layers, and each convolutional
+layer contains a number of filters and an activation function.  We note
+that the pooling and upsampling layers are not used in the proposed CDAE
+architecture because they have very little impact on the performance
+according to our tests (e.g., Springenberg et al. 2015).
 
 In this new manuscript, Sections 2.1 ('Convolutional denoising autoencoder')
-and 2.2 ('Network architecture') have been greatly revised to describe the
-CDAE and its architecture design more clearly and completely.  We have also
+and 2.2 ('Network architecture') have been significantly revised to
+describe the CDAE and its architecture design more clearly and completely,
+such as the motivation of combining denoising autoencoders and CNNs,
+convolutional layers, and filters and activation functions.  We have also
 updated Figure 1 to illustrate the proposed CDAE architecture in a more
-conventional and clear way.
+explicit and conventional way.
 
 >   If possible, it would also be beneficial to explain how the network
 >   learns during the training (this second request only if space permits).
 
 Response 5:
 
-In order to gain some insights into how the CDAE learns, we have employed
-the occlusion method to visualise the sensitivity distribution of the input
-data, i.e., the performance loss induced by the occlusion of a small part
-of the input data (Zeiler & Fergus 2014).  We find that the derived
-sensitivity distribution is more correlated with the EoR signal than the
-foreground emission (Figure 8), which verifies that the CDAE has actually
-learned to distinguish the EoR signal from the foreground emission.
+The proposed CDAE is analogous to a CNN without the fully connected layers
+and is trained with the back-propagation method (e.g., Rumelhart et al.
+1986; LeCun et al. 1998) in a similar way as CNNs.  We have greatly
+expanded Section 2.3 ('Training and evaluation') to describe the training
+process and how the CDAE learns to separate the EoR signal.  Specifically,
+the total emission (i.e., EoR signal + foreground) is fed into the CDAE and
+goes through all the convolutional layers to drive the CDAE output, which
+is expected to be the reconstructed EoR signal.  By comparing the CDAE
+output with the simulated true EoR signal, the loss L is determined, which
+is then propagated backward in the CDAE to update the parameters (i.e.,
+weights and biases of all the filters) to reduce the loss L.  As the
+training continues, the CDAE, driven by the training data, is learning to
+better extract the features of the EoR signal to reconstruct it more
+accurately.
 
-Moreover, we have tracked the variations of the sensitivity distribution
-and its correlations with the EoR signal and the foreground emission along
-the training process (Figure 9).  The tracking results suggest that the
-CDAE first learns the major features of the EoR signal during the beginning
-several (about 5) epochs and then it mainly learns the fine characteristic
-of the EoR signal.
-
-None the less, we note that a rigorous interpretation of the CDAE remains
-a challenge and requires much more efforts.  A comprehensive understanding
-of the CDAE is of great importance to further improve it and design more
-efficient neural networks for practical EoR signal separation.
-
-All these contents have been added to the manuscript as the new Section 3.4
-('How the CDAE learns?').
+In addition, by employing the occlusion method (Zeiler & Fergus 2014), we
+have validated that the trained CDAE has actually learned useful features
+of the EoR signal to distinguish it from the foreground emission.  This has
+been added to the manuscript as the new Section 3.4 ('Further validation of
+the CDAE').
 
 >   A further request is related to section 4.2 and the comparison with the
 >   "polynomial fitting" method. It would be useful to specify if this is
@@ -172,27 +183,25 @@ All these contents have been added to the manuscript as the new Section 3.4
 
 Response 6:
 
-Multiple foreground removal methods have been proposed and can be broadly
-classified into the parametric ones (e.g., Wang et al. 2006; Liu et al.
-2009b; Wang et al. 2013) and the non-parametric ones (e.g., Harker et al.
-2009; Gu et al. 2013; Chapman et al. 2013; Mertens et al. 2018).  Besides
-the polynomial fitting method in the parametric method category, we have
-chosen the continuous wavelet transform (CWT) method (Gu et al. 2013) among
-the non-parametric category in this revised manuscript for comparisons.
-These two traditional methods were chosen according to the following
-considerations:
-
-(1) They both perform foreground removal along the frequency dimension
-pixel-by-pixel, the same operation scheme as our method;
-(2) They are one of the representative methods in the parametric and
-non-parametric method categories, respectively;
-(3) They can give consistent and reliable results because they are
-intuitive to implement and to use.
+Foreground removal methods proposed in the literature can be broadly
+classified into the parametric category (e.g., Wang et al. 2006;
+Jelic et al. 2008; Liu et al. 2009b; Wang et al. 2013; Bonaldi & Brown 2015)
+and the non-parametric category (e.g., Harker et al. 2009; Chapman et al.
+2012,2013; Gu et al. 2013; Mertens et al. 2018).  The polynomial fitting
+method is the best representative of the parametric methods because it is
+widely used (e.g., Jelic et al. 2008; Liu et al. 2009a; Pritchard & Loeb
+2010).  In this revised manuscript, we have also chosen the continuous
+wavelet transform (CWT) method (Gu et al. 2013) as the representative
+non-parametric method for comparison, considering that the CWT method
+performs similarly well as other non-parametric methods meanwhile it is
+simpler and faster (Gu et al. 2009; Chapman et al. 2015).
 
 Section 4.2 ('Comparing to traditional methods') has been rewritten to
 mention more traditional foreground removal methods and to justify the
 selection of the polynomial fitting method and the CWT method for comparing
-with our method.
+with our method.  The comparisons show that both methods have outstanding
+difficulties in uncovering the EoR signal when the smoothness of foreground
+spectra is damaged by beam effects.
 
 >   The only additional comment of the reviews regards the use of "EoR" in
 >   the abstract. It would be clearer to avoid the acronym, explicitly
