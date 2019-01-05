@@ -167,9 +167,9 @@ In comparison,
 \editone{%
 the two representative traditional methods, namely the polynomial
 fitting method and the continuous wavelet transform method, both have
-outstanding difficulties in uncovering the EoR signal, only yielding
+outstanding difficulties in uncovering the EoR signal, yielding only
 $\bar{\rho}_{\R{poly}} = \num{0.296 +- 0.121}$ and
-$\bar{\rho}_{\R{cwt}} = \num{0.1982+- 0.160}$, respectively.} % editone
+$\bar{\rho}_{\R{cwt}} = \num{0.198 +- 0.160}$, respectively.} % editone
 We conclude that, by hierarchically learning sophisticated features
 through multiple convolutional layers, the CDAE is a powerful tool that
 can be used to overcome the complicated frequency-dependent beam effects
@@ -319,17 +319,17 @@ and other signals \citep[e.g.,][]{xie2012,bengio2013,gondara2016}.
 Classic autoencoders are built with fully connected layers, each neuron of
 which is connected with every neuron in the previous layer.
 This makes the total number of parameters increase exponentially with the
-input size and also forces the extracted features to be global, which is
-suboptimal to represent the input \citep[e.g.,][]{masci2011}.
+number of layers and also forces the extracted features to be global, which
+is suboptimal to represent the input \citep[e.g.,][]{masci2011}.
 On the other hand, convolutional layers as used in convolutional neural
 networks (CNNs) can well exploit the local features in the data by making
-use of a series of small filters and sharing their weights among all
+use of a set of small filters and sharing their weights among all
 locations in the data \citep[e.g.,][]{lecun1998}.
 Therefore, CNNs generally have two or more orders of magnitude less
-parameters than analogous fully connected neural networks
+parameters than the analogous fully connected neural networks
 \citep[e.g.,][]{grais2017}, which greatly reduces the resource usages
 (e.g., memory, time) for training.
-Multiple convolutional layers can also be easily stacked to build highly
+Many convolutional layers can also be easily stacked to build highly
 expressive CNNs that achieve outstanding performance in image
 classification and relevant fields
 \citep[e.g.,][]{krizhevsky2012,simonyan2014,szegedy2015,ma2018}.
@@ -471,7 +471,7 @@ can be reconstructed more accurately.
 Along the training process, the CDAE is also evaluated on the validation
 set ($S_{\R{val}}$) to validate whether the training process goes well
 (e.g., no over-fitting).
-However, the validation set and its evaluation results should never be used
+However, the validation set and its evaluation results should not be used
 to update the parameters \citep[e.g.,][]{russell2009}.
 } % editone
 
@@ -657,7 +657,7 @@ $\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$.
 
 We note that the simulations do not include thermal noise because the
 proposed method is designed to create tomographic EoR images from very deep
-SKA observations that have sufficiently low noise.
+SKA observations that have a sufficiently low noise level.
 Among the 13 high priority science objectives identified for SKA phase I,
 the EoR imaging objective is of the highest priority\footnote{\raggedright%
   SKA1 level 0 science requirements:
@@ -734,8 +734,8 @@ validation set ($S_{\R{val}}$; 20 per cent, or \num{25920} data points).
 The preprocessed data of the second cube pair
 $\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$
 are solely used as the test set ($S_{\R{test}}$; \num{129600} data points).
-The use of the whole pair of image cubes as the test set enables us to
-create complete images of the reconstructed EoR signal.
+The use of the whole image cubes as the test set enables us to create
+complete images of the reconstructed EoR signal.
 } % editone
 
 We implement the proposed CDAE using the
@@ -848,7 +848,7 @@ $k_{\bot} \approx \SI{0.1}{\per\Mpc}$ in both power spectra, which is
 caused by the boundary effect of Fourier transforming the finite frequency
 band.
 
-The results clearly demonstrate that the trained CDAE is able to
+The results clearly demonstrate that the trained CDAE is able to well
 reconstruct the EoR signal, overcoming the complicated beam effects.} % editone
 The achieved excellent performance of the CDAE can be mainly attributed
 to the architecture of stacking multiple convolutional layers, which
@@ -905,12 +905,12 @@ sensitivities, we obtain the CDAE's sensitivity distribution ($\B{s}$) to
 every part of the input data, as shown in \autoref{fig:occ-fgeor}, where
 the r.m.s\@. amplitudes of the foreground emission ($\B{y}_{\R{fg}}$) and
 the EoR signal ($\B{y}_{\R{eor}}$) are also plotted.
-We find that the sensitivity distribution is more correlated with the EoR
-signal [$\rho(\B{s}, \B{y}_{\R{eor}}) = 0.742$] than the foreground
-[$\rho(\B{s}, \B{y}_{\R{fg}}) = 0.562$].
+We find that the sensitivity distribution is significantly more correlated
+with the EoR signal [$\rho(\B{s}, \B{y}_{\R{eor}}) = 0.742$] than the
+foreground [$\rho(\B{s}, \B{y}_{\R{fg}}) = 0.562$].
 This verifies that the trained CDAE has learned useful features of the EoR
-signal to distinguish it from the foreground contamination and thus
-becomes more sensitive to the data parts of higher signal-to-noise ratio.
+signal to distinguish it from the foreground emission and thus becomes more
+sensitive to the data parts of higher signal-to-noise ratio.
 } % editone
 
 
@@ -1011,24 +1011,25 @@ at different positions in the wavelet space because of their different
 spectral scales.
 Therefore, the foreground emission can be easily separated from the EoR
 signal and be removed \citep{gu2013}.
-For each sky pixel, the spectrum of total emission is transformed into the
-wavelet space by applying the CWT with the Morlet mother wavelet function.
+For each sky pixel, the spectrum of the total emission is transformed into
+the wavelet space by applying the CWT with the Morlet wavelet function.
 In the wavelet space, after identifying and removing the coefficients that
 are mainly contributed by the foreground emission, the remaining
-coefficients are inversely transformed to obtain the spectrum with the
-foreground emission removed, which is expected to be the EoR signal.
+coefficients are transformed back to the frequency space to obtain the
+spectrum with the foreground emission removed, which is expected to be the
+EoR signal.
 By evaluating on the same dataset
 $\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$,
 we have tuned the method parameters (minimum scale $s_{\R{min}}$, maximum
 scale $s_{\R{max}}$, number of scales $n_s$, and cone of influence $c_i$)
 and adopt $s_{\R{min}} = 7.4$, $s_{\R{max}} = 50.0$, $n_s = 50$, and
 $c_i = 1.6$ to obtain the relatively best performance, which is, however,
-only $\bar{\rho}_{\R{cwt}} = \num{0.1982+- 0.160}$.
+only $\bar{\rho}_{\R{cwt}} = \num{0.198 +- 0.160}$.
 We note that the CWT method performs slightly worse than the polynomial
 fitting method, which is difference from the comparison in \citet{gu2013}.
-This may be caused by the more important boundary effect since our
-simulated data have a narrower bandwidth and coarser frequency resolution
-than those of \citet{gu2013}.
+This may be caused by the more serious boundary effect since our simulated
+data have a narrower bandwidth and coarser frequency resolution than those
+of \citet{gu2013}.
 
 The main reason that both traditional foreground removal methods only
 obtain remarkably inferior results is that the smoothness of the foreground
@@ -1036,10 +1037,10 @@ spectra is seriously damaged by the frequency-dependent beam effects, which
 cause rapid fluctuations of strength the same order as the EoR signal on
 the originally smooth foreground spectra [\autoref{fig:simudata}(b)].
 As a result, the foreground spectra complicated by the beam effects cannot
-be well modelled by a low-degree polynomial and have more similar
-spectral scales as the EoR signal.
+be well fitted by a low-degree polynomial and have more similar spectral
+scales as the EoR signal.
 In consequence, both methods are unable to well model the complicated
-foreground spectra and thus have great difficulty in removing them.
+foreground spectra and thus have great difficulties in removing them.
 On the contrary, given its data-driven nature and powerful feature
 extraction capabilities, the CDAE is able to distil knowledge from the
 training data and learns the features to distinguish the EoR signal from
@@ -1072,8 +1073,8 @@ to play an important role in the forthcoming EoR experiments.
 %%======================================================================
 \section*{Acknowledgements}
 
-We thank the reviewer and editor for their useful comments that greatly
-help improve the manuscript.
+\editone{We thank the reviewer and editor for their useful comments that
+greatly help improve the manuscript.}
 We also thank Jeffrey Hsu for reading the manuscript and providing
 helpful suggestions.
 This work is supported by
