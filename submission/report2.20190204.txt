@@ -1,0 +1,23 @@
+Reviewer's Comments:
+Reviewer: 1
+Comments to the Author
+----------------------
+In its current form, the manuscript can be accepted for publication. The
+description of the methodology is now clear and comprehensive and the
+additional tests valuable. Overall the paper provides exhaustive details
+and guidelines to the reader.
+
+The only additional requests from the reviewer are:
+
+- Section 2 should be carefully checked for the English language trying
+  also to avoid conceptual repetitions
+
+- Figure 3 and the corresponding description on page 4 should be clarified.
+  In particular the differences of orders of magnitude in the scales of the
+  y axes in the two panels should be explained. Furthermore, how the
+  fluctuations from the beam compares to those of the EoR signal, should be
+  detailed.
+
+Provided these two requests are fulfilled, the papers can be accepted with
+no further reading by the reviewer.
+
