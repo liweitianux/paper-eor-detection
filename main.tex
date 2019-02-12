@@ -18,19 +18,6 @@
 % - usedcolumn : use `dcolumn' package for table column alignment
 
 \documentclass[fleqn,usenatbib]{mnras}
-\newlength{\myfigwidth}
-\setlength{\myfigwidth}{\columnwidth}
-
-%------ internal review ------
-%\documentclass[fleqn,usenatbib,onecolumn]{mnras}
-%\setlength{\myfigwidth}{0.5\columnwidth}
-%\geometry{top=35mm,bottom=35mm,left=30mm,right=30mm}
-%\linespread{1.3}
-
-%\usepackage{xeCJK}
-%\setCJKmainfont{Noto Serif CJK SC}
-%\xeCJKsetup{PunctStyle=kaiming}
-%------ internal review ------
 
 \usepackage{newtxtext,newtxmath}
 \usepackage[T1]{fontenc}
@@ -627,7 +614,7 @@ foreground removal mothods \citep[e.g.,][]{liu2009ps}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\myfigwidth]{simudata}
+  \includegraphics[width=\columnwidth]{simudata}
   \caption{\label{fig:simudata}\editone{%
     The r.m.s\@. spectra (the bold blue lines) and the corresponding
     differential spectra (the thin red lines) of the foreground image
@@ -760,7 +747,7 @@ The CDAE is trained on the training set ($S_{\R{tr}}$) with a batch size of
 
 \begin{figure}
   \centering
-  \includegraphics[width=\myfigwidth]{cdae-train}
+  \includegraphics[width=\columnwidth]{cdae-train}
   \caption{\label{fig:train}%
     The training loss (the solid red line), validation loss (the solid blue
     line), and correlation coefficient ($\rho$) calculated on the
@@ -772,7 +759,7 @@ The CDAE is trained on the training set ($S_{\R{tr}}$) with a batch size of
 
 \begin{figure}
   \centering
-  \includegraphics[width=\myfigwidth]{eor-result}
+  \includegraphics[width=\columnwidth]{eor-result}
   \caption{\label{fig:eor-pix}%
     An example of the EoR signal reconstructed by the trained CDAE for
     one pixel \editone{in $S_{\R{test}}$}.
@@ -947,7 +934,7 @@ distributes mainly on smaller Fourier modes \citep[e.g.,][]{parsons2012}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\myfigwidth]{cdae-train-noft}
+  \includegraphics[width=\columnwidth]{cdae-train-noft}
   \caption{\label{fig:train-noft}%
     Same as \autoref{fig:train} but for the case that the data are
     preprocessed without applying the FT.
