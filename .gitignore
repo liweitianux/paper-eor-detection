@@ -18,6 +18,10 @@
 *.synctex.gz
 *.fdb_latexmk
 
+# LaTeX - 'changes' package
+*.loc
+*.soc
+
 # Emacs
 .#*
 auto/
