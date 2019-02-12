@@ -29,6 +29,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{siunitx}
+\usepackage[authormarkup=none]{changes}
 
 % Workaround the error:
 %   \pdfendlink ended up in different nesting level than \pdfstartlink
@@ -71,6 +72,14 @@
 \newcommand{\edittwo}[1]{{\leavevmode\color{magenta}#1}}
 %\renewcommand{\editone}[1]{{#1}}
 %\renewcommand{\edittwo}[1]{{#1}}
+
+\definechangesauthor[color=magenta]{two}
+\newcommand{\addedtwo}[1]{\added[id=two]{#1}}
+\newcommand{\deletedtwo}[1]{ \deleted[id=two]{#1}}
+\newcommand{\replacedtwo}[2]{\replaced[id=two]{#1}{#2}}
+%\renewcommand{\addedtwo}[1]{#1}
+%\renewcommand{\deletedtwo}[1]{}
+%\renewcommand{\replacedtwo}[2]{#2}
 
 
 %%======================================================================
