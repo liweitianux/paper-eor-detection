@@ -268,14 +268,14 @@ The implementation code and data are made public at
 \label{sec:cdae}
 
 \editone{%
-Autoencoders are a type of neural networks that aim at learning useful
-features from the input data in an unsupervised manner and are usually
+An autoencoder is a type of neural networks that aims at learning useful
+features from the input data in an unsupervised manner and is usually
 used for dimensionality reduction \citep[e.g.,][]{hinton2006,wang2014}
 and data denoising \citep[e.g.,][]{xie2012,lu2013,bengio2013}.}  % editone
 An autoencoder is composed of an encoder and a decoder, which can be
 characterised by the functions $f(\cdot)$ and $g(\cdot)$, respectively.
 The encoder maps the input $\B{x}$ to an internal code $\B{h}$, i.e.,
-$\B{h} = f(\B{x})$, and the decoder tries to reconstruct the wanted
+$\B{h} = f(\B{x})$, and the decoder tries to reconstruct the desired
 signal from the code $\B{h}$, i.e., $\B{r} = g(\B{h})$, where $\B{x}$,
 $\B{h}$, and $\B{r}$ are all vectors for this work.
 By placing constraints (e.g., dimensionality and sparsity) on the
@@ -300,7 +300,7 @@ During this denoising process, the autoencoder is required to extract
 features that capture useful structures in the original input, i.e., a good
 representation of the input.
 Since the trained autoencoder is able to denoise the corrupted input
-$\B{x}'$ to reconstruct the original uncorrupted input $\B{x}$, it is hence
+$\B{x}'$ to reconstruct the original uncorrupted input $\B{x}$, hence it is
 called a `denoising autoencoder' and is commonly applied to denoise images
 and other signals \citep[e.g.,][]{xie2012,bengio2013,gondara2016}.
 
@@ -324,7 +324,7 @@ classification and relevant fields
 By utilising multiple convolutional layers instead of fully connected
 layers in a denoising autoencoder, the CDAE gains the powerful feature
 extraction capabilities of CNNs, which helps improve its denoising
-performance, and can reconstruct even seriously corrupted signal
+performance, and can reconstruct even seriously corrupted signals
 \citep[e.g.,][]{du2017}.
 In consequence, the CDAE may be well suited to exploit the complicated
 differences between the EoR signal and the foreground emission to
@@ -383,7 +383,7 @@ implementing a powerful feature extraction technique \citep{lecun2015}.
 Following the common practices \citep[e.g.,][]{geron2017,suganuma2018},
 we adopt filters of size 3 in all layers and use the exponential linear
 unit (ELU; \citealt{clevert2016}) as the activation function
-$\phi^{(l)}(\cdot)$ for all layers except for the last layer, which uses
+$\phi^{(l)}(\cdot)$ for all layers except the last layer, which uses
 the hyperbolic tangent function (i.e., tanh;
 see also \autoref{sec:preprocessing}).
 In addition, the batch normalisation technique is applied to all layers
@@ -423,7 +423,7 @@ as to help determine the hyperparameters (e.g., the number of layers and
 filters; \autoref{sec:architecture});
 (3) test set ($S_{\R{test}}$) that is solely used to evaluate the
 performance of the trained CDAE.
-Each dataset is collection of many data points of
+Each dataset is a collection of many data points of
 ($\B{x}, \B{x}_{\R{eor}}$),
 where $\B{x} = \B{x}_{\R{eor}} + \B{x}_{\R{fg}}$ is the total emission of
 one sky pixel to be fed into the CDAE, and $\B{x}_{\R{eor}}$ is the
