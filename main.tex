@@ -235,7 +235,7 @@ effects, even at the cost of extensive computation burden
 Therefore deep-learning-based methods, which can distil knowledge from
 the data to automatically refine the model, seem more feasible
 and appealing \citep[e.g.,][]{herbel2018,vafaeiSadr2018}.
-In recent years, the deep learning algorithms have seen prosperous
+In recent years, deep learning algorithms have seen prosperous
 developments and have brought breakthroughs into many fields
 (see \citealt{lecun2015} for a recent review).
 Among various deep learning algorithms, the convolutional denoising
@@ -284,13 +284,13 @@ characterised by the functions $f(\cdot)$ and $g(\cdot)$, respectively.
 The encoder maps the input $\B{x}$ to an internal code $\B{h}$, i.e.,
 $\B{h} = f(\B{x})$, and the decoder tries to reconstruct the desired
 signal from the code $\B{h}$, i.e., $\B{r} = g(\B{h})$, where $\B{x}$,
-$\B{h}$, and $\B{r}$ are all vectors for this work.
-By placing constraints (e.g., dimensionality and sparsity) on the
+$\B{h}$, and $\B{r}$ are all vectors in this work.
+By placing constraints (e.g., dimensionality, sparsity) on the
 internal code $\B{h}$ and training the autoencoder to minimize the
 loss $L(\B{r}, \,\B{x})$, which quantifies the difference between the
-reconstruction $\B{r}$ and the input $\B{x}$, the autoencoder is trained
-to learn the codes that effectively represent the input data
-\citep[e.g.,][chapter 14]{goodfellow2016}.
+reconstruction $\B{r}$ and the input $\B{x}$, the autoencoder is expected
+to learn the codes that effectively represent the input
+\citep[chapter 14]{goodfellow2016}.
 
 \editone{%
 In order to make the autoencoder learn a better representation of the input
@@ -329,13 +329,13 @@ expressive CNNs that achieve outstanding performance in image
 classification and relevant fields
 \citep[e.g.,][]{krizhevsky2012,simonyan2014,szegedy2015,ma2018}.
 By utilising multiple convolutional layers instead of fully connected
-layers in a denoising autoencoder, the CDAE gains the powerful feature
-extraction capabilities of CNNs, which helps improve its denoising
+layers in a denoising autoencoder, the obtained CDAE gains the powerful
+feature extraction capability of CNNs, which helps improve its denoising
 performance, and can reconstruct even seriously corrupted signals
 \citep[e.g.,][]{du2017}.
 In consequence, the CDAE may be well suited to exploit the complicated
-differences between the EoR signal and the foreground emission to
-reconstruct the EoR signal.
+differences between the EoR signal and the foreground emission for the
+purpose of reconstructing the EoR signal.
 }  % editone
 
 
@@ -380,7 +380,7 @@ with each of the filters, i.e.,
     \quad i = 1, 2, \cdots, m_{l},
 \end{equation}
 where
-$W_i^{(l)}$ and $b_i^{(l)}$ are the weights and bias of the $i$-th filter
+$W_i^{(l)}$ and $b_i^{(l)}$ are the weights and bias of this filter
 in the $l$-th layer, $\phi^{(l)}(\cdot)$ is the layer's activation
 function, and `$*$' denotes the convolution operation.
 In this way, sophisticated higher-level features can be obtained by
@@ -417,7 +417,7 @@ tests \citep[see also][]{springenberg2015}.
 
 \editone{%
 At the beginning, the parameters (i.e., the weights and biases of filters
-in all layers) of the CDAE are initialised randomly according to the He
+in all layers) of the CDAE are initialised randomly using the He
 uniform initialiser \citep{he2015}.
 To obtain an effective CDAE, these parameters need to be trained using the
 training data.
@@ -442,7 +442,7 @@ to derive the CDAE output $\B{r}^{(i)}_{\R{eor}}$, which is expected to be
 the reconstructed EoR signal.
 The difference between the reconstructed EoR signal $\B{r}^{(i)}_{\R{eor}}$
 and the input EoR signal $\B{x}^{(i)}_{\R{eor}}$ is the loss $L$ and can be
-quantified using the mean squared error (MSE), i.e.,
+quantified with the mean squared error (MSE), i.e.,
 \begin{equation}
   \label{eq:loss}
   L = \frac{1}{N_{\R{tr}}} \sum_{i=1}^{N_{\R{tr}}}
@@ -880,15 +880,15 @@ With the purpose of further validating that the trained CDAE has actually
 learned the useful features of the EoR signal, we employ the occlusion
 method \citep{zeiler2014} to visualise the sensitivity of the trained CDAE
 to the different part of the input data.
-At each time, we occlude 3 adjacent elements of every input total emission
+At each time, we occlude 3 adjacent elements of every input
 $\B{x}$ in the validation set $S_{\R{val}}$, and then measure the CDAE's
 sensitivity to the occluded part, which is calculated as the
 occlusion-induced performance loss, i.e.,
 \begin{equation}
   \label{eq:perf-loss}
   s = \frac{1}{N_{\R{val}}} \sum_{i=1}^{N_{\R{val}}}
-    \left[ \rho(\B{r}^{(i)}_{\R{eor}}, \B{x}^{(i)}_{\R{eor}}) -
-      \rho(\B{R}^{(i)}_{\R{eor}}, \B{x}^{(i)}_{\R{eor}}) \right],
+    \left[ \rho\left(\B{r}^{(i)}_{\R{eor}}, \B{x}^{(i)}_{\R{eor}}\right) -
+      \rho\left(\B{R}^{(i)}_{\R{eor}}, \B{x}^{(i)}_{\R{eor}}\right) \right],
 \end{equation}
 where
 $N_{\R{val}}$ is the number of data points in the validation set,
