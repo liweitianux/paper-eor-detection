@@ -204,7 +204,7 @@ overwhelms the EoR signal by about \numrange{4}{5} orders of magnitude
 (see \citealt{morales2010rev} for a review).
 Fortunately, in the frequency dimension the foreground contamination
 is expected to be intrinsically smooth, while the EoR signal fluctuates
-rapidly on $\lesssim \si{\MHz}$ scales.
+rapidly on $\sim\si{\MHz}$ scales.
 This difference is the key characteristic exploited by many foreground
 removal methods in order to uncover the faint EoR signal
 \citep[e.g.,][]{wang2006,jelic2008,liu2009fgrm,harker2009,chapman2012,chapman2013,wang2013,gu2013,bonaldi2015,mertens2018}.
@@ -510,6 +510,19 @@ At each frequency channel, the sky maps of the foreground emission and the
 EoR signal are simulated within an area of \SI{10 x 10}{\degree} and are
 pixelized into \num{1800 x 1800} with a pixel size of \SI{20}{\arcsecond}.
 
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.8\textwidth]{obsimg-158}
+  \caption{\label{fig:obsimg}\editone{%
+    Simulated images of the EoR signal (left panel) and the foreground
+    emission (right panel) at \SI{158}{\MHz}.
+    Both images have a size of \num{360 x 360} and cover a sky area of
+    \SI{2 x 2}{\degree}.
+    The blobs in the right panel show the bright point sources and radio
+    haloes.
+  }}
+\end{figure*}
+
 Based on our previous work \citep{wang2010}, we simulate the foreground
 emission by taking into account the contributions from the Galactic
 synchrotron and free-free radiations, extragalactic point sources, and
@@ -560,19 +573,6 @@ redshifts (i.e., frequencies) from the light-cone cube of the recommended
 `faint galaxies' case.
 The extracted image slices are then re-scaled to match the sky coverage and
 pixel size of the foreground maps.
-
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.8\textwidth]{obsimg-158}
-  \caption{\label{fig:obsimg}\editone{%
-    Simulated images of the EoR signal (left panel) and the foreground
-    emission (right panel) at \SI{158}{\MHz}.
-    Both images have a size of \num{360 x 360} and cover a sky area of
-    \SI{2 x 2}{\degree}.
-    The blobs in the right panel show the bright point sources and radio
-    haloes.
-  }}
-\end{figure*}
 
 To incorporate the realistic frequency-dependent beam effects into the
 simulated sky maps, we further adopt the latest SKA1-Low layout
