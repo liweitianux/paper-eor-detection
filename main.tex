@@ -608,16 +608,23 @@ and the foreground emission $\left( C_{\R{fg}}^{(1)} \right)$, respectively
 (see \autoref{fig:obsimg} for the simulated images at the central frequency
 of \SI{158}{\MHz}).
 To better illustrate the impacts of beam effects on the foreground spectra,
-we show in \autoref{fig:simudata} the root-mean-square (r.m.s\@.) spectra
-and the corresponding differential spectra of the foreground image cubes
-with and without the beam effects considered.
+\edittwo{%
+we take one random sky pixel as an example and show in the foreground
+spectra with and without the beam effects in \autoref{fig:simudata}, where
+the corresponding differential spectra and the EoR signal spectrum are also
+plotted.}
 Compared to the ideal sky foreground, the spectral smoothness of the
 `observed' foreground is seriously damaged by the rapid fluctuations
-resulted from the beam effects.
-Such fluctuations have scales of \SI{< 1}{\MHz} and look more similar to
-the EoR signal, which can impose a great difficulty on traditional
-foreground removal methods \citep[e.g.,][]{liu2009ps}.
-} % editone
+resulted from the beam effects.} % editone
+\edittwo{%
+Although such fluctuations exhibit somewhat similar spectral scales
+($\lesssim \SI{1}{\MHz}$) as the EoR signal, they are still sufficiently
+different, which can be exploited by the CDAE to achieve an effective
+separation.
+We note that the `observed' foreground has an amplitude of about two orders
+of mangitude smaller than the ideal foreground, the major reason for which
+is that interferometers are only sensitive to the spatial fluctuations of
+the emission.} % edittwo
 
 \begin{figure}
   \centering
@@ -902,8 +909,8 @@ EoR signals without and with applying the occlusion, respectively.
 By varying the occlusion part of the input data and calculating the
 sensitivities, we obtain the CDAE's sensitivity distribution ($\B{s}$) to
 every part of the input data, as shown in \autoref{fig:occ-fgeor}, where
-the r.m.s\@. amplitudes of the foreground emission ($\B{y}_{\R{fg}}$) and
-the EoR signal ($\B{y}_{\R{eor}}$) are also plotted.
+the root-mean-square (r.m.s\@.) amplitudes of the foreground emission
+($\B{y}_{\R{fg}}$) and the EoR signal ($\B{y}_{\R{eor}}$) are also plotted.
 We find that the sensitivity distribution is significantly more correlated
 with the EoR signal [$\rho(\B{s}, \B{y}_{\R{eor}}) = 0.742$] than the
 foreground [$\rho(\B{s}, \B{y}_{\R{fg}}) = 0.562$].
