@@ -307,10 +307,9 @@ feed the corrupted input $\B{x}'$ to the autoencoder, and then train it to
 reconstruct the original input by minimizing the loss $L(\B{r}, \,\B{x})$.
 During this denoising process, the autoencoder is required to
 \edittwo{learn the important features in the original input, i.e., a good
-representation}%
-\deletedtwo{of the input.
-Since the trained autoencoder is able to denoise the corrupted input
-$\B{x}'$ to reconstruct the original input $\B{x}$, hence it}
+representation.}%
+\deletedtwo{Since the trained autoencoder is able to denoise the corrupted
+input $\B{x}'$ to reconstruct the original input $\B{x}$, hence it}
 \edittwo{An autoencoder trained with such a strategy}
 is called a `denoising autoencoder.'
 
@@ -427,10 +426,11 @@ following three datasets are required%
 \citep[e.g.,][]{ripley1996}:
 (1) training set ($S_{\R{tr}}$) to fit the parameters%
 \deletedtwo{by minimizing the loss $L$};
-(2) validation set ($S_{\R{val}}$) not only to validate
-\edittwo{whether the training process goes well (e.g., no over-fitting)}
-but also to help determine the hyperparameters (e.g., the number of
-layers and filters; \autoref{sec:architecture});
+(2) validation set ($S_{\R{val}}$)
+\edittwo{not only to validate whether the training process goes well
+(e.g., no over-fitting) but also to}
+help determine the hyperparameters (e.g., the number of layers and filters;
+\autoref{sec:architecture});
 (3) test set ($S_{\R{test}}$) that is solely used to evaluate the
 performance of the trained CDAE.
 Each dataset is a collection of many data points of
@@ -566,7 +566,8 @@ temperature, between X-ray temperature and radio power) to derive their
 radio emissions.
 
 In regard to the simulation of the EoR signal, we take advantage of the
-2016 data release from the Evolution Of 21\,cm Structure project\footnote{%
+2016 data release from the
+\textit{Evolution Of 21\,cm Structure} project\footnote{%
   Evolution Of 21\,cm Structure:
   \url{http://homepage.sns.it/mesinger/EOS.html}}
 \citep{mesinger2016} and extract the image slices at corresponding
@@ -589,11 +590,11 @@ The 512 stations are divided into two parts:
 \SI{1000}{\meter} in diameter;
 (2) the remaining stations are placed on 3 spiral arms extending up to a
 radius of about \SI{35}{\kilo\meter}.
-For each sky map, we employ the \textsc{oskar}\footnote{%
+For each sky map, we employ the \textsc{OSKAR}\footnote{%
   OSKAR: \url{https://github.com/OxfordSKA/OSKAR} (version 2.7.0)}
 simulator \citep{mort2010} to perform 6-hour synthesis imaging,
 yielding the visibility data, from which the `observed'
-image is created by the \textsc{wsclean}\footnote{%
+image is created by the \textsc{WSClean}\footnote{%
   WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
 imager \citep{offringa2014}.
 In order to emphasize the faint and relatively diffuse EoR signal, the
@@ -636,7 +637,7 @@ the emission.} % edittwo
     The corresponding differential spectra for the foreground emission are
     also plotted in thin red lines.
     The top and middle panels show the foreground emissions without and
-    with beam effects considered, respectively, and the bottom panel
+    with the beam effects considered, respectively, and the bottom panel
     presents the corresponding EoR signal.
   }}
 \end{figure}
@@ -648,7 +649,7 @@ if there are only one pair of image cubes, the test set could only contain
 a small fraction of all the pixels that are randomly distributed on the
 sky, from which it is impossible to obtain a complete image of the
 reconstructed EoR signal.
-Consequently, it is beneficial to simulate the second pair of image cubes
+Consequently, it is beneficial to simulate another pair of image cubes
 that are solely used as the test set.
 To this end, we simulate the Galactic diffuse radiations at a central
 coordinate of (R.A., Dec\@.) = (\SI{3}{\degree}, \SI{-27}{\degree}), i.e.,
