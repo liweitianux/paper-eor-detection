@@ -1,6 +1,3 @@
-# Comment out to disable CJK support (use `pdflatex' instead of `xelatex')
-#CJK:= ON
-
 # Name to identify the reported manuscript
 ID:= cdae-eor
 
@@ -31,13 +28,7 @@ report: main.pdf $(SRCS)
 	cp main.tex reports/$(ID)-$(DATE).tex
 
 main.pdf: $(SRCS) $(TEMPLATE) $(FIGURES)
-ifeq ($(CJK),ON)
-	# use XeLaTeX (support CJK)
 	env TEXINPUTS=$(TEXINPUTS) BSTINPUTS=$(BSTINPUTS) latexmk -xelatex $<
-else
-	# pdfLaTeX
-	env TEXINPUTS=$(TEXINPUTS) BSTINPUTS=$(BSTINPUTS) latexmk -pdf $<
-endif
 
 submission: $(SRCS) $(TEMPLATE) $(FIGURES)
 	mkdir $@.$(DATE)
