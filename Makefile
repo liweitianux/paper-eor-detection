@@ -1,14 +1,6 @@
-# Name to identify the reported manuscript
-ID:= cdae-eor
-
-DATE:=		$(shell date +'%Y%m%d')
-
-# Environment variables
-TEXINPUTS:=	.:mnras:revtex:texmf:$(TEXINPUTS)
-BSTINPUTS:=	.:mnras:revtex:texmf:$(BSTINPUTS)
+ID:=		cdae-eor
 
 # Files to pack for submission
-TEMPLATE:=	mnras/mnras.cls mnras/mnras.bst
 SRCS:=		main.tex references.bib
 FIGURES:=	figures/network-crop.pdf \
 		figures/obsimg-158.png \
@@ -19,6 +11,12 @@ FIGURES:=	figures/network-crop.pdf \
 		figures/eor-ps-comp.png \
 		figures/occlusion-fgeor.pdf \
 		figures/cdae-train-noft.pdf
+TEMPLATE:=	mnras/mnras.cls mnras/mnras.bst
+
+TEXINPUTS:=	.:mnras:revtex:texmf:$(TEXINPUTS)
+BSTINPUTS:=	.:mnras:revtex:texmf:$(BSTINPUTS)
+
+DATE:=		$(shell date +'%Y%m%d')
 
 default: main.pdf
 
