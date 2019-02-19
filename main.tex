@@ -170,8 +170,9 @@ $\bar{\rho}_{\R{poly}} = \num{0.296 +- 0.121}$ and
 $\bar{\rho}_{\R{cwt}} = \num{0.198 +- 0.160}$, respectively.} % editone
 We conclude that, by hierarchically learning sophisticated features
 through multiple convolutional layers, the CDAE is a powerful tool that
-can be used to overcome the complicated beam effects
-and accurately separate the EoR signal, which exhibits the great
+can be used to overcome the complicated beam effects and accurately
+separate the EoR signal.
+\edittwo{Our results also} exhibit the great
 potential of deep-learning-based methods in future EoR experiments.
 \end{abstract}
 
@@ -599,8 +600,8 @@ The 512 stations are divided into two parts:
 radius of about \SI{35}{\kilo\meter}.
 For each sky map, we employ the \textsc{OSKAR}\footnote{%
   OSKAR: \url{https://github.com/OxfordSKA/OSKAR} (version 2.7.0)}
-simulator \citep{mort2010} to perform 6-hour synthesis imaging,
-yielding the visibility data, from which the `observed'
+simulator \citep{mort2010} to perform 6-hour synthesis imaging
+\edittwo{to obtain} the visibility data, from which the `observed'
 image is created by the \textsc{WSClean}\footnote{%
   WSClean: \url{https://sourceforge.net/p/wsclean} (version 2.5)}
 imager \citep{offringa2014}.
@@ -634,7 +635,7 @@ an effective separation.
 We note that the `observed' foreground has an amplitude of about two orders
 of magnitude smaller than the ideal foreground, the major reason for which
 is that interferometers are only sensitive to the spatial fluctuations of
-the emission.} % edittwo
+the emission \citep[e.g.,][]{braun1985}.} % edittwo
 
 \begin{figure}
   \centering
@@ -675,17 +676,11 @@ $\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$.
 
 We note that the simulations do not include thermal noise because the
 proposed method is designed to create tomographic EoR images from very deep
-SKA observations that have a sufficiently low noise level.
-Among the 13 high priority science objectives identified for SKA phase I,
-the EoR imaging objective is of the highest priority\footnote{\raggedright%
-  SKA1 level 0 science requirements:
-  \url{https://www.skatelescope.org/wp-content/uploads/2014/03/SKA-TEL-SKO-0000007_SKA1_Level_0_Science_RequirementsRev02-part-1-signed.pdf}}.
-It is planned to select 5 clean fields on the sky and to observe each of
-them for about \SI{1000}{\hour}, reaching an unprecedented image noise
-level of $\,\lesssim \SI{1}{\mK}$ that allows to directly image the
-reionization structures
-\citep[e.g.,][]{mellema2013rev,mellema2015,koopmans2015rev}.
-} % editone
+observations that have a sufficiently low noise level.} % editone
+\edittwo{The SKA1-Low is planned to observe each of the target fields for
+about \SI{1000}{\hour}, reaching an unprecedented image noise level of
+$\,\lesssim \SI{1}{\mK}$ that allows to directly image the reionization
+structures \citep[e.g.,][]{mellema2013rev,mellema2015,koopmans2015rev}.} % edittwo
 
 
 %%----------------------------------------------------------------------
@@ -924,9 +919,9 @@ sensitivities, we obtain the CDAE's sensitivity distribution ($\B{s}$) to
 every part of the input data, as shown in \autoref{fig:occ-fgeor}, where
 the root-mean-square amplitudes of the foreground emission
 ($\B{y}_{\R{fg}}$) and the EoR signal ($\B{y}_{\R{eor}}$) are also plotted.
-We find that the sensitivity distribution is significantly more correlated
-with the EoR signal [$\rho(\B{s}, \B{y}_{\R{eor}}) = 0.742$] than the
-foreground [$\rho(\B{s}, \B{y}_{\R{fg}}) = 0.562$].
+We find that the sensitivity distribution is more correlated with the EoR
+signal [$\rho(\B{s}, \B{y}_{\R{eor}}) = 0.742$] than the foreground
+[$\rho(\B{s}, \B{y}_{\R{fg}}) = 0.562$].
 This verifies that the trained CDAE has learned useful features of the EoR
 signal to distinguish it from the foreground emission and thus becomes more
 sensitive to the data parts of higher signal-to-noise ratio.
