@@ -5,7 +5,9 @@ We gratefully thank the reviewer for his/her time and useful comments that
 help improve this manuscript.  Based on the comments, we have carefully
 revised Section 2 to avoid conceptual repetitions to make the text more
 succinct and coherent.  We have also updated Figure 3 and improved the
-corresponding description to explain the results clearer.
+corresponding description to explain the results clearer.  Furthermore, we
+have reviewed the whole manuscript and made multiple minor changes to the
+text for better clarity and readability.
 
 The changes to the manuscript from the last revision are highlighted in
 "magenta."  The point-by-point responses to the comments (indented with
@@ -49,6 +51,6 @@ compared to the EoR signal.
 The main reason that the 'observed' foreground has an amplitude of about
 two orders of magnitude smaller than the ideal foreground is that
 interferometers are only sensitive to the spatial fluctuations of the
-emission.  We have added this explanation to the end of paragraph 4 of
-Section 3.1.
+emission (e.g., Braun & Walterbos 1985).  We have added this explanation to
+the end of paragraph 4 of Section 3.1.
 
