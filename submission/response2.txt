@@ -47,7 +47,7 @@ We have updated Figure 3 to present the example spectra of the foreground
 emission and the EoR signal for one random sky pixel.  Therefore, the rapid
 fluctuations resulting from the beam effects are better illustrated and
 compared to the EoR signal.  We have detailed the description accordingly
-in the end of paragraph 4 in Section 3.1.
+at the end of paragraph 4 in Section 3.1.
 
 The main reason that the 'observed' foreground has an amplitude of about
 two orders of magnitude smaller than the ideal foreground is that
