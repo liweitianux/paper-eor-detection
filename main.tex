@@ -200,7 +200,7 @@ this stage (see \citealt{furlanetto2016rev} for a review).
 To detect the \SI{21}{\cm} signal, which is believed to have been
 redshifted to the frequencies below \SI{200}{\MHz}, low-frequency
 radio interferometers such as the SKA \citep{koopmans2015rev} and its
-pathfinders have been built or under construction.
+pathfinders \edittwo{and precursors} have been built or under construction.
 The observational challenges, however, are immense due to
 complicated instrumental effects, ionospheric distortions, radio frequency
 interference, and the strong foreground contamination that
@@ -432,13 +432,11 @@ training these parameters, the}
 following three datasets are required%
 \deletedtwo{to train and evaluate the CDAE}
 \citep[e.g.,][]{ripley1996}:
-(1) training set ($S_{\R{tr}}$) that is used to fit the parameters%
-\deletedtwo{by minimizing the loss $L$};
-(2) validation set ($S_{\R{val}}$)
-\edittwo{that is used not only to validate whether or not the training
-process runs well (e.g., no over-fitting), but also to}
-help determine the hyperparameters (e.g., the number of layers and filters;
-\autoref{sec:architecture});
+(1) training set ($S_{\R{tr}}$)%
+\deletedtwo{to fit the parameters by minimizing the loss $L$};
+(2) validation set ($S_{\R{val}}$) that is used to validate the training
+process and to help determine the hyperparameters (e.g., the number of
+layers and filters);
 (3) test set ($S_{\R{test}}$) that is solely used to evaluate the
 performance of the trained CDAE.
 Each dataset is a collection of many data points of
@@ -746,9 +744,9 @@ to 80 per cent of the pixels, or \num{103680} data points) and the
 validation set ($S_{\R{val}}$; 20 per cent, or \num{25920} data points).
 The preprocessed data of the second cube pair
 $\left( C_{\R{eor}}^{(2)}, C_{\R{fg}}^{(2)} \right)$
-are solely used as the test set ($S_{\R{test}}$; \num{129600} data points).
-The use of the whole image cubes as the test set enables us to create
-complete images of the reconstructed EoR signal.
+are solely used as the test set ($S_{\R{test}}$; \num{129600} data points).%
+\deletedtwo{The use of the whole image cubes as the test set enables us to
+create complete images of the reconstructed EoR signal.}
 } % editone
 
 We implement the proposed CDAE using the
