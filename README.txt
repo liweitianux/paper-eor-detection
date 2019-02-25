@@ -6,8 +6,8 @@ Journal: MNRAS
 Files:
 * source:
   - main.tex
+  - main.bib
   - main.bbl
-  - references.bib
 * figure:
   - cdae-train.pdf
   - cdae-train-noft.pdf

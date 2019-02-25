@@ -1,7 +1,6 @@
 ID:=		cdae-eor
 
-# Files to pack for submission
-SRCS:=		main.tex references.bib
+SRCS:=		main.tex main.bib
 FIGURES:=	figures/network-crop.pdf \
 		figures/obsimg-158.png \
 		figures/simudata.pdf \
