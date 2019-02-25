@@ -6,6 +6,7 @@ Journal: MNRAS
 Files:
 * source:
   - main.tex
+  - main.bbl
   - references.bib
 * figure:
   - cdae-train.pdf

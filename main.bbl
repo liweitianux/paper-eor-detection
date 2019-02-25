@@ -1,0 +1,432 @@
+\begin{thebibliography}{}
+\makeatletter
+\relax
+\def\mn@urlcharsother{\let\do\@makeother \do\$\do\&\do\#\do\^\do\_\do\%\do\~}
+\def\mn@doi{\begingroup\mn@urlcharsother \@ifnextchar [ {\mn@doi@}
+  {\mn@doi@[]}}
+\def\mn@doi@[#1]#2{\def\@tempa{#1}\ifx\@tempa\@empty \href
+  {http://dx.doi.org/#2} {doi:#2}\else \href {http://dx.doi.org/#2} {#1}\fi
+  \endgroup}
+\def\mn@eprint#1#2{\mn@eprint@#1:#2::\@nil}
+\def\mn@eprint@arXiv#1{\href {http://arxiv.org/abs/#1} {{\tt arXiv:#1}}}
+\def\mn@eprint@dblp#1{\href {http://dblp.uni-trier.de/rec/bibtex/#1.xml}
+  {dblp:#1}}
+\def\mn@eprint@#1:#2:#3:#4\@nil{\def\@tempa {#1}\def\@tempb {#2}\def\@tempc
+  {#3}\ifx \@tempc \@empty \let \@tempc \@tempb \let \@tempb \@tempa \fi \ifx
+  \@tempb \@empty \def\@tempb {arXiv}\fi \@ifundefined
+  {mn@eprint@\@tempb}{\@tempb:\@tempc}{\expandafter \expandafter \csname
+  mn@eprint@\@tempb\endcsname \expandafter{\@tempc}}}
+
+\bibitem[\protect\citeauthoryear{{Abadi} et~al.,}{{Abadi}
+  et~al.}{2015}]{tensorflow}
+{Abadi} M.,  et~al., 2015, {TensorFlow}: Large-Scale Machine Learning on
+  Heterogeneous Systems, \url {https://www.tensorflow.org/}
+
+\bibitem[\protect\citeauthoryear{{Alonso}, {Bull}, {Ferreira}  \&
+  {Santos}}{{Alonso} et~al.}{2015}]{alonso2015}
+{Alonso} D.,  {Bull} P.,  {Ferreira} P.~G.,   {Santos} M.~G.,  2015, \mn@doi
+  [\mnras] {10.1093/mnras/stu2474}, \href
+  {http://adsabs.harvard.edu/abs/2015MNRAS.447..400A} {447, 400}
+
+\bibitem[\protect\citeauthoryear{{Beardsley} et~al.,}{{Beardsley}
+  et~al.}{2016}]{beardsley2016}
+{Beardsley} A.~P.,  et~al., 2016, \mn@doi [\apj] {10.3847/1538-4357/833/1/102},
+  \href {http://adsabs.harvard.edu/abs/2016ApJ...833..102B} {833, 102}
+
+\bibitem[\protect\citeauthoryear{Bengio, Yao, Alain  \& Vincent}{Bengio
+  et~al.}{2013}]{bengio2013}
+Bengio Y.,  Yao L.,  Alain G.,   Vincent P.,  2013, in Proceedings of the 26th
+  International Conference on Neural Information Processing Systems (NIPS
+  2013). Curran Associates Inc., USA, pp 899--907, \url
+  {http://dl.acm.org/citation.cfm?id=2999611.2999712}
+
+\bibitem[\protect\citeauthoryear{{Bonaldi} \& {Brown}}{{Bonaldi} \&
+  {Brown}}{2015}]{bonaldi2015}
+{Bonaldi} A.,  {Brown} M.~L.,  2015, \mn@doi [\mnras] {10.1093/mnras/stu2601},
+  \href {http://adsabs.harvard.edu/abs/2015MNRAS.447.1973B} {447, 1973}
+
+\bibitem[\protect\citeauthoryear{{Braun} \& {Walterbos}}{{Braun} \&
+  {Walterbos}}{1985}]{braun1985}
+{Braun} R.,  {Walterbos} R.~A.~M.,  1985, \aap, \href
+  {http://adsabs.harvard.edu/abs/1985A%26A...143..307B} {143, 307}
+
+\bibitem[\protect\citeauthoryear{{Chapman} et~al.,}{{Chapman}
+  et~al.}{2012}]{chapman2012}
+{Chapman} E.,  et~al., 2012, \mn@doi [\mnras]
+  {10.1111/j.1365-2966.2012.21065.x}, \href
+  {http://adsabs.harvard.edu/abs/2012MNRAS.423.2518C} {423, 2518}
+
+\bibitem[\protect\citeauthoryear{{Chapman} et~al.,}{{Chapman}
+  et~al.}{2013}]{chapman2013}
+{Chapman} E.,  et~al., 2013, \mn@doi [\mnras] {10.1093/mnras/sts333}, \href
+  {http://adsabs.harvard.edu/abs/2013MNRAS.429..165C} {429, 165}
+
+\bibitem[\protect\citeauthoryear{{Chapman} et~al.,}{{Chapman}
+  et~al.}{2015}]{chapman2015}
+{Chapman} E.,  et~al., 2015, Advancing Astrophysics with the Square Kilometre
+  Array (AASKA14), \href {http://adsabs.harvard.edu/abs/2015aska.confE...5C}
+  {p.~5}
+
+\bibitem[\protect\citeauthoryear{{Chapman}, {Zaroubi}, {Abdalla}, {Dulwich},
+  {Jeli{\'c}}  \& {Mort}}{{Chapman} et~al.}{2016}]{chapman2016}
+{Chapman} E.,  {Zaroubi} S.,  {Abdalla} F.~B.,  {Dulwich} F.,  {Jeli{\'c}} V.,
+   {Mort} B.,  2016, \mn@doi [\mnras] {10.1093/mnras/stw161}, \href
+  {http://adsabs.harvard.edu/abs/2016MNRAS.458.2928C} {458, 2928}
+
+\bibitem[\protect\citeauthoryear{Chollet et~al.}{Chollet et~al.}{2015}]{keras}
+Chollet F.,  et~al., 2015, Keras, \url{https://keras.io}
+
+\bibitem[\protect\citeauthoryear{{Clevert}, {Unterthiner}  \&
+  {Hochreiter}}{{Clevert} et~al.}{2016}]{clevert2016}
+{Clevert} D.-A.,  {Unterthiner} T.,   {Hochreiter} S.,  2016, in The
+  International Conference on Learning Representations (ICLR 2016).
+  (\mn@eprint {arXiv} {1511.07289})
+
+\bibitem[\protect\citeauthoryear{{Datta}, {Bowman}  \& {Carilli}}{{Datta}
+  et~al.}{2010}]{datta2010}
+{Datta} A.,  {Bowman} J.~D.,   {Carilli} C.~L.,  2010, \mn@doi [\apj]
+  {10.1088/0004-637X/724/1/526}, \href
+  {http://adsabs.harvard.edu/abs/2010ApJ...724..526D} {724, 526}
+
+\bibitem[\protect\citeauthoryear{{Dickinson}, {Davies}  \& {Davis}}{{Dickinson}
+  et~al.}{2003}]{dickinson2003}
+{Dickinson} C.,  {Davies} R.~D.,   {Davis} R.~J.,  2003, \mn@doi [\mnras]
+  {10.1046/j.1365-8711.2003.06439.x}, \href
+  {http://adsabs.harvard.edu/abs/2003MNRAS.341..369D} {341, 369}
+
+\bibitem[\protect\citeauthoryear{Domingos}{Domingos}{2012}]{domingos2012}
+Domingos P.,  2012, \mn@doi [Communications of the ACM]
+  {10.1145/2347736.2347755}, 55, 78
+
+\bibitem[\protect\citeauthoryear{Du, Xiong, Wu, Zhang, Zhang  \& Tao}{Du
+  et~al.}{2017}]{du2017}
+Du B.,  Xiong W.,  Wu J.,  Zhang L.,  Zhang L.,   Tao D.,  2017, \mn@doi [IEEE
+  Transactions on Cybernetics] {10.1109/TCYB.2016.2536638}, 47, 1017
+
+\bibitem[\protect\citeauthoryear{{Finkbeiner}}{{Finkbeiner}}{2003}]{finkbeiner2003}
+{Finkbeiner} D.~P.,  2003, \mn@doi [\apjs] {10.1086/374411}, \href
+  {http://adsabs.harvard.edu/abs/2003ApJS..146..407F} {146, 407}
+
+\bibitem[\protect\citeauthoryear{{Furlanetto}}{{Furlanetto}}{2016}]{furlanetto2016rev}
+{Furlanetto} S.~R.,  2016, \mn@doi [Understanding the Epoch of Cosmic
+  Reionization: Challenges and Progress] {10.1007/978-3-319-21957-8_9}, \href
+  {http://adsabs.harvard.edu/abs/2016ASSL..423..247F} {423, 247}
+
+\bibitem[\protect\citeauthoryear{G\'eron}{G\'eron}{2017}]{geron2017}
+G\'eron A.,  2017, {Hands-On Machine Learning with Scikit-Learn and TensorFlow:
+  Concepts, Tools, and Techniques to Build Intelligent Systems}, 1st edn.
+O'Reilly Media, Inc.
+
+\bibitem[\protect\citeauthoryear{{Giardino}, {Banday}, {G{\'o}rski}, {Bennett},
+  {Jonas}  \& {Tauber}}{{Giardino} et~al.}{2002}]{giardino2002}
+{Giardino} G.,  {Banday} A.~J.,  {G{\'o}rski} K.~M.,  {Bennett} K.,  {Jonas}
+  J.~L.,   {Tauber} J.,  2002, \mn@doi [\aap] {10.1051/0004-6361:20020285},
+  \href {http://adsabs.harvard.edu/abs/2002A%26A...387...82G} {387, 82}
+
+\bibitem[\protect\citeauthoryear{{Goodfellow}, {Bengio}  \&
+  {Courville}}{{Goodfellow} et~al.}{2016}]{goodfellow2016}
+{Goodfellow} I.,  {Bengio} Y.,   {Courville} A.,  2016, Deep Learning.
+MIT Press, \url {http://www.deeplearningbook.org}
+
+\bibitem[\protect\citeauthoryear{{Grais} \& {Plumbley}}{{Grais} \&
+  {Plumbley}}{2017}]{grais2017}
+{Grais} E.~M.,  {Plumbley} M.~D.,  2017, in 5th IEEE Global Conference on
+  Signal and Information Processing (GlobalSIP 2017). IEEE, pp 1265--1269
+  (\mn@eprint {arXiv} {1703.08019}), \mn@doi{10.1109/GlobalSIP.2017.8309164}
+
+\bibitem[\protect\citeauthoryear{{Gu}, {Xu}, {Wang}, {An}  \& {Chen}}{{Gu}
+  et~al.}{2013}]{gu2013}
+{Gu} J.,  {Xu} H.,  {Wang} J.,  {An} T.,   {Chen} W.,  2013, \mn@doi [\apj]
+  {10.1088/0004-637X/773/1/38}, \href
+  {http://adsabs.harvard.edu/abs/2013ApJ...773...38G} {773, 38}
+
+\bibitem[\protect\citeauthoryear{{Harker} et~al.,}{{Harker}
+  et~al.}{2009}]{harker2009}
+{Harker} G.,  et~al., 2009, \mn@doi [\mnras]
+  {10.1111/j.1365-2966.2009.15081.x}, \href
+  {http://adsabs.harvard.edu/abs/2009MNRAS.397.1138H} {397, 1138}
+
+\bibitem[\protect\citeauthoryear{He, Zhang, Ren  \& Sun}{He
+  et~al.}{2015}]{he2015}
+He K.,  Zhang X.,  Ren S.,   Sun J.,  2015, in Proceedings of the 2015 IEEE
+  International Conference on Computer Vision (ICCV 2015). IEEE Computer
+  Society, Washington, DC, USA, pp 1026--1034, \mn@doi{10.1109/ICCV.2015.123}
+
+\bibitem[\protect\citeauthoryear{{Herbel}, {Kacprzak}, {Amara}, {Refregier}  \&
+  {Lucchi}}{{Herbel} et~al.}{2018}]{herbel2018}
+{Herbel} J.,  {Kacprzak} T.,  {Amara} A.,  {Refregier} A.,   {Lucchi} A.,
+  2018, \mn@doi [Journal of Cosmology and Astro-Particle Physics]
+  {10.1088/1475-7516/2018/07/054}, \href
+  {https://ui.adsabs.harvard.edu/#abs/2018JCAP...07..054H} {2018, 054}
+
+\bibitem[\protect\citeauthoryear{{Hinton} \& {Salakhutdinov}}{{Hinton} \&
+  {Salakhutdinov}}{2006}]{hinton2006}
+{Hinton} G.~E.,  {Salakhutdinov} R.~R.,  2006, \mn@doi [Science]
+  {10.1126/science.1127647}, \href
+  {http://adsabs.harvard.edu/abs/2006Sci...313..504H} {313, 504}
+
+\bibitem[\protect\citeauthoryear{{Intema}, {van der Tol}, {Cotton}, {Cohen},
+  {van Bemmel}  \& {R{\"o}ttgering}}{{Intema} et~al.}{2009}]{intema2009}
+{Intema} H.~T.,  {van der Tol} S.,  {Cotton} W.~D.,  {Cohen} A.~S.,  {van
+  Bemmel} I.~M.,   {R{\"o}ttgering} H.~J.~A.,  2009, \mn@doi [\aap]
+  {10.1051/0004-6361/200811094}, \href
+  {http://adsabs.harvard.edu/abs/2009A%26A...501.1185I} {501, 1185}
+
+\bibitem[\protect\citeauthoryear{Ioffe \& Szegedy}{Ioffe \&
+  Szegedy}{2015}]{ioffe2015}
+Ioffe S.,  Szegedy C.,  2015, in Proceedings of the 32nd International
+  Conference on International Conference on Machine Learning (ICML 2015).
+  JMLR.org, pp 448--456
+
+\bibitem[\protect\citeauthoryear{{Jeli{\'c}} et~al.,}{{Jeli{\'c}}
+  et~al.}{2008}]{jelic2008}
+{Jeli{\'c}} V.,  et~al., 2008, \mn@doi [\mnras]
+  {10.1111/j.1365-2966.2008.13634.x}, \href
+  {http://adsabs.harvard.edu/abs/2008MNRAS.389.1319J} {389, 1319}
+
+\bibitem[\protect\citeauthoryear{{Kingma} \& {Ba}}{{Kingma} \&
+  {Ba}}{2015}]{kingma2015}
+{Kingma} D.~P.,  {Ba} J.,  2015, in The International Conference on Learning
+  Representations (ICLR 2015).  (\mn@eprint {arXiv} {1412.6980})
+
+\bibitem[\protect\citeauthoryear{{Koopmans} et~al.,}{{Koopmans}
+  et~al.}{2015}]{koopmans2015rev}
+{Koopmans} L.,  et~al., 2015, Advancing Astrophysics with the Square Kilometre
+  Array (AASKA14), \href {http://adsabs.harvard.edu/abs/2015aska.confE...1K}
+  {p.~1}
+
+\bibitem[\protect\citeauthoryear{Krizhevsky, Sutskever  \& Hinton}{Krizhevsky
+  et~al.}{2012}]{krizhevsky2012}
+Krizhevsky A.,  Sutskever I.,   Hinton G.~E.,  2012, in Proceedings of the 25th
+  International Conference on Neural Information Processing Systems (NIPS).
+  Curran Associates Inc., USA, pp 1097--1105, \url
+  {http://dl.acm.org/citation.cfm?id=2999134.2999257}
+
+\bibitem[\protect\citeauthoryear{LeCun, Bottou, Orr  \& M\"{u}ller}{LeCun
+  et~al.}{1998}]{lecun1998bp}
+LeCun Y.,  Bottou L.,  Orr G.~B.,   M\"{u}ller K.-R.,  1998, in Neural
+  Networks: Tricks of the Trade. Springer-Verlag, London, UK, UK, pp 9--50,
+  \url {http://dl.acm.org/citation.cfm?id=645754.668382}
+
+\bibitem[\protect\citeauthoryear{{LeCun}, {Bengio}  \& {Hinton}}{{LeCun}
+  et~al.}{2015}]{lecun2015}
+{LeCun} Y.,  {Bengio} Y.,   {Hinton} G.,  2015, \mn@doi [\nat]
+  {10.1038/nature14539}, \href
+  {http://adsabs.harvard.edu/abs/2015Natur.521..436L} {521, 436}
+
+\bibitem[\protect\citeauthoryear{Lecun, Bottou, Bengio  \& Haffner}{Lecun
+  et~al.}{1998}]{lecun1998}
+Lecun Y.,  Bottou L.,  Bengio Y.,   Haffner P.,  1998, \mn@doi [Proceedings of
+  the IEEE] {10.1109/5.726791}, 86, 2278
+
+\bibitem[\protect\citeauthoryear{{Liu}, {Tegmark}  \& {Zaldarriaga}}{{Liu}
+  et~al.}{2009a}]{liu2009ps}
+{Liu} A.,  {Tegmark} M.,   {Zaldarriaga} M.,  2009a, \mn@doi [\mnras]
+  {10.1111/j.1365-2966.2009.14426.x}, \href
+  {http://adsabs.harvard.edu/abs/2009MNRAS.394.1575L} {394, 1575}
+
+\bibitem[\protect\citeauthoryear{{Liu}, {Tegmark}, {Bowman}, {Hewitt}  \&
+  {Zaldarriaga}}{{Liu} et~al.}{2009b}]{liu2009fgrm}
+{Liu} A.,  {Tegmark} M.,  {Bowman} J.,  {Hewitt} J.,   {Zaldarriaga} M.,
+  2009b, \mn@doi [\mnras] {10.1111/j.1365-2966.2009.15156.x}, \href
+  {http://adsabs.harvard.edu/abs/2009MNRAS.398..401L} {398, 401}
+
+\bibitem[\protect\citeauthoryear{{Lochner}, {Natarajan}, {Zwart}, {Smirnov},
+  {Bassett}, {Oozeer}  \& {Kunz}}{{Lochner} et~al.}{2015}]{lochner2015}
+{Lochner} M.,  {Natarajan} I.,  {Zwart} J. T.~L.,  {Smirnov} O.,  {Bassett}
+  B.~A.,  {Oozeer} N.,   {Kunz} M.,  2015, \mn@doi [\mnras]
+  {10.1093/mnras/stv679}, \href
+  {https://ui.adsabs.harvard.edu/#abs/2015MNRAS.450.1308L} {450, 1308}
+
+\bibitem[\protect\citeauthoryear{Lu, Tsao, Matsuda  \& Hori}{Lu
+  et~al.}{2013}]{lu2013}
+Lu X.,  Tsao Y.,  Matsuda S.,   Hori C.,  2013, in 14th Annual Conference of
+  the International Speech Communication Association (INTERSPEECH 2013). pp
+  436--440, \url
+  {https://www.isca-speech.org/archive/interspeech_2013/i13_0436.html}
+
+\bibitem[\protect\citeauthoryear{{Ma} et~al.,}{{Ma} et~al.}{2019}]{ma2019}
+{Ma} Z.,  et~al., 2019, \apjs, \href
+  {http://adsabs.harvard.edu/abs/2018arXiv181207190M} {in press,
+  (arXiv:1812.07190)}
+
+\bibitem[\protect\citeauthoryear{Masci, Meier, Cire\c{s}an  \&
+  Schmidhuber}{Masci et~al.}{2011}]{masci2011}
+Masci J.,  Meier U.,  Cire\c{s}an D.,   Schmidhuber J.,  2011, in Proceedings
+  of the 21th International Conference on Artificial Neural Networks (ICANN
+  2011). Springer-Verlag, pp 52--59, \url
+  {http://dl.acm.org/citation.cfm?id=2029556.2029563}
+
+\bibitem[\protect\citeauthoryear{{Mellema} et~al.,}{{Mellema}
+  et~al.}{2013}]{mellema2013rev}
+{Mellema} G.,  et~al., 2013, \mn@doi [Experimental Astronomy]
+  {10.1007/s10686-013-9334-5}, \href
+  {http://adsabs.harvard.edu/abs/2013ExA....36..235M} {36, 235}
+
+\bibitem[\protect\citeauthoryear{{Mellema}, {Koopmans}, {Shukla}, {Datta},
+  {Mesinger}  \& {Majumdar}}{{Mellema} et~al.}{2015}]{mellema2015}
+{Mellema} G.,  {Koopmans} L.,  {Shukla} H.,  {Datta} K.~K.,  {Mesinger} A.,
+  {Majumdar} S.,  2015, Advancing Astrophysics with the Square Kilometre Array
+  (AASKA14), \href {http://adsabs.harvard.edu/abs/2015aska.confE..10M} {p.~10}
+
+\bibitem[\protect\citeauthoryear{{Mertens}, {Ghosh}  \& {Koopmans}}{{Mertens}
+  et~al.}{2018}]{mertens2018}
+{Mertens} F.~G.,  {Ghosh} A.,   {Koopmans} L.~V.~E.,  2018, \mn@doi [\mnras]
+  {10.1093/mnras/sty1207}, \href
+  {http://adsabs.harvard.edu/abs/2018MNRAS.478.3640M} {478, 3640}
+
+\bibitem[\protect\citeauthoryear{{Mesinger}, {Greig}  \& {Sobacchi}}{{Mesinger}
+  et~al.}{2016}]{mesinger2016}
+{Mesinger} A.,  {Greig} B.,   {Sobacchi} E.,  2016, \mn@doi [\mnras]
+  {10.1093/mnras/stw831}, \href
+  {http://adsabs.harvard.edu/abs/2016MNRAS.459.2342M} {459, 2342}
+
+\bibitem[\protect\citeauthoryear{{Mitchell}, {Greenhill}, {Wayth}, {Sault},
+  {Lonsdale}, {Cappallo}, {Morales}  \& {Ord}}{{Mitchell}
+  et~al.}{2008}]{mitchell2008}
+{Mitchell} D.~A.,  {Greenhill} L.~J.,  {Wayth} R.~B.,  {Sault} R.~J.,
+  {Lonsdale} C.~J.,  {Cappallo} R.~J.,  {Morales} M.~F.,   {Ord} S.~M.,  2008,
+  \mn@doi [IEEE Journal of Selected Topics in Signal Processing]
+  {10.1109/JSTSP.2008.2005327}, \href
+  {http://adsabs.harvard.edu/abs/2008ISTSP...2..707M} {2, 707}
+
+\bibitem[\protect\citeauthoryear{{Morales} \& {Wyithe}}{{Morales} \&
+  {Wyithe}}{2010}]{morales2010rev}
+{Morales} M.~F.,  {Wyithe} J.~S.~B.,  2010, \mn@doi [\araa]
+  {10.1146/annurev-astro-081309-130936}, \href
+  {http://adsabs.harvard.edu/abs/2010ARA%26A..48..127M} {48, 127}
+
+\bibitem[\protect\citeauthoryear{{Mort}, {Dulwich}, {Salvini}, {Adami}  \&
+  {Jones}}{{Mort} et~al.}{2010}]{mort2010}
+{Mort} B.~J.,  {Dulwich} F.,  {Salvini} S.,  {Adami} K.~Z.,   {Jones} M.~E.,
+  2010, in 2010 IEEE International Symposium on Phased Array Systems and
+  Technology. pp 690--694, \mn@doi{10.1109/ARRAY.2010.5613289}
+
+\bibitem[\protect\citeauthoryear{{Offringa} et~al.,}{{Offringa}
+  et~al.}{2014}]{offringa2014}
+{Offringa} A.~R.,  et~al., 2014, \mn@doi [\mnras] {10.1093/mnras/stu1368},
+  \href {http://adsabs.harvard.edu/abs/2014MNRAS.444..606O} {444, 606}
+
+\bibitem[\protect\citeauthoryear{{Parsons}, {Pober}, {Aguirre}, {Carilli},
+  {Jacobs}  \& {Moore}}{{Parsons} et~al.}{2012}]{parsons2012}
+{Parsons} A.~R.,  {Pober} J.~C.,  {Aguirre} J.~E.,  {Carilli} C.~L.,  {Jacobs}
+  D.~C.,   {Moore} D.~F.,  2012, \mn@doi [\apj] {10.1088/0004-637X/756/2/165},
+  \href {http://adsabs.harvard.edu/abs/2012ApJ...756..165P} {756, 165}
+
+\bibitem[\protect\citeauthoryear{{Press} \& {Schechter}}{{Press} \&
+  {Schechter}}{1974}]{press1974}
+{Press} W.~H.,  {Schechter} P.,  1974, \mn@doi [\apj] {10.1086/152650}, \href
+  {http://adsabs.harvard.edu/abs/1974ApJ...187..425P} {187, 425}
+
+\bibitem[\protect\citeauthoryear{{Pritchard} \& {Loeb}}{{Pritchard} \&
+  {Loeb}}{2010}]{pritchard2010}
+{Pritchard} J.~R.,  {Loeb} A.,  2010, \mn@doi [\prd]
+  {10.1103/PhysRevD.82.023006}, \href
+  {http://adsabs.harvard.edu/abs/2010PhRvD..82b3006P} {82, 023006}
+
+\bibitem[\protect\citeauthoryear{{Remazeilles}, {Dickinson}, {Banday},
+  {Bigot-Sazy}  \& {Ghosh}}{{Remazeilles} et~al.}{2015}]{remazeilles2015}
+{Remazeilles} M.,  {Dickinson} C.,  {Banday} A.~J.,  {Bigot-Sazy} M.-A.,
+  {Ghosh} T.,  2015, \mn@doi [\mnras] {10.1093/mnras/stv1274}, \href
+  {http://adsabs.harvard.edu/abs/2015MNRAS.451.4311R} {451, 4311}
+
+\bibitem[\protect\citeauthoryear{Ripley}{Ripley}{1996}]{ripley1996}
+Ripley B.~D.,  1996, {Pattern Recognition and Neural Networks}.
+Cambridge University Press, \mn@doi{10.1017/CBO9780511812651}
+
+\bibitem[\protect\citeauthoryear{{Rumelhart}, {Hinton}  \&
+  {Williams}}{{Rumelhart} et~al.}{1986}]{rumelhart1986}
+{Rumelhart} D.~E.,  {Hinton} G.~E.,   {Williams} R.~J.,  1986, \mn@doi [\nat]
+  {10.1038/323533a0}, \href {http://adsabs.harvard.edu/abs/1986Natur.323..533R}
+  {323, 533}
+
+\bibitem[\protect\citeauthoryear{{Shen}, {George}, {Huerta}  \& {Zhao}}{{Shen}
+  et~al.}{2017}]{shen2017}
+{Shen} H.,  {George} D.,  {Huerta} E.~A.,   {Zhao} Z.,  2017, preprint, \href
+  {http://adsabs.harvard.edu/abs/2017arXiv171109919S} {} (\mn@eprint {arXiv}
+  {1711.09919})
+
+\bibitem[\protect\citeauthoryear{{Simonyan} \& {Zisserman}}{{Simonyan} \&
+  {Zisserman}}{2014}]{simonyan2014}
+{Simonyan} K.,  {Zisserman} A.,  2014, preprint, \href
+  {http://adsabs.harvard.edu/abs/2014arXiv1409.1556S} {} (\mn@eprint {arXiv}
+  {1409.1556})
+
+\bibitem[\protect\citeauthoryear{{Springenberg}, {Dosovitskiy}, {Brox}  \&
+  {Riedmiller}}{{Springenberg} et~al.}{2015}]{springenberg2015}
+{Springenberg} J.~T.,  {Dosovitskiy} A.,  {Brox} T.,   {Riedmiller} M.,  2015,
+  in International Conference on Learning Representations (ICLR 2015).
+  (\mn@eprint {arXiv} {1412.6806})
+
+\bibitem[\protect\citeauthoryear{{Suganuma}, {Ozay}  \& {Okatani}}{{Suganuma}
+  et~al.}{2018}]{suganuma2018}
+{Suganuma} M.,  {Ozay} M.,   {Okatani} T.,  2018, in Proceedings of the 35th
+  International Conference on Machine Learning (ICML 2018).  (\mn@eprint
+  {arXiv} {1803.00370})
+
+\bibitem[\protect\citeauthoryear{{Szegedy} et~al.,}{{Szegedy}
+  et~al.}{2015}]{szegedy2015}
+{Szegedy} C.,  et~al., 2015, in 2015 IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR 2015). pp~1--9 (\mn@eprint {arXiv} {1409.4842}),
+  \mn@doi{10.1109/CVPR.2015.7298594}
+
+\bibitem[\protect\citeauthoryear{{Vafaei Sadr}, {Vos}, {Bassett}, {Hosenie},
+  {Oozeer}  \& {Lochner}}{{Vafaei Sadr} et~al.}{2018}]{vafaeiSadr2018}
+{Vafaei Sadr} A.,  {Vos} E.~E.,  {Bassett} B.~A.,  {Hosenie} Z.,  {Oozeer} N.,
+   {Lochner} M.,  2018, preprint, \href
+  {http://adsabs.harvard.edu/abs/2018arXiv180702701V} {} (\mn@eprint {arXiv}
+  {1807.02701})
+
+\bibitem[\protect\citeauthoryear{Vincent, Larochelle, Bengio  \&
+  Manzagol}{Vincent et~al.}{2008}]{vincent2008}
+Vincent P.,  Larochelle H.,  Bengio Y.,   Manzagol P.-A.,  2008, in Proceedings
+  of the 25th International Conference on Machine Learning (ICML 2008). ACM, pp
+  1096--1103, \mn@doi{10.1145/1390156.1390294}
+
+\bibitem[\protect\citeauthoryear{Vincent, Larochelle, Lajoie, Bengio  \&
+  Manzagol}{Vincent et~al.}{2010}]{vincent2010}
+Vincent P.,  Larochelle H.,  Lajoie I.,  Bengio Y.,   Manzagol P.-A.,  2010,
+  The Journal of Machine Learning Research, 11, 3371
+
+\bibitem[\protect\citeauthoryear{{Wang}, {Tegmark}, {Santos}  \& {Knox}}{{Wang}
+  et~al.}{2006}]{wang2006}
+{Wang} X.,  {Tegmark} M.,  {Santos} M.~G.,   {Knox} L.,  2006, \mn@doi [\apj]
+  {10.1086/506597}, \href {http://adsabs.harvard.edu/abs/2006ApJ...650..529W}
+  {650, 529}
+
+\bibitem[\protect\citeauthoryear{{Wang} et~al.,}{{Wang}
+  et~al.}{2010}]{wang2010}
+{Wang} J.,  et~al., 2010, \mn@doi [\apj] {10.1088/0004-637X/723/1/620}, \href
+  {http://adsabs.harvard.edu/abs/2010ApJ...723..620W} {723, 620}
+
+\bibitem[\protect\citeauthoryear{{Wang} et~al.,}{{Wang}
+  et~al.}{2013}]{wang2013}
+{Wang} J.,  et~al., 2013, \mn@doi [\apj] {10.1088/0004-637X/763/2/90}, \href
+  {http://adsabs.harvard.edu/abs/2013ApJ...763...90W} {763, 90}
+
+\bibitem[\protect\citeauthoryear{Wang, Huang, Wang  \& Wang}{Wang
+  et~al.}{2014}]{wang2014}
+Wang W.,  Huang Y.,  Wang Y.,   Wang L.,  2014, in 2014 IEEE Conference on
+  Computer Vision and Pattern Recognition Workshops. pp 496--503,
+  \mn@doi{10.1109/CVPRW.2014.79}
+
+\bibitem[\protect\citeauthoryear{{Wilman} et~al.,}{{Wilman}
+  et~al.}{2008}]{wilman2008}
+{Wilman} R.~J.,  et~al., 2008, \mn@doi [\mnras]
+  {10.1111/j.1365-2966.2008.13486.x}, \href
+  {http://adsabs.harvard.edu/abs/2008MNRAS.388.1335W} {388, 1335}
+
+\bibitem[\protect\citeauthoryear{Xie, Xu  \& Chen}{Xie et~al.}{2012}]{xie2012}
+Xie J.,  Xu L.,   Chen E.,  2012, in Proceedings of the 25th International
+  Conference on Neural Information Processing Systems (NIPS 2012). Curran
+  Associates Inc., USA, pp 341--349
+
+\bibitem[\protect\citeauthoryear{{Zeiler} \& {Fergus}}{{Zeiler} \&
+  {Fergus}}{2014}]{zeiler2014}
+{Zeiler} M.~D.,  {Fergus} R.,  2014, in Fleet D.,  Pajdla T.,  Schiele B.,
+  Tuytelaars T.,  eds, European Conference on Computer Vision (ECCV 2014).
+  Springer, pp 818--833 (\mn@eprint {arXiv} {1311.2901}),
+  \mn@doi{10.1007/978-3-319-10590-1_53}
+
+\makeatother
+\end{thebibliography}

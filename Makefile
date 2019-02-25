@@ -30,7 +30,7 @@ main.pdf: $(SRCS) $(TEMPLATE) $(FIGURES)
 
 submission: $(SRCS) $(TEMPLATE) $(FIGURES)
 	mkdir $@.$(DATE)
-	@for f in $(SRCS) $(TEMPLATE) $(FIGURES) README.txt; do \
+	@for f in $(SRCS) $(TEMPLATE) $(FIGURES) main.bbl README.txt; do \
 		cp -v $$f $@.$(DATE)/; \
 	done
 	tar -czf $@.$(DATE).tar.gz -C $@.$(DATE)/ .

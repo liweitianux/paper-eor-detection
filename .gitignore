@@ -5,7 +5,6 @@
 
 # LaTeX
 *.aux
-*.bbl
 *.blg
 *.fff
 *.fls
