@@ -203,21 +203,21 @@ Krizhevsky A.,  Sutskever I.,   Hinton G.~E.,  2012, in Proceedings of the 25th
   {http://dl.acm.org/citation.cfm?id=2999134.2999257}
 
 \bibitem[\protect\citeauthoryear{LeCun, Bottou, Orr  \& M\"{u}ller}{LeCun
-  et~al.}{1998}]{lecun1998bp}
-LeCun Y.,  Bottou L.,  Orr G.~B.,   M\"{u}ller K.-R.,  1998, in Neural
+  et~al.}{1998a}]{lecun1998bp}
+LeCun Y.,  Bottou L.,  Orr G.~B.,   M\"{u}ller K.-R.,  1998a, in Neural
   Networks: Tricks of the Trade. Springer-Verlag, London, UK, UK, pp 9--50,
   \url {http://dl.acm.org/citation.cfm?id=645754.668382}
+
+\bibitem[\protect\citeauthoryear{LeCun, Bottou, Bengio  \& Haffner}{LeCun
+  et~al.}{1998b}]{lecun1998}
+LeCun Y.,  Bottou L.,  Bengio Y.,   Haffner P.,  1998b, \mn@doi [Proceedings of
+  the IEEE] {10.1109/5.726791}, 86, 2278
 
 \bibitem[\protect\citeauthoryear{{LeCun}, {Bengio}  \& {Hinton}}{{LeCun}
   et~al.}{2015}]{lecun2015}
 {LeCun} Y.,  {Bengio} Y.,   {Hinton} G.,  2015, \mn@doi [\nat]
   {10.1038/nature14539}, \href
   {http://adsabs.harvard.edu/abs/2015Natur.521..436L} {521, 436}
-
-\bibitem[\protect\citeauthoryear{Lecun, Bottou, Bengio  \& Haffner}{Lecun
-  et~al.}{1998}]{lecun1998}
-Lecun Y.,  Bottou L.,  Bengio Y.,   Haffner P.,  1998, \mn@doi [Proceedings of
-  the IEEE] {10.1109/5.726791}, 86, 2278
 
 \bibitem[\protect\citeauthoryear{{Liu}, {Tegmark}  \& {Zaldarriaga}}{{Liu}
   et~al.}{2009a}]{liu2009ps}
