@@ -18,9 +18,10 @@
   mn@eprint@\@tempb\endcsname \expandafter{\@tempc}}}
 
 \bibitem[\protect\citeauthoryear{{Abadi} et~al.,}{{Abadi}
-  et~al.}{2015}]{tensorflow}
-{Abadi} M.,  et~al., 2015, {TensorFlow}: Large-Scale Machine Learning on
-  Heterogeneous Systems, \url {https://www.tensorflow.org/}
+  et~al.}{2016}]{tensorflow}
+{Abadi} M.,  et~al., 2016, in Proceedings of 12th USENIX Symposium on Operating
+  Systems Design and Implementation (OSDI 2016). USENIX Association, \url
+  {https://www.tensorflow.org/}
 
 \bibitem[\protect\citeauthoryear{{Alonso}, {Bull}, {Ferreira}  \&
   {Santos}}{{Alonso} et~al.}{2015}]{alonso2015}
@@ -150,7 +151,7 @@ MIT Press, \url {http://www.deeplearningbook.org}
   et~al.}{2015}]{he2015}
 He K.,  Zhang X.,  Ren S.,   Sun J.,  2015, in Proceedings of the 2015 IEEE
   International Conference on Computer Vision (ICCV 2015). IEEE Computer
-  Society, Washington, DC, USA, pp 1026--1034, \mn@doi{10.1109/ICCV.2015.123}
+  Society, Washington DC, USA, pp 1026--1034, \mn@doi{10.1109/ICCV.2015.123}
 
 \bibitem[\protect\citeauthoryear{{Herbel}, {Kacprzak}, {Amara}, {Refregier}  \&
   {Lucchi}}{{Herbel} et~al.}{2018}]{herbel2018}
@@ -175,8 +176,8 @@ He K.,  Zhang X.,  Ren S.,   Sun J.,  2015, in Proceedings of the 2015 IEEE
 \bibitem[\protect\citeauthoryear{Ioffe \& Szegedy}{Ioffe \&
   Szegedy}{2015}]{ioffe2015}
 Ioffe S.,  Szegedy C.,  2015, in Proceedings of the 32nd International
-  Conference on International Conference on Machine Learning (ICML 2015).
-  JMLR.org, pp 448--456
+  Conference on International Conference on Machine Learning (ICML 2015). PMLR,
+  pp 448--456
 
 \bibitem[\protect\citeauthoryear{{Jeli{\'c}} et~al.,}{{Jeli{\'c}}
   et~al.}{2008}]{jelic2008}
@@ -186,7 +187,7 @@ Ioffe S.,  Szegedy C.,  2015, in Proceedings of the 32nd International
 
 \bibitem[\protect\citeauthoryear{{Kingma} \& {Ba}}{{Kingma} \&
   {Ba}}{2015}]{kingma2015}
-{Kingma} D.~P.,  {Ba} J.,  2015, in The International Conference on Learning
+{Kingma} D.~P.,  {Ba} J.,  2015, in International Conference on Learning
   Representations (ICLR 2015).  (\mn@eprint {arXiv} {1412.6980})
 
 \bibitem[\protect\citeauthoryear{{Koopmans} et~al.,}{{Koopmans}
@@ -247,8 +248,7 @@ Lu X.,  Tsao Y.,  Matsuda S.,   Hori C.,  2013, in 14th Annual Conference of
 
 \bibitem[\protect\citeauthoryear{{Ma} et~al.,}{{Ma} et~al.}{2019}]{ma2019}
 {Ma} Z.,  et~al., 2019, \apjs, \href
-  {http://adsabs.harvard.edu/abs/2018arXiv181207190M} {in press,
-  (arXiv:1812.07190)}
+  {http://adsabs.harvard.edu/abs/2018arXiv181207190M} {240, 34}
 
 \bibitem[\protect\citeauthoryear{Masci, Meier, Cire\c{s}an  \&
   Schmidhuber}{Masci et~al.}{2011}]{masci2011}
@@ -299,8 +299,8 @@ Masci J.,  Meier U.,  Cire\c{s}an D.,   Schmidhuber J.,  2011, in Proceedings
 \bibitem[\protect\citeauthoryear{{Mort}, {Dulwich}, {Salvini}, {Adami}  \&
   {Jones}}{{Mort} et~al.}{2010}]{mort2010}
 {Mort} B.~J.,  {Dulwich} F.,  {Salvini} S.,  {Adami} K.~Z.,   {Jones} M.~E.,
-  2010, in 2010 IEEE International Symposium on Phased Array Systems and
-  Technology. pp 690--694, \mn@doi{10.1109/ARRAY.2010.5613289}
+  2010, in IEEE International Symposium on Phased Array Systems and Technology.
+  IEEE, pp 690--694, \mn@doi{10.1109/ARRAY.2010.5613289}
 
 \bibitem[\protect\citeauthoryear{{Offringa} et~al.,}{{Offringa}
   et~al.}{2014}]{offringa2014}
@@ -361,21 +361,20 @@ Cambridge University Press, \mn@doi{10.1017/CBO9780511812651}
 \bibitem[\protect\citeauthoryear{{Suganuma}, {Ozay}  \& {Okatani}}{{Suganuma}
   et~al.}{2018}]{suganuma2018}
 {Suganuma} M.,  {Ozay} M.,   {Okatani} T.,  2018, in Proceedings of the 35th
-  International Conference on Machine Learning (ICML 2018).  (\mn@eprint
-  {arXiv} {1803.00370})
+  International Conference on Machine Learning (ICML 2018). PMLR, p.~4771
+  (\mn@eprint {arXiv} {1803.00370})
 
 \bibitem[\protect\citeauthoryear{{Szegedy} et~al.,}{{Szegedy}
   et~al.}{2015}]{szegedy2015}
-{Szegedy} C.,  et~al., 2015, in 2015 IEEE Conference on Computer Vision and
-  Pattern Recognition (CVPR 2015). pp~1--9 (\mn@eprint {arXiv} {1409.4842}),
+{Szegedy} C.,  et~al., 2015, in IEEE Conference on Computer Vision and Pattern
+  Recognition (CVPR 2015). IEEE, pp~1--9 (\mn@eprint {arXiv} {1409.4842}),
   \mn@doi{10.1109/CVPR.2015.7298594}
 
 \bibitem[\protect\citeauthoryear{{Vafaei Sadr}, {Vos}, {Bassett}, {Hosenie},
-  {Oozeer}  \& {Lochner}}{{Vafaei Sadr} et~al.}{2018}]{vafaeiSadr2018}
+  {Oozeer}  \& {Lochner}}{{Vafaei Sadr} et~al.}{2019}]{vafaeiSadr2019}
 {Vafaei Sadr} A.,  {Vos} E.~E.,  {Bassett} B.~A.,  {Hosenie} Z.,  {Oozeer} N.,
-   {Lochner} M.,  2018, preprint, \href
-  {http://adsabs.harvard.edu/abs/2018arXiv180702701V} {} (\mn@eprint {arXiv}
-  {1807.02701})
+   {Lochner} M.,  2019, \mnras, \href
+  {http://adsabs.harvard.edu/abs/2018arXiv180702701V} {484, 2793}
 
 \bibitem[\protect\citeauthoryear{Vincent, Larochelle, Bengio  \&
   Manzagol}{Vincent et~al.}{2008}]{vincent2008}
@@ -406,8 +405,8 @@ Vincent P.,  Larochelle H.,  Lajoie I.,  Bengio Y.,   Manzagol P.-A.,  2010,
 
 \bibitem[\protect\citeauthoryear{Wang, Huang, Wang  \& Wang}{Wang
   et~al.}{2014}]{wang2014}
-Wang W.,  Huang Y.,  Wang Y.,   Wang L.,  2014, in 2014 IEEE Conference on
-  Computer Vision and Pattern Recognition Workshops. pp 496--503,
+Wang W.,  Huang Y.,  Wang Y.,   Wang L.,  2014, in IEEE Conference on Computer
+  Vision and Pattern Recognition Workshops. IEEE, pp 496--503,
   \mn@doi{10.1109/CVPRW.2014.79}
 
 \bibitem[\protect\citeauthoryear{{Wilman} et~al.,}{{Wilman}
@@ -425,7 +424,7 @@ Xie J.,  Xu L.,   Chen E.,  2012, in Proceedings of the 25th International
   {Fergus}}{2014}]{zeiler2014}
 {Zeiler} M.~D.,  {Fergus} R.,  2014, in Fleet D.,  Pajdla T.,  Schiele B.,
   Tuytelaars T.,  eds, European Conference on Computer Vision (ECCV 2014).
-  Springer, pp 818--833 (\mn@eprint {arXiv} {1311.2901}),
+  Springer-Verlag, pp 818--833 (\mn@eprint {arXiv} {1311.2901}),
   \mn@doi{10.1007/978-3-319-10590-1_53}
 
 \makeatother
